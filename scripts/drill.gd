@@ -1,6 +1,7 @@
 extends RigidBody2D
 @onready var drag_sound := $DrillSound
 
+@export var ground: Ground
 
 var is_dragging = false
 var fade_speed = 2.0  # how fast to fade out
@@ -20,6 +21,9 @@ var torque_strength = 80.0
 # Limit angles (in radians)
 var min_angle = deg_to_rad(-45)  # left limit
 var max_angle = deg_to_rad(45)   # right limit
+
+func _ready() -> void:
+	$GroundEraser.ground = ground
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

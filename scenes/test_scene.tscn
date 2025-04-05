@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5xumcwkrint5"]
+[gd_scene load_steps=3 format=3 uid="uid://5wcq21rkrnk6"]
 
 [ext_resource type="PackedScene" uid="uid://cocx0yos7sbyp" path="res://scenes/coffin_spawner.tscn" id="1_g7g4h"]
 

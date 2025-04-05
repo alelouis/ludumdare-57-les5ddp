@@ -3,18 +3,15 @@ extends Area2D
 @export var ground: Ground
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	assert(ground != null, "Ground must be NOT NULLLLLLLLL")
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.y += 48 * delta
-	erase_tiles_in_area(ground.tile_map_layer)
+	global_rotation = 0
+	if ground:
+		erase_tiles_in_area(ground.tile_map_layer)
 
 func _on_body_entered(body: Node) -> void:
 	if body is TileMapLayer:
-		print("tilemap ", body)
+		print("tilemap", body)
 
 func _on_area_entered(area: Area2D) -> void:
 	print(area)
@@ -25,9 +22,9 @@ func remove_tile(tilemap_layer: TileMapLayer, cell: Vector2i):
 func erase_tiles_in_area(tilemap_layer: TileMapLayer):
 	# Get the global bounding box (AABB) of the collision shape
 	var local_aabb: Rect2 = collision_shape_2d.shape.get_rect()
-	var global_transform: Transform2D = collision_shape_2d.global_transform
-	var transformed_top_left = global_transform * local_aabb.position
-	var transformed_bottom_right = global_transform * (local_aabb.position + local_aabb.size)
+	var cshape_global_transform: Transform2D = collision_shape_2d.global_transform
+	var transformed_top_left = cshape_global_transform * local_aabb.position
+	var transformed_bottom_right = cshape_global_transform * (local_aabb.position + local_aabb.size)
 	var global_aabb = Rect2(
 		transformed_top_left,
 		transformed_bottom_right - transformed_top_left
@@ -73,7 +70,7 @@ func erase_tiles_in_area(tilemap_layer: TileMapLayer):
 
 			# 7. Find the global position of the center of the current cell
 			var cell_center_local = tilemap_layer.map_to_local(current_cell)
-			var cell_center_global = tilemap_layer.to_global(cell_center_local)
+			var cell_center_global = tilemap_layer.to_global(cell_center_local) + 0.5 * tilemap_layer.tile_set.tile_size
 
 			query.position = cell_center_global
 			var results: Array = space_state.intersect_point(query, 1) # Query max 1 result for efficiency
