@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://6olnvu2ix4ty"]
+
+[ext_resource type="Script" uid="uid://cd51vbsnatp63" path="res://scripts/ground_eraser.gd" id="1_cmd0x"]
+[ext_resource type="Texture2D" uid="uid://btko424ke6e1f" path="res://icon.svg" id="2_emffa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cmd0x"]
+radius = 92.0
+
+[node name="GroundEraser" type="Area2D"]
+collision_layer = 3
+script = ExtResource("1_cmd0x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cmd0x")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_emffa")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
