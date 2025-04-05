@@ -24,16 +24,18 @@ var current_down_force = 0.0
 var terrain_force_multiplier = 1.0
 var start_position
 
+func on_phase_changed(phase: String) -> void:
+	if phase == "coffin":
+		animation_player.play("fade_to_drill")
+	elif phase == "drill":
+		animation_player.play("idle")
+
 func _ready() -> void:
 	start_position = global_position
 	$GroundEraser.ground = ground
 	$GroundEraser.fuel = fuel_bar
 	animation_player.play("idle")
-	
-func _process(delta: float) -> void:
-	if fuel_bar and fuel_bar.current_fuel <= 0:
-		if animation_player.current_animation != "fade_to_drill":
-			animation_player.play("fade_to_drill")
+	Phase.phase_changed.connect(on_phase_changed)
 		
 func _unhandled_input(event):
 	
@@ -98,6 +100,8 @@ func change_terrain_force_multiplier(current_terrain):
 			terrain_force_multiplier =  1.0
 			
 func _input(event: InputEvent) -> void:
+	if Phase.current_phase != "drill":
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		is_dragging = event.pressed
 		if is_dragging:
@@ -113,6 +117,7 @@ func _input(event: InputEvent) -> void:
 			is_dragging = false
 
 func reset_drill():
+	animation_player.play("idle")
 	is_dragging = false
 	fuel_bar.current_fuel = 100
 	fuel_bar.update_bar()
