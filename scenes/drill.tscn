@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmr7o47df4rmg"]
+
+[ext_resource type="Script" uid="uid://dhjl4qqw5io3s" path="res://scripts/drill.gd" id="1_60uro"]
+[ext_resource type="Texture2D" uid="uid://dmqwwc5fa0x18" path="res://assets/sprites/drill.png" id="2_nx8ti"]
+[ext_resource type="AudioStream" uid="uid://ofqdtbacomto" path="res://assets/sounds/drillsound.mp3" id="3_cljqy"]
+[ext_resource type="PackedScene" uid="uid://6olnvu2ix4ty" path="res://scenes/ground_eraser.tscn" id="4_nx8ti"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60uro"]
+radius = 18.962
+height = 41.7442
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nx8ti"]
+radius = 37.0135
+
+[node name="Drill" type="RigidBody2D"]
+gravity_scale = 0.0
+center_of_mass_mode = 1
+inertia = 27.8
+script = ExtResource("1_60uro")
+up_restistance = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-36.3593, 0.640579)
+rotation = -1.5708
+scale = Vector2(0.316804, 0.316805)
+texture = ExtResource("2_nx8ti")
+
+[node name="DrillSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1.64069, 108.641)
+stream = ExtResource("3_cljqy")
+
+[node name="DrillShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-48.3593, -0.359421)
+rotation = -1.54113
+shape = SubResource("CapsuleShape2D_60uro")
+
+[node name="GroundEraser" parent="." instance=ExtResource("4_nx8ti")]
+position = Vector2(-27, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundEraser"]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_nx8ti")
