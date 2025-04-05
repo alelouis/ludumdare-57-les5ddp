@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw63fxynmbqj0"]
+[gd_scene load_steps=9 format=3 uid="uid://cw63fxynmbqj0"]
 
 [ext_resource type="Script" uid="uid://cbvaewvc32hgm" path="res://scripts/coffin_physics.gd" id="1_fe18d"]
 [ext_resource type="Script" uid="uid://dhgq0oaw30hwr" path="res://scripts/coffin_data.gd" id="1_o11qi"]
@@ -37,11 +37,6 @@ script = ExtResource("3_oylmm")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_xuegr")
 script = ExtResource("4_oghpg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(48, 16)
-shape = SubResource("ConvexPolygonShape2D_oghpg")
-script = ExtResource("3_oylmm")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
