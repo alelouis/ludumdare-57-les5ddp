@@ -56,10 +56,12 @@ mouse_acceleration = 200.0
 torque_strength = 200.0
 
 [node name="CoffinSpawner" parent="." instance=ExtResource("4_y518a")]
-position = Vector2(0, -1079)
-left_bound = 900.0
-right_bound = 1920.0
-bottom_bound = 0.0
+left_bound = 0.0
+right_bound = 1620.0
+top_bound = -1500.0
+bottom_bound = -1200.0
+min_angular_velocity = -10.0
+max_angular_velocity = 10.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_hdpy2")]
 
