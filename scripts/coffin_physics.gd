@@ -79,14 +79,6 @@ func _unhandled_input(event):
             # Stop processing global input until next drag
             set_process_unhandled_input(false)
 
-func _on_mouse_entered():
-    # Visual feedback when mouse enters (optional)
-    modulate = Color(1.2, 1.2, 1.2)  # Slightly brighter
-
-func _on_mouse_exited():
-    # Reset visual feedback
-    modulate = Color(1, 1, 1)  # Normal color
-
 func _physics_process(delta):
     if dragging:
         var mouse_pos = get_global_mouse_position()

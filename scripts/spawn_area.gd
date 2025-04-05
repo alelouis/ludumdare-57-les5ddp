@@ -69,9 +69,6 @@ func spawn_scene_at_random_position():
         
         # Give it a random angular velocity
         rigidbody.angular_velocity = randf_range(min_angular_velocity, max_angular_velocity)
-        print("Set rigidbody rotation_start: ", random_rotation, " and angular_velocity: ", rigidbody.angular_velocity)
-    else:
-        print("Could not find rigidbody with rotation_start variable")
     
     # Add to the tree
     add_child(instance)
@@ -99,12 +96,10 @@ func spawn_scenes_with_delay(count: int):
         var delay = randf_range(min_spawn_delay, max_spawn_delay)
         if i == 0:  # First spawn happens immediately
             spawn_scene_at_random_position()
-            print("Spawned scene 1 immediately")
         else:
             # Create a timer for delayed spawn
             var timer = get_tree().create_timer(delay)
-            timer.timeout.connect(func(): 
-                print("Spawned scene ", i+1, " after ", delay, " seconds")
+            timer.timeout.connect(func():
                 spawn_scene_at_random_position()
             )
 
@@ -112,7 +107,6 @@ func spawn_scenes_with_delay(count: int):
 # Kept for compatibility but we now prefer spawn_scenes_with_delay
 func spawn_scenes(count: int):
     for i in range(count):
-        print('spawning scene: ', i)
         spawn_scene_at_random_position()
 
 # Call this method whenever you want to spawn a new scene
