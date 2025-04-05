@@ -14,6 +14,7 @@ var target_volume = 0.0
 @export var down_acceleration = 20.0   # force/second
 @export var up_restistance = 5 
 @export var torque_strength = 80.0
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var isDrilling = false
 
@@ -28,6 +29,7 @@ func _ready() -> void:
 	start_position = global_position
 	$GroundEraser.ground = ground
 	$GroundEraser.fuel = fuel_bar
+	animation_player.play("idle")
 
 func _unhandled_input(event):
 	
@@ -94,9 +96,14 @@ func change_terrain_force_multiplier(current_terrain):
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		is_dragging = event.pressed
+		if is_dragging:
+			animation_player.play("drillin")
+		else:
+			animation_player.play("idle")
 	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
 		reset_drill()
 	if event is InputEventKey and event.pressed and event.keycode == KEY_D:
+		animation_player.play("idle")
 		isDrilling = !isDrilling
 		if !isDrilling:
 			is_dragging = false

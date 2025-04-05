@@ -1,9 +1,67 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmr7o47df4rmg"]
+[gd_scene load_steps=15 format=3 uid="uid://cmr7o47df4rmg"]
 
 [ext_resource type="Script" uid="uid://dhjl4qqw5io3s" path="res://scripts/drill.gd" id="1_60uro"]
-[ext_resource type="Texture2D" uid="uid://dmqwwc5fa0x18" path="res://assets/sprites/drill.png" id="2_nx8ti"]
+[ext_resource type="Texture2D" uid="uid://72rm7ydkrged" path="res://assets/sprites/drill_idle.png" id="2_nx8ti"]
+[ext_resource type="Texture2D" uid="uid://cyjudks8jk1jp" path="res://assets/sprites/drill_fr1.png" id="3_5qr7t"]
 [ext_resource type="AudioStream" uid="uid://ofqdtbacomto" path="res://assets/sounds/drillsound.mp3" id="3_cljqy"]
+[ext_resource type="Texture2D" uid="uid://bxjcx6tv4bbqi" path="res://assets/sprites/drill_fr2.png" id="4_8cwd3"]
 [ext_resource type="PackedScene" uid="uid://6olnvu2ix4ty" path="res://scenes/ground_eraser.tscn" id="4_nx8ti"]
+[ext_resource type="Texture2D" uid="uid://chul5lcc8rhyf" path="res://assets/sprites/drill_fr3.png" id="5_hql8b"]
+[ext_resource type="Texture2D" uid="uid://bi0r3pqpwr4e2" path="res://assets/sprites/drill_fr4.png" id="6_fo41f"]
+
+[sub_resource type="Animation" id="Animation_cljqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_nx8ti")]
+}
+
+[sub_resource type="Animation" id="Animation_euh7r"]
+resource_name = "drillin"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.602771, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_5qr7t"), ExtResource("4_8cwd3"), ExtResource("5_hql8b"), ExtResource("3_5qr7t"), ExtResource("4_8cwd3"), ExtResource("5_hql8b"), ExtResource("4_8cwd3"), ExtResource("3_5qr7t"), ExtResource("4_8cwd3"), ExtResource("5_hql8b"), ExtResource("6_fo41f")]
+}
+
+[sub_resource type="Animation" id="Animation_nx8ti"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_nx8ti")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_apcyi"]
+_data = {
+&"RESET": SubResource("Animation_cljqy"),
+&"drillin": SubResource("Animation_euh7r"),
+&"idle": SubResource("Animation_nx8ti")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60uro"]
 radius = 18.962
@@ -20,10 +78,15 @@ inertia = 27.8
 script = ExtResource("1_60uro")
 up_restistance = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_apcyi")
+}
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-36.3593, 0.640579)
 rotation = -1.5708
-scale = Vector2(0.316804, 0.316805)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_nx8ti")
 
 [node name="DrillSound" type="AudioStreamPlayer2D" parent="."]

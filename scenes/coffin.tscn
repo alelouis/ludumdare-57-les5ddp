@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dhgq0oaw30hwr" path="res://scripts/coffin_data.gd" id="1_o11qi"]
 [ext_resource type="Script" uid="uid://soih78c6e2jf" path="res://scripts/coffin_interaction.gd" id="3_oylmm"]
 [ext_resource type="Texture2D" uid="uid://wh2l82kjqggy" path="res://assets/sprites/coffin.png" id="3_xuegr"]
-[ext_resource type="Script" path="res://scripts/coffin_display.gd" id="4_oghpg"]
+[ext_resource type="Script" uid="uid://fpsyxtmtmuri" path="res://scripts/coffin_display.gd" id="4_oghpg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oghpg"]
 friction = 0.15
