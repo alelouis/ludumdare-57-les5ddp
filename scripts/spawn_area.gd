@@ -370,3 +370,11 @@ func find_sprite_display(coffin):
 				return grandchild
 				
 	return null
+
+
+func set_pickable_coffins(pickable: bool):
+	# Find all RigidBody2D nodes (coffins) in children
+	for child in get_children():
+		var rigidbody = find_rigidbody_child(child)
+		if(rigidbody != null):
+			rigidbody.input_pickable = pickable

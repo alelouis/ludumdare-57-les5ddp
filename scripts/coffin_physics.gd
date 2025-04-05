@@ -32,7 +32,6 @@ func _ready():
 	# Initialize positions
 	previous_pos = global_position
 	target_pos = global_position
-	input_pickable = true
 	
 	# Create a canvas layer to draw on top
 	canvas_layer = CanvasLayer.new()

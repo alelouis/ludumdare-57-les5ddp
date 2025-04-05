@@ -14,11 +14,12 @@ func _ready():
 	update_text()
 
 func _process(delta: float) -> void:
-	if count_down:
-		time_left = max(0.0, time_left - delta)
-	else:
-		time_left += delta
-	update_text()
+	if !end_triggered:
+		if count_down:
+			time_left = max(0.0, time_left - delta)
+		else:
+			time_left += delta
+		update_text()
 	if count_down and time_left <= 0.0 and !end_triggered:
 		on_timer_finished()
 
@@ -39,4 +40,4 @@ func on_timer_finished():
 
 func _on_end_pressed():
 	time_left = 0.0
-	update_text()
+	on_timer_finished()

@@ -21,7 +21,6 @@ func _ready():
 		return
 	
 	# Make sure the rigidbody is set to handle input
-	rigidbody.input_pickable = true
 	
 	# Connect signals
 	rigidbody.connect("mouse_entered", _on_mouse_entered)
