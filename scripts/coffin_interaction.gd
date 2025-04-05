@@ -7,6 +7,9 @@ var coffin_data = null
 # Tooltip
 var tooltip_node = null
 
+# Global tooltip tracking
+static var active_tooltips = []
+
 func _ready():
     # Get parent rigidbody
     rigidbody = get_parent()
@@ -20,12 +23,18 @@ func _ready():
     # Connect signals
     rigidbody.connect("mouse_entered", _on_mouse_entered)
     rigidbody.connect("mouse_exited", _on_mouse_exited)
+    rigidbody.connect("tree_exiting", _on_coffin_deleted)
     
     # Find the coffin data node
     coffin_data = find_coffin_data()
     
     # Let's wait a short moment to make sure the physics script has created its canvas layer
     get_tree().create_timer(0.1).timeout.connect(create_tooltip)
+
+func _on_coffin_deleted():
+    # Called when the coffin is being removed (i.e., when merging)
+    if tooltip_node and tooltip_node.visible:
+        tooltip_node.hide()
 
 func find_coffin_data():
     # Look for a CoffinData node in parent's siblings
@@ -64,10 +73,10 @@ func create_tooltip():
     tooltip_node.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     tooltip_node.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     
-    # Make tooltip bigger for two lines of text
+    # Make tooltip wider to handle longer dates without wrapping
     var viewport_size = get_viewport_rect().size
-    tooltip_node.position = Vector2(viewport_size.x / 2 - 150, 30)
-    tooltip_node.size = Vector2(300, 80)  # Taller for two lines
+    tooltip_node.position = Vector2(viewport_size.x / 2 - 225, 30)  # Adjusted position for wider tooltip
+    tooltip_node.size = Vector2(450, 80)  # Wider for longer dates
     
     # Add shadow
     tooltip_node.add_theme_constant_override("shadow_offset_x", 2)
@@ -77,13 +86,39 @@ func create_tooltip():
     # Add to scene tree directly for maximum visibility
     get_tree().root.add_child(tooltip_node)
     
+    # Store reference in static array for potential cleanup
+    active_tooltips.append(tooltip_node)
+    
+    # Connect to tree_exiting to remove from active_tooltips when deleted
+    tooltip_node.tree_exiting.connect(func(): _on_tooltip_deleted(tooltip_node))
+    
     tooltip_node.hide()  # Hide initially
+
+func _on_tooltip_deleted(tooltip):
+    # Remove from active tooltips when the tooltip node is deleted
+    if active_tooltips.has(tooltip):
+        active_tooltips.erase(tooltip)
+
+# Static method to hide all tooltips (can be called from anywhere)
+static func hide_all_tooltips():
+    for tooltip in active_tooltips:
+        if tooltip and is_instance_valid(tooltip):
+            tooltip.hide()
+
+func _exit_tree():
+    # Clean up our tooltip when this node is removed
+    if tooltip_node and is_instance_valid(tooltip_node):
+        tooltip_node.queue_free()
+        
+    # Remove from active tooltips
+    if active_tooltips.has(tooltip_node):
+        active_tooltips.erase(tooltip_node)
 
 func _process(_delta):
     # Update tooltip position to follow mouse
     if tooltip_node and tooltip_node.visible:
         var mouse_pos = get_viewport().get_mouse_position()
-        tooltip_node.position = Vector2(mouse_pos.x - 150, mouse_pos.y - 100)  # Adjusted for better visibility
+        tooltip_node.position = Vector2(mouse_pos.x - 225, mouse_pos.y - 100)  # Adjusted for wider tooltip
 
 func _on_mouse_entered():
     # Visual feedback
@@ -92,15 +127,18 @@ func _on_mouse_entered():
     
     # Show tooltip if data is available
     if coffin_data and tooltip_node:
-        var name = coffin_data.get_full_name()
-        var date_range = coffin_data.get_date_range()
+        # Get the full text to display
+        var title = coffin_data.get_full_name()
+        var detailed_text = coffin_data.get_detailed_text()
         
-        # Format text with both name and dates
-        var tooltip_text = name
-        if not date_range.is_empty():
-            tooltip_text += "\n" + date_range
-            
-        tooltip_node.text = tooltip_text
+        # Set tooltip text
+        tooltip_node.text = detailed_text
+        
+        # Adjust tooltip size based on number of people
+        var num_people = coffin_data.people.size()
+        tooltip_node.size = Vector2(450, 25 + (num_people * 20))  # Wider tooltip
+        
+        # Show the tooltip
         tooltip_node.show()
 
 func _on_mouse_exited():

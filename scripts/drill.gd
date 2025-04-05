@@ -1,6 +1,7 @@
 extends RigidBody2D
 @onready var drag_sound := $DrillSound
 
+@export var ground: Ground
 
 var is_dragging = false
 var fade_speed = 2.0  # how fast to fade out
@@ -22,11 +23,12 @@ var current_down_force = 0.0
 var terrain_force_multiplier = 1.0
 var start_position
 
-func _ready():
+
+func _ready() -> void:
 	start_position = global_position
-	# (your existing area connection code here)
-	
-		
+	$GroundEraser.ground = ground
+
+
 func _unhandled_input(event):
 	
 	if isDrilling and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

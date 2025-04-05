@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cw63fxynmbqj0"]
 
-[ext_resource type="Script" path="res://scripts/coffin_physics.gd" id="1_fe18d"]
+[ext_resource type="Script" uid="uid://cbvaewvc32hgm" path="res://scripts/coffin_physics.gd" id="1_fe18d"]
 [ext_resource type="Script" uid="uid://dhgq0oaw30hwr" path="res://scripts/coffin_data.gd" id="1_o11qi"]
-[ext_resource type="Script" path="res://scripts/coffin_interaction.gd" id="3_oylmm"]
+[ext_resource type="Script" uid="uid://soih78c6e2jf" path="res://scripts/coffin_interaction.gd" id="3_oylmm"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fe18d"]
 size = Vector2(128, 64)

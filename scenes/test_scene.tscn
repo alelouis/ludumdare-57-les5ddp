@@ -1,22 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5xumcwkrint5"]
+[gd_scene load_steps=3 format=3 uid="uid://5wcq21rkrnk6"]
 
 [ext_resource type="PackedScene" uid="uid://cocx0yos7sbyp" path="res://scenes/coffin_spawner.tscn" id="1_g7g4h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7g4h"]
-size = Vector2(1200, 20)
+size = Vector2(1952, 20)
 
 [node name="TestScene" type="Node2D"]
 
 [node name="CoffinSpawner" parent="." instance=ExtResource("1_g7g4h")]
 left_bound = 0.0
-right_bound = 1200.0
+right_bound = 1920.0
 top_bound = 0.0
-spawn_count = 5
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
 freeze = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(580, 655)
+position = Vector2(952, 480)
 shape = SubResource("RectangleShape2D_g7g4h")
