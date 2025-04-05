@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=5 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
 [ext_resource type="PackedScene" uid="uid://6olnvu2ix4ty" path="res://scenes/ground_eraser.tscn" id="3_b7pqx"]
-[ext_resource type="Texture2D" uid="uid://btko424ke6e1f" path="res://icon.svg" id="4_y518a"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7pqx"]
-size = Vector2(64, 62)
+[ext_resource type="PackedScene" path="res://scenes/coffin_spawner.tscn" id="4_y518a"]
 
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
@@ -15,16 +12,10 @@ script = ExtResource("1_ujfj4")
 unique_name_in_owner = true
 
 [node name="GroundEraser" parent="." node_paths=PackedStringArray("ground") instance=ExtResource("3_b7pqx")]
-position = Vector2(316, 82)
+position = Vector2(288, 347)
 ground = NodePath("../Ground")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(197, -27)
-
-[node name="Icon" type="Sprite2D" parent="RigidBody2D"]
-position = Vector2(1, 0)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_y518a")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_b7pqx")
+[node name="CoffinSpawner" parent="." instance=ExtResource("4_y518a")]
+left_bound = 0.0
+right_bound = 1920.0
+bottom_bound = 0.0
