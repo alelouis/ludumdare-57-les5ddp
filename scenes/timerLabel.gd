@@ -1,6 +1,6 @@
 extends Label
 
-@export var start_time: float = 6.0  # start from 60 seconds
+@export var start_time: float = 61.0  # start from 60 seconds
 @export var count_down: bool = true   # set to false to count up
 @onready var end_button := $"../Button"  # adjust path if needed
 @onready var text_label = $"../RichTextLabel"
