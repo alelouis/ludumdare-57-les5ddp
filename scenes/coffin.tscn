@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://rros3qkkfinx"]
+
+[ext_resource type="Script" uid="uid://cbvaewvc32hgm" path="res://scripts/coffin_physics.gd" id="1_fe18d"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fe18d"]
+size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o11qi"]
+size = Vector2(128, 64)
+
+[node name="Coffin" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+input_pickable = true
+script = ExtResource("1_fe18d")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = SubResource("PlaceholderTexture2D_fe18d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_o11qi")
+
+[connection signal="input_event" from="RigidBody2D" to="RigidBody2D" method="_on_input_event"]
