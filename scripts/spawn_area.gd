@@ -152,6 +152,12 @@ func _on_coffin_collision(coffin1, coffin2):
 						person.death_date
 					)
 				
+				# Explicitly call data_updated to ensure the sprite updates
+				merged_data.emit_signal("data_updated")
+				
+				# Find and update the sprite using the new coffin_display component
+				update_coffin_sprite(merged_coffin)
+				
 				print("Created merged family coffin with " + str(merged_data.people.size()) + " people")
 			
 			# Add to the scene
@@ -339,3 +345,29 @@ func _set(property, value):
 		update_collision_shape()
 		return true
 	return false 
+
+# Find and update the sprite display after merging people
+func update_coffin_sprite(coffin):
+	var sprite_display = find_sprite_display(coffin)
+	if sprite_display and sprite_display.has_method("force_update"):
+		sprite_display.force_update()
+
+# Helper to find the Sprite2D with the coffin_display script
+func find_sprite_display(coffin):
+	# Find the rigidbody first
+	var rigidbody = find_rigidbody_child(coffin)
+	if not rigidbody:
+		return null
+		
+	# Look for a Sprite2D in the rigidbody's children
+	for child in rigidbody.get_children():
+		if child is Sprite2D and child.has_method("force_update"):
+			return child
+			
+	# Look one level deeper if needed
+	for child in rigidbody.get_children():
+		for grandchild in child.get_children():
+			if grandchild is Sprite2D and grandchild.has_method("force_update"):
+				return grandchild
+				
+	return null
