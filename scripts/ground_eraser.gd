@@ -1,6 +1,8 @@
 extends Area2D
 
 @export var ground: Ground
+@export var fuel: ColorRect
+
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,3 +81,4 @@ func erase_tiles_in_area(tilemap_layer: TileMapLayer):
 
 			if point_is_inside_area:
 				remove_tile(tilemap_layer, current_cell)
+				fuel.drain(1)
