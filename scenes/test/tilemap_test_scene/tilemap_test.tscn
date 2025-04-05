@@ -16,24 +16,44 @@
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
 
-[node name="Bg1Sky" type="Sprite2D" parent="."]
-position = Vector2(829, -585)
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 889)
+
+[node name="Bg1Sky" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(960, -531)
 texture = ExtResource("2_nv4kt")
 
-[node name="Bg2CloudsFar" type="Sprite2D" parent="."]
-position = Vector2(910, -752)
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(0, 680)
+
+[node name="Bg2CloudsFar" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(960, -531)
 texture = ExtResource("3_wwq82")
 
-[node name="Bg3CloudsClose" type="Sprite2D" parent="."]
-position = Vector2(887, -422)
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(0, 595)
+
+[node name="Bg3CloudsClose" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(960, -531)
 texture = ExtResource("4_t14xq")
 
-[node name="Bg4Mountain" type="Sprite2D" parent="."]
-position = Vector2(960, -539)
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(0, 374)
+
+[node name="Bg4Mountain" type="Sprite2D" parent="Parallax2D4"]
+position = Vector2(960, -531)
 texture = ExtResource("5_it30p")
 
-[node name="Bg5Town" type="Sprite2D" parent="."]
-position = Vector2(960, -539)
+[node name="Parallax2D5" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(0, 141)
+
+[node name="Bg5Town" type="Sprite2D" parent="Parallax2D5"]
+position = Vector2(960, -531)
 texture = ExtResource("6_3dehq")
 
 [node name="Bg8Dirt" type="Sprite2D" parent="."]
@@ -55,6 +75,12 @@ max_mouse_force = 500.0
 mouse_acceleration = 200.0
 torque_strength = 200.0
 
+[node name="Camera2D" type="Camera2D" parent="Drill"]
+position = Vector2(415, 13)
+limit_left = 0
+limit_top = -830
+limit_right = 1660
+
 [node name="CoffinSpawner" parent="." instance=ExtResource("4_y518a")]
 position = Vector2(0, -1079)
 left_bound = 900.0
@@ -62,6 +88,3 @@ right_bound = 1920.0
 bottom_bound = 0.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_hdpy2")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(808, -38)
