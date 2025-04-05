@@ -3,6 +3,8 @@ extends ColorRect
 @export var max_fuel := 100.0
 @export var delta := 0.1
 @export var current_fuel := max_fuel
+@onready var text_label = $"../RichTextLabel"
+@onready var text_label_shadow = $"../RichTextLabelShadow"
 
 func _ready():
 	update_bar()
@@ -27,3 +29,6 @@ func update_bar():
 		color = Color(1.0, 1.0, 0.0)  # Yellow
 	else:
 		color = Color(1.0, 0.0, 0.0)  # Red
+	if(current_fuel == 0.0):
+		text_label.show_text("Coffin' Time !!!")
+		text_label_shadow.show_text("Coffin' Time !!!")
