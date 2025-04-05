@@ -27,6 +27,10 @@ class Person:
 # Collection of people in the coffin
 var people: Array[Person] = []
 
+# Name collections loaded from files
+var first_names: Array = []
+var last_names: Array = []
+
 # Legacy access to first person (for backward compatibility)
 @export var first_name: String = "":
     set(value):
@@ -54,9 +58,37 @@ var people: Array[Person] = []
 signal data_updated
 
 func _ready():
+    # Load names from files
+    load_names_from_files()
+    
     # Initialize with random data if empty
     if people.is_empty():
         randomize_data()
+
+# Load first and last names from text files
+func load_names_from_files() -> void:
+    # Load first names
+    var first_names_file = FileAccess.open("res://assets/names/first_names.txt", FileAccess.READ)
+    if first_names_file:
+        while not first_names_file.eof_reached():
+            var line = first_names_file.get_line().strip_edges()
+            if not line.is_empty():
+                first_names.append(line)
+    
+    # Load last names
+    var last_names_file = FileAccess.open("res://assets/names/last_names.txt", FileAccess.READ)
+    if last_names_file:
+        while not last_names_file.eof_reached():
+            var line = last_names_file.get_line().strip_edges()
+            if not line.is_empty():
+                last_names.append(line)
+    
+    # Fallback in case files couldn't be loaded
+    if first_names.is_empty():
+        first_names = ["John", "Mary", "Robert", "Elizabeth", "William"]
+    
+    if last_names.is_empty():
+        last_names = ["Smith", "Johnson", "Williams", "Brown", "Jones"]
 
 # Set the first person in the coffin (for backward compatibility)
 func _update_first_person():
@@ -117,8 +149,9 @@ func randomize_data() -> void:
     # Clear existing data
     people.clear()
     
-    var first_names = ["John", "Mary", "Robert", "Elizabeth", "William", "Sarah", "James", "Patricia", "Michael", "Jennifer"]
-    var last_names = ["Smith", "Johnson"]
+    # Make sure names are loaded
+    if first_names.is_empty() or last_names.is_empty():
+        load_names_from_files()
     
     # Pick random name
     var first_name = first_names[randi() % first_names.size()]
