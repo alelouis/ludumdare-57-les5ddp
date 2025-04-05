@@ -3,8 +3,11 @@ extends Label
 @export var start_time: float = 61.0  # start from 60 seconds
 @export var count_down: bool = true   # set to false to count up
 @onready var end_button := $"../Button"  # adjust path if needed
-var time_left: float
+@onready var text_label = $"../RichTextLabel"
+@onready var text_label_shadow = $"../RichTextLabelShadow"
 
+var time_left: float
+var end_triggered = false 
 func _ready():
 	time_left = start_time
 	end_button.pressed.connect(_on_end_pressed)
@@ -16,7 +19,7 @@ func _process(delta: float) -> void:
 	else:
 		time_left += delta
 	update_text()
-	if count_down and time_left <= 0.0:
+	if count_down and time_left <= 0.0 and !end_triggered:
 		on_timer_finished()
 
 func update_text():
@@ -29,8 +32,10 @@ func format_time(seconds: float) -> String:
 
 func on_timer_finished():
 	# Called once when timer hits 0
-	modulate = Color.RED
-	text = "TIME'S UP!"
+	end_triggered = true;
+	text = ""
+	text_label.show_text("The Night is Over !!!")
+	text_label_shadow.show_text("The Night is Over !!!")
 
 func _on_end_pressed():
 	time_left = 0.0
