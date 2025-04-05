@@ -2,20 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
-[ext_resource type="PackedScene" uid="uid://6olnvu2ix4ty" path="res://scenes/ground_eraser.tscn" id="3_b7pqx"]
-[ext_resource type="PackedScene" path="res://scenes/coffin_spawner.tscn" id="4_y518a"]
+[ext_resource type="PackedScene" uid="uid://cocx0yos7sbyp" path="res://scenes/coffin_spawner.tscn" id="4_y518a"]
+[ext_resource type="PackedScene" uid="uid://b63ldflttbryd" path="res://scenes/drill.tscn" id="5_hdpy2"]
 
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
 
 [node name="Ground" parent="." instance=ExtResource("1_ruml6")]
-unique_name_in_owner = true
-
-[node name="GroundEraser" parent="." node_paths=PackedStringArray("ground") instance=ExtResource("3_b7pqx")]
-position = Vector2(288, 347)
-ground = NodePath("../Ground")
 
 [node name="CoffinSpawner" parent="." instance=ExtResource("4_y518a")]
-left_bound = 0.0
+left_bound = 900.0
 right_bound = 1920.0
 bottom_bound = 0.0
+
+[node name="Drill" parent="." node_paths=PackedStringArray("ground") instance=ExtResource("5_hdpy2")]
+position = Vector2(393, 355)
+ground = NodePath("../Ground")
