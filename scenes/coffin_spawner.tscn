@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cocx0yos7sbyp"]
 
 [ext_resource type="Script" uid="uid://5pv3o0sf84sl" path="res://scripts/spawn_area.gd" id="1_yu74h"]
-[ext_resource type="PackedScene" uid="uid://rros3qkkfinx" path="res://scenes/coffin.tscn" id="2_n8xls"]
+[ext_resource type="PackedScene" uid="uid://cw63fxynmbqj0" path="res://scenes/coffin.tscn" id="2_n8xls"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_msh37"]
 
