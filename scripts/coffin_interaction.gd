@@ -1,4 +1,4 @@
-extends CollisionShape2D
+extends CollisionPolygon2D
 
 # Reference to parent rigidbody and coffin data
 var rigidbody = null
@@ -152,6 +152,7 @@ func _process(_delta):
 		# Make sure tooltip doesn't go off the top of the screen
 
 func _on_mouse_entered():
+	print("collision shape")
 	# Visual feedback
 	if rigidbody:
 		rigidbody.modulate = Color(1.2, 1.2, 1.2)  # Slightly brighter
