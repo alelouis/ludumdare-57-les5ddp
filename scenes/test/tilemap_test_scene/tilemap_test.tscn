@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=17 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -10,35 +10,66 @@
 [ext_resource type="PackedScene" uid="uid://cmr7o47df4rmg" path="res://scenes/drill.tscn" id="5_hdpy2"]
 [ext_resource type="Texture2D" uid="uid://c8x7vrj43njr4" path="res://assets/backgrounds/bg_4_mountain.png" id="5_it30p"]
 [ext_resource type="Texture2D" uid="uid://bp82i4shxl7co" path="res://assets/backgrounds/bg_5_town.png" id="6_3dehq"]
-[ext_resource type="Texture2D" uid="uid://cnjxin8cl07v" path="res://assets/backgrounds/bg_8_dirt.png" id="7_t14xq"]
+[ext_resource type="Texture2D" uid="uid://dkm03c6rf3xra" path="res://assets/backgrounds/bg_7_backdirt.png" id="7_t14xq"]
 [ext_resource type="Texture2D" uid="uid://dghkpo2q8o2jf" path="res://assets/backgrounds/bg_10_cliff.png" id="11_wwq82"]
+[ext_resource type="Script" uid="uid://cer126ry71jrf" path="res://scripts/follow_mouse.gd" id="13_it30p"]
+
+[sub_resource type="Gradient" id="Gradient_t14xq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_it30p"]
+gradient = SubResource("Gradient_t14xq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
 
-[node name="Bg1Sky" type="Sprite2D" parent="."]
-position = Vector2(829, -585)
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 889)
+
+[node name="Bg1Sky" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(960, -531)
 texture = ExtResource("2_nv4kt")
 
-[node name="Bg2CloudsFar" type="Sprite2D" parent="."]
-position = Vector2(910, -752)
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(0, 680)
+
+[node name="Bg2CloudsFar" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(960, -531)
 texture = ExtResource("3_wwq82")
 
-[node name="Bg3CloudsClose" type="Sprite2D" parent="."]
-position = Vector2(887, -422)
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(0, 595)
+
+[node name="Bg3CloudsClose" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(960, -531)
 texture = ExtResource("4_t14xq")
 
-[node name="Bg4Mountain" type="Sprite2D" parent="."]
-position = Vector2(960, -539)
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(0, 374)
+
+[node name="Bg4Mountain" type="Sprite2D" parent="Parallax2D4"]
+position = Vector2(960, -531)
 texture = ExtResource("5_it30p")
 
-[node name="Bg5Town" type="Sprite2D" parent="."]
-position = Vector2(960, -539)
+[node name="Parallax2D5" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(0, 141)
+
+[node name="Bg5Town" type="Sprite2D" parent="Parallax2D5"]
+position = Vector2(960, -531)
 texture = ExtResource("6_3dehq")
 
-[node name="Bg8Dirt" type="Sprite2D" parent="."]
-modulate = Color(0.626165, 0.0159154, 0.255739, 1)
-position = Vector2(960, 560)
+[node name="Bg7Backdirt" type="Sprite2D" parent="."]
+position = Vector2(960, 1680)
 texture = ExtResource("7_t14xq")
 
 [node name="Ground" parent="." instance=ExtResource("1_ruml6")]
@@ -55,8 +86,16 @@ max_mouse_force = 500.0
 mouse_acceleration = 200.0
 torque_strength = 200.0
 
+[node name="Camera2D" type="Camera2D" parent="Drill"]
+position = Vector2(415, 13)
+limit_left = 0
+limit_top = -1200
+limit_right = 1620
+limit_bottom = 3300
+editor_draw_limits = true
+
 [node name="CoffinSpawner" parent="." instance=ExtResource("4_y518a")]
-left_bound = 0.0
+left_bound = 810.0
 right_bound = 1620.0
 top_bound = -1500.0
 bottom_bound = -1200.0
@@ -65,5 +104,20 @@ max_angular_velocity = 10.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_hdpy2")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(808, -38)
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(957, 54)
+scale = Vector2(4.34375, 4.34375)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_it30p")
+script = ExtResource("13_it30p")
+
+[node name="WorldBoundaries" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
+rotation = 1.57079
+shape = SubResource("WorldBoundaryShape2D_it30p")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(1620, 0)
+rotation = -7.85397
+shape = SubResource("WorldBoundaryShape2D_it30p")

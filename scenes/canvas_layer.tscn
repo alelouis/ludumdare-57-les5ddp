@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0mtgqgx1gvyu"]
+[gd_scene load_steps=4 format=3 uid="uid://d0mtgqgx1gvyu"]
 
 [ext_resource type="Script" uid="uid://bxn2o32s8juqr" path="res://scripts/drill_fuel.gd" id="1_c4rma"]
+[ext_resource type="Script" uid="uid://ca5ft18vi1caj" path="res://scenes/timerLabel.gd" id="2_ghj5q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ghj5q"]
+font_size = 48
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -16,3 +20,28 @@ grow_vertical = 0
 rotation = -3.14159
 color = Color(0, 0.494697, 8.66354e-07, 1)
 script = ExtResource("1_c4rma")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -164.0
+offset_top = 131.0
+offset_right = -41.0
+offset_bottom = 198.0
+grow_horizontal = 0
+text = "01:00"
+label_settings = SubResource("LabelSettings_ghj5q")
+script = ExtResource("2_ghj5q")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -293.0
+offset_top = 34.0
+offset_right = -22.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "End the night"
