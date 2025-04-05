@@ -32,7 +32,7 @@ func update_bar():
 		color = Color(1.0, 1.0, 0.0)  # Yellow
 	else:
 		color = Color(1.0, 0.0, 0.0)  # Red
-	if(current_fuel == 0.0):
+	if(current_fuel == 0.0) and Phase.current_phase == "drill":
 		Phase.next_phase()
 		text_label.show_text("Coffin' Time !!!")
 		text_label_shadow.show_text("Coffin' Time !!!")
