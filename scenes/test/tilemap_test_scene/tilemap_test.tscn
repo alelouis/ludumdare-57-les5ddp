@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=6 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
-[ext_resource type="PackedScene" uid="uid://cocx0yos7sbyp" path="res://scenes/coffin_spawner.tscn" id="4_y518a"]
-[ext_resource type="PackedScene" uid="uid://b63ldflttbryd" path="res://scenes/drill.tscn" id="5_hdpy2"]
+[ext_resource type="PackedScene" uid="uid://d0mtgqgx1gvyu" path="res://scenes/canvas_layer.tscn" id="2_hdpy2"]
+[ext_resource type="PackedScene" path="res://scenes/coffin_spawner.tscn" id="4_y518a"]
+[ext_resource type="PackedScene" uid="uid://cmr7o47df4rmg" path="res://scenes/drill.tscn" id="5_hdpy2"]
 
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_hdpy2")]
 
 [node name="Ground" parent="." instance=ExtResource("1_ruml6")]
 
