@@ -31,6 +31,8 @@ var people: Array[Person] = []
 var first_names: Array = []
 var last_names: Array = []
 
+@export var n_families: int = 3
+
 # Legacy access to first person (for backward compatibility)
 @export var first_name: String = "":
     set(value):
@@ -155,7 +157,7 @@ func randomize_data() -> void:
     
     # Pick random name
     var first_name = first_names[randi() % first_names.size()]
-    var last_name = last_names[randi() % last_names.size()]
+    var last_name = last_names.slice(0, n_families)[randi() % n_families]
     
     # Generate random dates
     var birth_year = str(randi_range(1900, 1980))
