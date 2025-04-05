@@ -15,9 +15,7 @@ func _process(delta: float) -> void:
 		time_left = max(0.0, time_left - delta)
 	else:
 		time_left += delta
-
 	update_text()
-
 	if count_down and time_left <= 0.0:
 		on_timer_finished()
 
