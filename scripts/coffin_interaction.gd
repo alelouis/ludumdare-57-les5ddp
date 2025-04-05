@@ -142,7 +142,7 @@ func _exit_tree():
 func _process(_delta):
 	# Update tooltip position to follow mouse
 	if tooltip_node and tooltip_node.visible:
-		var mouse_pos = get_viewport().get_mouse_position()
+		var mouse_pos = get_global_mouse_position()
 		tooltip_node.position = Vector2(mouse_pos.x - 225, mouse_pos.y - 100)  # Adjusted for wider tooltip
 
 func _on_mouse_entered():
