@@ -67,7 +67,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 			if event.pressed:
 				dragging = true
 				should_draw_line = true
-				drag_start = get_global_mouse_position()
+				drag_start = get_viewport().get_mouse_position()
 				drag_offset = global_position - drag_start
 				
 				# Store the click position relative to the object's center
@@ -118,6 +118,7 @@ func _physics_process(delta):
 				
 			# Apply angular velocity for rotation around the click point
 			angular_velocity = angle_diff * rotation_factor 
+			angular_velocity = clamp(angular_velocity, -rotation_factor*PI/4, rotation_factor*PI/4)
 			
 			# Calculate the position offset to maintain click position under mouse
 			var rotated_click_pos = click_position.rotated(rotation)
@@ -134,8 +135,9 @@ func _physics_process(delta):
 	
 	# Update the line position
 	if should_draw_line:
-		var world_click_pos = to_global(click_position)
-		var mouse_pos = get_global_mouse_position()
+		var world_click_pos = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * click_position
+		
+		var mouse_pos = get_viewport().get_mouse_position()
 		
 		# Update line points
 		line_node.clear_points()
