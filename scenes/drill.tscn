@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://b63ldflttbryd"]
+
+[ext_resource type="Script" uid="uid://dhjl4qqw5io3s" path="res://scripts/drill.gd" id="1_60uro"]
+[ext_resource type="Texture2D" uid="uid://dmqwwc5fa0x18" path="res://assets/sprites/drill.png" id="2_nx8ti"]
+[ext_resource type="AudioStream" uid="uid://ofqdtbacomto" path="res://assets/sounds/drillsound.mp3" id="3_cljqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y32ns"]
+size = Vector2(33, 36.25)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60uro"]
+radius = 18.962
+height = 41.7442
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D"]
+position = Vector2(51, 24)
+gravity_scale = 0.0
+center_of_mass_mode = 1
+inertia = 27.8
+script = ExtResource("1_60uro")
+up_restistance = 1
+
+[node name="DrillingCollision2D" type="CollisionShape2D" parent="Node2D/RigidBody2D"]
+position = Vector2(-3, 5)
+shape = SubResource("RectangleShape2D_y32ns")
+debug_color = Color(0.724116, 0.363451, 0.790064, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/RigidBody2D"]
+position = Vector2(-36, 4)
+rotation = -1.5708
+scale = Vector2(0.316804, 0.316805)
+texture = ExtResource("2_nx8ti")
+
+[node name="DrillSound" type="AudioStreamPlayer2D" parent="Node2D/RigidBody2D"]
+position = Vector2(2, 112)
+stream = ExtResource("3_cljqy")
+
+[node name="DrillShape2D" type="CollisionShape2D" parent="Node2D/RigidBody2D"]
+position = Vector2(-48, 3)
+rotation = -1.54113
+shape = SubResource("CapsuleShape2D_60uro")
