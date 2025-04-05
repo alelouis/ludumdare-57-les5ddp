@@ -103,9 +103,9 @@ func _on_coffin_collision(coffin1, coffin2):
 				var script = load("res://scripts/coffin_interaction.gd")
 				if script and script.has_method("hide_all_tooltips"):
 					script.hide_all_tooltips()
-			
-			# Calculate the average position
+			# Calculate the average position and rotation
 			var avg_position = (coffin1.global_position + coffin2.global_position) / 2
+			var avg_rotation = coffin1.rotation
 			
 			# Create a new merged coffin
 			var merged_coffin = spawn_scene.instantiate()
@@ -114,11 +114,9 @@ func _on_coffin_collision(coffin1, coffin2):
 			# Find the RigidBody2D 
 			var rigidbody = find_rigidbody_child(merged_coffin)
 			if rigidbody:
-				# Random rotation
-				var random_rotation = randf_range(0, 2 * PI)
+				# Use average rotation instead of random
 				if rigidbody.has_method("get") and rigidbody.get("rotation_start") != null:
-					rigidbody.rotation_start = random_rotation
-				
+					rigidbody.rotation_start = avg_rotation
 				# Add an initial angular velocity
 				var merge_spin = randf_range(-4.0, 4.0)
 				rigidbody.angular_velocity = merge_spin
@@ -162,6 +160,7 @@ func _on_coffin_collision(coffin1, coffin2):
 			
 			# Add to the scene
 			add_child(merged_coffin)
+			merged_coffin.get_node("CPUParticles2D").emitting = true
 			
 			# Delete the original coffins
 			remove_coffin(coffin1)
