@@ -92,6 +92,8 @@ limit_left = 0
 limit_top = -1200
 limit_right = 1620
 limit_bottom = 3300
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
 editor_draw_limits = true
 
 [node name="CoffinSpawner" parent="." instance=ExtResource("4_y518a")]

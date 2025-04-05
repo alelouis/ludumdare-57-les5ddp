@@ -13,6 +13,7 @@ height = 41.7442
 radius = 37.0135
 
 [node name="Drill" type="RigidBody2D"]
+collision_layer = 4
 gravity_scale = 0.0
 center_of_mass_mode = 1
 inertia = 27.8
