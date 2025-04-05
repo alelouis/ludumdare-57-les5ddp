@@ -160,6 +160,7 @@ func _on_coffin_collision(coffin1, coffin2):
 			
 			# Add to the scene
 			add_child(merged_coffin)
+			merged_coffin.get_node("CPUParticles2D").emitting = true
 			
 			# Delete the original coffins
 			remove_coffin(coffin1)

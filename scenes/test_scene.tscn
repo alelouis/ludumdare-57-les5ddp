@@ -17,5 +17,5 @@ gravity_scale = 0.0
 freeze = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(952, 480)
+position = Vector2(777, 344)
 shape = SubResource("RectangleShape2D_g7g4h")

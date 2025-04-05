@@ -93,20 +93,15 @@ func create_tooltip():
 	tooltip_node.add_theme_font_size_override("font_size", 22)  # Increased size for better visibility
 	tooltip_node.add_theme_color_override("font_color", Color(1, 1, 0, 1))  # Yellow for better visibility
 	tooltip_node.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
-	tooltip_node.add_theme_constant_override("outline_size", 3)  # Thicker outline
+	tooltip_node.add_theme_constant_override("outline_size", 16)  # Thicker outline
 	tooltip_node.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	tooltip_node.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	tooltip_node.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM # Bottom alignment since anchor is at bottom
 	tooltip_node.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	
 	# Make tooltip wider to handle longer dates without wrapping
 	var viewport_size = get_viewport_rect().size
-	tooltip_node.position = Vector2(viewport_size.x / 2 - 225, 30)  # Adjusted position for wider tooltip
+	tooltip_node.position = Vector2(viewport_size.x / 2 - 225, 30)
 	tooltip_node.size = Vector2(450, 80)  # Wider for longer dates
-	
-	# Add shadow
-	tooltip_node.add_theme_constant_override("shadow_offset_x", 2)
-	tooltip_node.add_theme_constant_override("shadow_offset_y", 2)
-	tooltip_node.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.5))
 	
 	# Add to scene tree directly for maximum visibility
 	get_tree().root.add_child(tooltip_node)
@@ -143,7 +138,19 @@ func _process(_delta):
 	# Update tooltip position to follow mouse
 	if tooltip_node and tooltip_node.visible:
 		var mouse_pos = get_global_mouse_position()
-		tooltip_node.position = Vector2(mouse_pos.x - 225, mouse_pos.y - 100)  # Adjusted for wider tooltip
+		
+		# Position tooltip ABOVE the cursor
+		# Calculate height needed to show all text
+		var num_people = 1
+		if coffin_data and coffin_data.people:
+			num_people = coffin_data.people.size()
+		
+		var tooltip_height = 25 + (num_people * 30)
+		
+		# Position tooltip with bottom edge at cursor position
+		tooltip_node.position = Vector2(mouse_pos.x - 225, mouse_pos.y - tooltip_height - 15) # 15px gap from cursor
+		
+		# Make sure tooltip doesn't go off the top of the screen
 
 func _on_mouse_entered():
 	# Visual feedback
