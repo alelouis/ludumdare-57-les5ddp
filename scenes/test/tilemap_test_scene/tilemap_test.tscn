@@ -46,7 +46,7 @@ scroll_scale = Vector2(0, 0)
 scroll_offset = Vector2(0, 889)
 
 [node name="Bg1Sky" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(810.24, -530.6)
+position = Vector2(810, -425)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("2_nv4kt")
 
@@ -55,7 +55,7 @@ scroll_scale = Vector2(0.3, 0.3)
 scroll_offset = Vector2(0, 680)
 
 [node name="Bg2CloudsFar" type="Sprite2D" parent="Parallax2D2"]
-position = Vector2(810.24, -530.6)
+position = Vector2(810, -393)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("3_wwq82")
 
@@ -64,7 +64,7 @@ scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(0, 595)
 
 [node name="Bg3CloudsClose" type="Sprite2D" parent="Parallax2D3"]
-position = Vector2(810.24, -530.6)
+position = Vector2(810, -393)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("4_t14xq")
 
@@ -73,7 +73,7 @@ scroll_scale = Vector2(0.6, 0.6)
 scroll_offset = Vector2(0, 374)
 
 [node name="Bg4Mountain" type="Sprite2D" parent="Parallax2D4"]
-position = Vector2(810.24, -530.6)
+position = Vector2(810, -456)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("5_it30p")
 
@@ -82,7 +82,7 @@ scroll_scale = Vector2(0.9, 0.9)
 scroll_offset = Vector2(0, 141)
 
 [node name="Bg5Town" type="Sprite2D" parent="Parallax2D5"]
-position = Vector2(810.24, -530.6)
+position = Vector2(810, -485)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("6_3dehq")
 

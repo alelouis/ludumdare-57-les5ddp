@@ -2,6 +2,7 @@ extends Area2D
 
 @export var ground: Ground
 @export var fuel: ColorRect
+@export var first_destroyable_row = 10
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
@@ -64,6 +65,9 @@ func erase_tiles_in_area(tilemap_layer: TileMapLayer):
 	# 6. Iterate through every cell within the calculated map range
 	for y in range(min_cell_y, max_cell_y + 1):
 		for x in range(min_cell_x, max_cell_x + 1):
+			if y < first_destroyable_row:
+				continue
+				
 			var current_cell = Vector2i(x, y)
 
 			# Optimization: Skip if the cell is already empty
