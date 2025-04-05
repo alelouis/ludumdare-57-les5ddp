@@ -118,7 +118,7 @@ func randomize_data() -> void:
     people.clear()
     
     var first_names = ["John", "Mary", "Robert", "Elizabeth", "William", "Sarah", "James", "Patricia", "Michael", "Jennifer"]
-    var last_names = ["Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor"]
+    var last_names = ["Smith", "Johnson"]
     
     # Pick random name
     var first_name = first_names[randi() % first_names.size()]

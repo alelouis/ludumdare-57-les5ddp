@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://7u6jacm4yeet"]
+
+[ext_resource type="Script" uid="uid://bpug5eyc44ni2" path="res://scripts/drilling_zone.gd" id="1_807m5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60uro"]
+size = Vector2(471, 103)
+
+[node name="DrillingZone" type="Area2D"]
+modulate = Color(0.296753, 0.333266, 0.543651, 1)
+top_level = true
+script = ExtResource("1_807m5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(0.713626, 0.374729, 0.715162, 1)
+light_mask = 7
+visibility_layer = 0
+position = Vector2(51, -63)
+shape = SubResource("RectangleShape2D_60uro")
+debug_color = Color(0.692343, 0.390431, 0.790233, 0.42)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(16, 118)
+color = Color(0.180392, 1, 1, 1)
+polygon = PackedVector2Array(-202, -231, 271, -233, 271, -129, -202, -128)

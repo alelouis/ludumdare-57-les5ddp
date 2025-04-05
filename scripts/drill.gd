@@ -13,20 +13,25 @@ var target_volume = 0.0
 @export var max_down_force = 70.0
 @export var down_acceleration = 20.0   # force/second
 @export var up_restistance = 5 
+@export var torque_strength = 80.0
+
+@export var isDrilling = false
 
 var current_mouse_force = 0.0
 var current_down_force = 0.0
 
-var torque_strength = 80.0
-# Limit angles (in radians)
-var min_angle = deg_to_rad(-45)  # left limit
-var max_angle = deg_to_rad(45)   # right limit
+var terrain_force_multiplier = 1.0
+var start_position
+
 
 func _ready() -> void:
+	start_position = global_position
 	$GroundEraser.ground = ground
 
+
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	
+	if isDrilling and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		is_dragging = event.pressed
 		if not is_dragging:
 			# Reset when mouse is released
@@ -41,10 +46,9 @@ func _unhandled_input(event):
 			target_volume = -10.0
 			if not drag_sound.playing:
 				drag_sound.play()
-		
 
 func _physics_process(delta):
-	if is_dragging:
+	if is_dragging and isDrilling:
 		# 👆 Accelerate toward max force
 		current_mouse_force = min(current_mouse_force + mouse_acceleration * delta, max_mouse_force)
 		current_down_force = min(current_down_force + down_acceleration * delta, max_down_force)
@@ -54,7 +58,9 @@ func _physics_process(delta):
 		var direction = mouse_pos - global_position
 		if direction.y < 0:
 			direction.y = direction.y - up_restistance  # prevent pulling upward
-		apply_central_force(direction.normalized() * current_mouse_force)
+			
+		
+		apply_central_force(direction.normalized() * current_mouse_force * terrain_force_multiplier)
   		# Clamp target angle within the limits
 		# ⬇️ Apply force downward
 		apply_central_force(Vector2.DOWN * current_down_force)
@@ -72,3 +78,34 @@ func _physics_process(delta):
 		# Stop playback when volume is close to silence
 		if target_volume <= -70 and drag_sound.volume_db <= -70:
 			drag_sound.stop()
+
+	
+func change_terrain_force_multiplier(current_terrain):
+	match current_terrain:
+		"mud":
+			terrain_force_multiplier = 6.0
+		"ice":
+			terrain_force_multiplier = 1.5
+		"boost":
+			terrain_force_multiplier = 2.0
+		_:
+			terrain_force_multiplier =  1.0
+			
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		is_dragging = event.pressed
+	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		reset_drill()
+	if event is InputEventKey and event.pressed and event.keycode == KEY_D:
+		isDrilling = !isDrilling
+		if !isDrilling:
+			is_dragging = false
+
+func reset_drill():
+	is_dragging = false
+	global_position = start_position
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0.0
+	rotation = 0.0
+	sleeping = false  # wake it up just in case
+	print("Drill reset to starting position.")
