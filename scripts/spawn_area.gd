@@ -12,8 +12,8 @@ extends Area2D
 @export var spawn_count: int = 1
 
 # Spawn timing and physics settings
-@export var min_spawn_delay: float = 0.1  # Minimum delay between spawns in seconds
-@export var max_spawn_delay: float = 0.5  # Maximum delay between spawns in seconds
+@export var min_spawn_delay: float = 0.0  # Minimum delay between spawns in seconds
+@export var max_spawn_delay: float = 0.2  # Maximum delay between spawns in seconds
 @export var min_angular_velocity: float = -1.0  # Minimum initial angular velocity
 @export var max_angular_velocity: float = 1.0   # Maximum initial angular velocity
 
@@ -81,9 +81,6 @@ func _on_coffin_collision(coffin1, coffin2):
 		# Get names
 		var name1 = coffin_data1.get_full_name()
 		var name2 = coffin_data2.get_full_name()
-		
-		# Print collision message
-		print(name1 + " collided with " + name2)
 		
 		# Check if they share the same last name
 		var can_merge = false
@@ -156,8 +153,6 @@ func _on_coffin_collision(coffin1, coffin2):
 				# Find and update the sprite using the new coffin_display component
 				update_coffin_sprite(merged_coffin)
 				
-				print("Created merged family coffin with " + str(merged_data.people.size()) + " people")
-			
 			# Add to the scene
 			add_child(merged_coffin)
 			merged_coffin.get_node("CPUParticles2D").emitting = true
@@ -165,8 +160,7 @@ func _on_coffin_collision(coffin1, coffin2):
 			# Delete the original coffins
 			remove_coffin(coffin1)
 			remove_coffin(coffin2)
-			
-			print("Original coffins removed after merging")
+		
 
 # Remove a coffin and update tracking
 func remove_coffin(coffin_body):
@@ -370,11 +364,3 @@ func find_sprite_display(coffin):
 				return grandchild
 				
 	return null
-
-
-func set_pickable_coffins(pickable: bool):
-	# Find all RigidBody2D nodes (coffins) in children
-	for child in get_children():
-		var rigidbody = find_rigidbody_child(child)
-		if(rigidbody != null):
-			rigidbody.input_pickable = pickable

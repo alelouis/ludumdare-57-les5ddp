@@ -37,6 +37,7 @@ func on_timer_finished():
 	text = ""
 	text_label.show_text("The Night is Over !!!")
 	text_label_shadow.show_text("The Night is Over !!!")
+	Phase.next_phase()
 
 func _on_end_pressed():
 	time_left = 0.0

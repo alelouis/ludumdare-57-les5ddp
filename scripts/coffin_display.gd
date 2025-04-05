@@ -192,7 +192,6 @@ func force_update():
 
 # Public method that can be called from outside to set hover state
 func set_hover(hovered):
-	print("set_hover: ", hovered)
 	if hovered != is_hovered:
 		if hovered:
 			start()

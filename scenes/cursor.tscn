@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://k82r4l3adc6n"]
+
+[ext_resource type="Script" uid="uid://n23ast0nacje" path="res://scenes/cursor.gd" id="1_s0nli"]
+[ext_resource type="Texture2D" uid="uid://b60i28pbbaxwv" path="res://assets/sprites/main.png" id="2_s0nli"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_s0nli")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 100
+position = Vector2(-1, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_s0nli")

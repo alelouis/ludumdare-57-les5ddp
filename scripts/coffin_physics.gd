@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+
+@onready var hand = $Hand
+
 var dragging = false
 var rotate_while_dragging = true
 var drag_start = Vector2()
@@ -18,16 +21,19 @@ var rotation_factor = 10.0
 
 # Line drawing
 var should_draw_line = false
-var line_color = Color(1, 1, 1, 0.8) # White with some transparency
-var line_width = 10.0
+var line_color = Color(45/255.0, 142/255.0, 70/255.0, 1) # White with some transparency
+var line_width = 5.0
 
 # Line visualization
 var line_node = null
 var canvas_layer = null
 
 func _ready():
+	hand.visible = false
 	# Apply the initial rotation from rotation_start
 	rotation = rotation_start
+
+	input_pickable = true
 	
 	# Initialize positions
 	previous_pos = global_position
@@ -50,7 +56,6 @@ func _ready():
 
 func find_display_component():
 	for child in self.get_children():
-		print(child)
 		if child is Sprite2D and child.has_method("set_hover"):
 			return child
 
@@ -59,12 +64,13 @@ func find_display_component():
 
 func _on_input_event(_viewport, event, _shape_idx):
 	# Handle mouse button events
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and Phase.current_phase == "coffin":
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			
 			# Start dragging
 			if event.pressed:
 				dragging = true
+				Cursor.set_cursor_sprite("cursor")
 				should_draw_line = true
 				drag_start = get_viewport().get_mouse_position()
 				drag_offset = global_position - drag_start
@@ -85,18 +91,23 @@ func _unhandled_input(event):
 			# Stop dragging when mouse is released anywhere
 			dragging = false
 			should_draw_line = false
+			Cursor.set_cursor_sprite("hand")
 
 			if display_component:
 				display_component.set_hover(false)
 			
 			# Hide the line
 			line_node.hide()
+			hand.hide()
+			
 			
 			# Stop processing global input until next drag
 			set_process_unhandled_input(false)
 
 func _physics_process(delta):
 	if dragging:
+		hand.visible = true
+		hand.position = click_position
 		var mouse_pos = get_global_mouse_position()
 		
 		if rotate_while_dragging:
@@ -138,8 +149,13 @@ func _physics_process(delta):
 	# Update the line position
 	if should_draw_line:
 		var world_click_pos = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * click_position
-		
 		var mouse_pos = get_viewport().get_mouse_position()
+		
+		# Calculate and set the hand rotation to face the mouse
+		var direction = (mouse_pos - world_click_pos).normalized()
+		var angle = atan2(direction.y, direction.x)
+		# Adjust the angle by 90 degrees (PI/2) if the hand needs to point along the direction
+		hand.rotation = angle - rotation + PI/2
 		
 		# Update line points
 		line_node.clear_points()

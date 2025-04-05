@@ -12,10 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://bp82i4shxl7co" path="res://assets/backgrounds/bg_5_town.png" id="6_3dehq"]
 [ext_resource type="Texture2D" uid="uid://dkm03c6rf3xra" path="res://assets/backgrounds/bg_7_backdirt.png" id="7_t14xq"]
 [ext_resource type="Texture2D" uid="uid://dghkpo2q8o2jf" path="res://assets/backgrounds/bg_10_cliff.png" id="11_wwq82"]
+[ext_resource type="Script" path="res://scripts/follow_mouse.gd" id="13_it30p"]
 [ext_resource type="Script" uid="uid://cer126ry71jrf" path="res://scripts/follow_mouse.gd" id="13_it30p"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
 [sub_resource type="Gradient" id="Gradient_t14xq"]
@@ -121,6 +121,15 @@ limit_bottom = 3300
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
 editor_draw_limits = true
+
+[node name="CoffinSpawner" parent="." instance=ExtResource("4_y518a")]
+left_bound = 810.0
+right_bound = 1620.0
+top_bound = -1500.0
+bottom_bound = -1200.0
+spawn_count = 7
+min_angular_velocity = -10.0
+max_angular_velocity = 10.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_hdpy2")]
 
