@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw63fxynmbqj0"]
+[gd_scene load_steps=8 format=3 uid="uid://cw63fxynmbqj0"]
 
 [ext_resource type="Script" uid="uid://cbvaewvc32hgm" path="res://scripts/coffin_physics.gd" id="1_fe18d"]
 [ext_resource type="Script" uid="uid://dhgq0oaw30hwr" path="res://scripts/coffin_data.gd" id="1_o11qi"]
@@ -6,21 +6,28 @@
 [ext_resource type="Texture2D" uid="uid://wh2l82kjqggy" path="res://assets/sprites/coffin.png" id="3_xuegr"]
 [ext_resource type="Script" uid="uid://fpsyxtmtmuri" path="res://scripts/coffin_display.gd" id="4_oghpg"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oghpg"]
+friction = 0.15
+bounce = 0.2
+
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_oghpg"]
-points = PackedVector2Array(-137, 33, 133, 34, 154, -9, -92, -33, -153, -7)
+points = PackedVector2Array(-117, 1, 18, 2, 29, -20, -92, -33, -126, -20)
 
 [node name="Coffin" type="Node2D"]
 script = ExtResource("1_o11qi")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_oghpg")
 script = ExtResource("1_fe18d")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_xuegr")
 script = ExtResource("4_oghpg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(48, 16)
 shape = SubResource("ConvexPolygonShape2D_oghpg")
 script = ExtResource("3_oylmm")
 

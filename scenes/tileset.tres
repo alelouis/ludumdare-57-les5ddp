@@ -7,7 +7,7 @@ texture = ExtResource("1_g3vke")
 margins = Vector2i(2, 2)
 texture_region_size = Vector2i(12, 12)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, -0.111678, -5.52807, 4, -4, 5.02551, -0.0558386, 4, 4, 0.223356, 5.30471, -4, 4, -5.19303, 0.0558395)
 
 [resource]
 tile_size = Vector2i(8, 8)
