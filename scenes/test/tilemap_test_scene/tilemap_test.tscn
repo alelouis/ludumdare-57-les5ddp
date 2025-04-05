@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bp82i4shxl7co" path="res://assets/backgrounds/bg_5_town.png" id="6_3dehq"]
 [ext_resource type="Texture2D" uid="uid://dkm03c6rf3xra" path="res://assets/backgrounds/bg_7_backdirt.png" id="7_t14xq"]
 [ext_resource type="Texture2D" uid="uid://dghkpo2q8o2jf" path="res://assets/backgrounds/bg_10_cliff.png" id="11_wwq82"]
-[ext_resource type="Script" uid="uid://cer126ry71jrf" path="res://scripts/follow_mouse.gd" id="13_it30p"]
+[ext_resource type="Script" path="res://scripts/follow_mouse.gd" id="13_it30p"]
 
 [sub_resource type="Gradient" id="Gradient_t14xq"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -101,6 +101,7 @@ left_bound = 810.0
 right_bound = 1620.0
 top_bound = -1500.0
 bottom_bound = -1200.0
+spawn_count = 7
 min_angular_velocity = -10.0
 max_angular_velocity = 10.0
 

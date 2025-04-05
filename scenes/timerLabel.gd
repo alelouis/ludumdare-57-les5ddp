@@ -1,6 +1,6 @@
 extends Label
 
-@export var start_time: float = 61.0  # start from 60 seconds
+@export var start_time: float = 6.0  # start from 60 seconds
 @export var count_down: bool = true   # set to false to count up
 @onready var end_button := $"../Button"  # adjust path if needed
 @onready var text_label = $"../RichTextLabel"
@@ -37,6 +37,7 @@ func on_timer_finished():
 	text = ""
 	text_label.show_text("The Night is Over !!!")
 	text_label_shadow.show_text("The Night is Over !!!")
+	Phase.next_phase()
 
 func _on_end_pressed():
 	time_left = 0.0

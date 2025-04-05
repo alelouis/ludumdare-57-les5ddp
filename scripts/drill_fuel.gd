@@ -9,8 +9,6 @@ extends ColorRect
 
 func _ready():
 	update_bar()
-	coffin_generator.set_pickable_coffins(false)
-
 
 func drain(amount: float):
 	current_fuel = clamp(current_fuel - amount * delta, 0.0, max_fuel)
@@ -33,6 +31,6 @@ func update_bar():
 	else:
 		color = Color(1.0, 0.0, 0.0)  # Red
 	if(current_fuel == 0.0):
-		coffin_generator.set_pickable_coffins(true)
+		Phase.next_phase()
 		text_label.show_text("Coffin' Time !!!")
 		text_label_shadow.show_text("Coffin' Time !!!")

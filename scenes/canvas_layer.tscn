@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bxn2o32s8juqr" path="res://scripts/drill_fuel.gd" id="1_c4rma"]
 [ext_resource type="Script" uid="uid://ca5ft18vi1caj" path="res://scenes/timerLabel.gd" id="2_ghj5q"]
-[ext_resource type="Script" uid="uid://c1mdnm1jtg15h" path="res://scenes/BigTexts.gd" id="3_ek3oe"]
+[ext_resource type="Script" path="res://scenes/BigTexts.gd" id="3_ek3oe"]
 [ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="3_mg525"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ghj5q"]

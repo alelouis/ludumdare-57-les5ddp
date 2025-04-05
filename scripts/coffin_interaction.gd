@@ -152,40 +152,41 @@ func _process(_delta):
 		# Make sure tooltip doesn't go off the top of the screen
 
 func _on_mouse_entered():
-	print("collision shape")
 	# Visual feedback
-	if rigidbody:
-		rigidbody.modulate = Color(1.2, 1.2, 1.2)  # Slightly brighter
-	
-	# Activate hover effect on display component
-	if display_component:
-		display_component.set_hover(true)
-	
-	# Show tooltip if data is available
-	if coffin_data and tooltip_node:
-		# Get the full text to display
-		var title = coffin_data.get_full_name()
-		var detailed_text = coffin_data.get_detailed_text()
+	if Phase.current_phase == "coffin":
+		if rigidbody:
+			rigidbody.modulate = Color(1.2, 1.2, 1.2)  # Slightly brighter
 		
-		# Set tooltip text
-		tooltip_node.text = detailed_text
+		# Activate hover effect on display component
+		if display_component:
+			display_component.set_hover(true)
 		
-		# Adjust tooltip size based on number of people
-		var num_people = coffin_data.people.size()
-		tooltip_node.size = Vector2(450, 25 + (num_people * 20))  # Wider tooltip
-		
-		# Show the tooltip
-		tooltip_node.show()
+		# Show tooltip if data is available
+		if coffin_data and tooltip_node:
+			# Get the full text to display
+			var title = coffin_data.get_full_name()
+			var detailed_text = coffin_data.get_detailed_text()
+			
+			# Set tooltip text
+			tooltip_node.text = detailed_text
+			
+			# Adjust tooltip size based on number of people
+			var num_people = coffin_data.people.size()
+			tooltip_node.size = Vector2(450, 25 + (num_people * 20))  # Wider tooltip
+			
+			# Show the tooltip
+			tooltip_node.show()
 
 func _on_mouse_exited():
 	# Reset visual feedback
-	if rigidbody:
-		rigidbody.modulate = Color(1, 1, 1)  # Normal color
+	if Phase.current_phase == "coffin":
+		if rigidbody:
+			rigidbody.modulate = Color(1, 1, 1)  # Normal color
 
-	if rigidbody:
-		if not rigidbody.dragging:
-			display_component.set_hover(false)
-	
-	# Hide tooltip
-	if tooltip_node:
-		tooltip_node.hide() 
+		if rigidbody:
+			if not rigidbody.dragging:
+				display_component.set_hover(false)
+		
+		# Hide tooltip
+		if tooltip_node:
+			tooltip_node.hide() 
