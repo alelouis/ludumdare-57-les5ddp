@@ -1,6 +1,6 @@
 extends RigidBody2D
 @onready var drag_sound := $DrillSound
-@onready var fuel_bar = $"../CanvasLayer/FuelRect" # adjust path as needed
+@onready var fuel_bar: DrillFuel = $"../CanvasLayer/FuelRect" # adjust path as needed
 @export var ground: Ground
 
 var is_dragging = false
@@ -24,13 +24,17 @@ var current_down_force = 0.0
 var terrain_force_multiplier = 1.0
 var start_position
 
-
 func _ready() -> void:
 	start_position = global_position
 	$GroundEraser.ground = ground
 	$GroundEraser.fuel = fuel_bar
 	animation_player.play("idle")
-
+	
+func _process(delta: float) -> void:
+	if fuel_bar and fuel_bar.current_fuel <= 0:
+		if animation_player.current_animation != "fade_to_drill":
+			animation_player.play("fade_to_drill")
+		
 func _unhandled_input(event):
 	
 	if isDrilling and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmr7o47df4rmg"]
+[gd_scene load_steps=17 format=3 uid="uid://cmr7o47df4rmg"]
 
 [ext_resource type="Script" uid="uid://dhjl4qqw5io3s" path="res://scripts/drill.gd" id="1_60uro"]
 [ext_resource type="Texture2D" uid="uid://72rm7ydkrged" path="res://assets/sprites/drill_idle.png" id="2_nx8ti"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://6olnvu2ix4ty" path="res://scenes/ground_eraser.tscn" id="4_nx8ti"]
 [ext_resource type="Texture2D" uid="uid://chul5lcc8rhyf" path="res://assets/sprites/drill_fr3.png" id="5_hql8b"]
 [ext_resource type="Texture2D" uid="uid://bi0r3pqpwr4e2" path="res://assets/sprites/drill_fr4.png" id="6_fo41f"]
+[ext_resource type="Texture2D" uid="uid://cvdo3g58aykq" path="res://assets/sprites/drill_solo.png" id="7_8cwd3"]
 
 [sub_resource type="Animation" id="Animation_cljqy"]
 length = 0.001
@@ -22,6 +23,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("2_nx8ti")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2DSolo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_euh7r"]
@@ -56,10 +81,51 @@ tracks/0/keys = {
 "values": [ExtResource("2_nx8ti")]
 }
 
+[sub_resource type="Animation" id="Animation_8cwd3"]
+resource_name = "fade_to_drill"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_nx8ti")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2DSolo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_apcyi"]
 _data = {
 &"RESET": SubResource("Animation_cljqy"),
 &"drillin": SubResource("Animation_euh7r"),
+&"fade_to_drill": SubResource("Animation_8cwd3"),
 &"idle": SubResource("Animation_nx8ti")
 }
 
@@ -88,6 +154,13 @@ position = Vector2(-36.3593, 0.640579)
 rotation = -1.5708
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_nx8ti")
+
+[node name="Sprite2DSolo" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-3, 1.19209e-07)
+rotation = -1.5708
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("7_8cwd3")
 
 [node name="DrillSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1.64069, 108.641)

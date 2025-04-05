@@ -1,5 +1,7 @@
 extends ColorRect
 
+class_name DrillFuel
+
 @export var max_fuel := 100.0
 @export var delta := 0.1
 @export var current_fuel := max_fuel
