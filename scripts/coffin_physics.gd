@@ -171,7 +171,6 @@ func _physics_process(delta):
 func _on_body_entered(body: Node) -> void:
 	if body is CoffinPhysics:
 		var speed = linear_velocity.length()
-		print(speed)
 		audio_wood.volume_db = lerp(-120, 0, clamp(speed, 0, 300) / 300.0)
 		audio_wood.volume_db = randf_range(-18.0, -6.0)
 		audio_wood.pitch_scale = randf_range(0.5, 4.0)

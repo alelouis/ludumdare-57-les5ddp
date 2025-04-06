@@ -69,28 +69,28 @@ func _ready():
 
 # Load first and last names from text files
 func load_names_from_files() -> void:
-	# Load first names
-	var first_names_file = FileAccess.open("res://assets/names/first_names.txt", FileAccess.READ)
-	if first_names_file:
-		while not first_names_file.eof_reached():
-			var line = first_names_file.get_line().strip_edges()
-			if not line.is_empty():
-				first_names.append(line)
-	
-	# Load last names
-	var last_names_file = FileAccess.open("res://assets/names/last_names.txt", FileAccess.READ)
-	if last_names_file:
-		while not last_names_file.eof_reached():
-			var line = last_names_file.get_line().strip_edges()
-			if not line.is_empty():
-				last_names.append(line)
+	## Load first names
+	#var first_names_file = FileAccess.open("res://assets/names/first_names.txt", FileAccess.READ)
+	#if first_names_file:
+		#while not first_names_file.eof_reached():
+			#var line = first_names_file.get_line().strip_edges()
+			#if not line.is_empty():
+				#first_names.append(line)
+	#
+	## Load last names
+	#var last_names_file = FileAccess.open("res://assets/names/last_names.txt", FileAccess.READ)
+	#if last_names_file:
+		#while not last_names_file.eof_reached():
+			#var line = last_names_file.get_line().strip_edges()
+			#if not line.is_empty():
+				#last_names.append(line)
 	
 	# Fallback in case files couldn't be loaded
 	if first_names.is_empty():
-		first_names = ["John", "Mary", "Robert", "Elizabeth", "William"]
+		first_names = ["Jule", "Béatrice", "Eva", "Hervé", "Tom", "Ugo", "Léo", "Louise", "Adam", "Jésus", "Achille", "Luna", "Robin", "Milo", "David", "Charlotte", "Maya", "Charly", "Charle", "Emmy", "Sandro", "Louison", "Sophia", "Benjamin", "Marcel", "Louka", "Oceane", "Judith", "Janne", "Gustave", "Camelia", "Laura", "Nicolas", "Dylan", "Léopold", "Samy", "Gaston", "Joyce", "Flora", "Tess", "Clémentine", "Quentin", "Luis", "Max", "Julien", "Bryan", "Adrian", "Fabion", "Angelo", "Léo", "Léa", "Nils", "Karim", "Matéo"]
 	
 	if last_names.is_empty():
-		last_names = ["Smith", "Johnson", "Williams", "Brown", "Jones"]
+		last_names = ["CIME", "TIÉRE", "PIQUE", "JAR", "BALE", "BESON", "NATALE", "FRIZ", "MACALAM", "CHRIST", "PARK", "DESBOIS", "MILANO", "AUFRAISE", "L'ABEILLE ", "CHAPLIN", "INGALLS", "ZOLA"]
 
 # Set the first person in the coffin (for backward compatibility)
 func _update_first_person():
@@ -148,22 +148,28 @@ func get_detailed_text() -> String:
 
 # Generate random data for testing
 func randomize_data() -> void:
+	print("random data init")
 	# Clear existing data
 	people.clear()
 	
 	# Make sure names are loaded
 	if first_names.is_empty() or last_names.is_empty():
+		print("load files")
 		load_names_from_files()
 	
 	# Pick random name
+	print("random names")
 	var first_name = first_names[randi() % first_names.size()]
 	var last_name = last_names.slice(0, n_families)[randi() % n_families]
 	
 	# Generate random dates
+	print("random dates")
 	var birth_year = str(randi_range(1900, 1980))
 	var death_year = str(randi_range(int(birth_year) + 20, 2025))
 	
 	# Create person
+	print("add person")
 	add_person(first_name, last_name, birth_year, death_year)
 	
 	emit_signal("data_updated") 
+	print("random data done ", first_name, " ", last_name)

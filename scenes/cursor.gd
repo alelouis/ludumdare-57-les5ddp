@@ -4,7 +4,7 @@ class_name Cursor
 
 static var instance: Cursor
 
-@onready var cursor_sprite = load("res://assets/sprites/Cursor.png")
+@onready var cursor_sprite = load("res://assets/sprites/cursor.png")
 @onready var hand_sprite = load("res://assets/sprites/main.png")
 @onready var drill_sprite = load("res://assets/sprites/cursor_drill.png")
 @onready var drill: Node2D = $"/root/TilemapTest/Drill"
