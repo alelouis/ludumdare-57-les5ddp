@@ -622,7 +622,7 @@ scale = Vector2(0.86, 0.86)
 texture = ExtResource("15_jtvsm")
 
 [node name="bury_focus" type="Node2D" parent="."]
-position = Vector2(810, 0)
+position = Vector2(810, -345)
 
 [node name="rules_focus" type="Node2D" parent="."]
 position = Vector2(810, -1500)
