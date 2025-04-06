@@ -32,6 +32,10 @@
 [ext_resource type="PackedScene" uid="uid://bkfammryxm1js" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 [ext_resource type="Texture2D" uid="uid://hg4537hy7t6y" path="res://assets/sprites/crowd.png" id="24_sk1ni"]
 [ext_resource type="Script" uid="uid://e78atijb7m78" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
+[ext_resource type="Texture2D" uid="uid://coujypbn8df38" path="res://assets/backgrounds/youloose.png" id="29_emtf1"]
+[ext_resource type="FontFile" uid="uid://eduy1iunya42" path="res://assets/fonts/Underdog-Regular.ttf" id="30_fwxek"]
+[ext_resource type="Script" uid="uid://cg1trmn73rdjy" path="res://scenes/test/tilemap_test_scene/try_again_button.gd" id="36_fvykp"]
+[ext_resource type="PackedScene" uid="uid://cw63fxynmbqj0" path="res://scenes/coffin.tscn" id="36_fwxek"]
 [ext_resource type="Texture2D" uid="uid://dm0jucexadma4" path="res://scenes/test/tilemap_test_scene/prêtre_01.png" id="32_fvykp"]
 [ext_resource type="Texture2D" uid="uid://bw78j7x4ke8yj" path="res://scenes/test/tilemap_test_scene/prêtre_02.png" id="33_omsir"]
 [ext_resource type="Texture2D" uid="uid://q2l6ymiclytr" path="res://scenes/test/tilemap_test_scene/prêtre_03.png" id="34_cvf02"]
@@ -630,6 +634,25 @@ position = Vector2(810, -2500)
 
 [node name="Menu" parent="menu_focus" instance=ExtResource("18_w5b3b")]
 
+[node name="you_lose_focus" type="Node2D" parent="."]
+position = Vector2(836, 3919)
+
+[node name="Youloose" type="Sprite2D" parent="."]
+position = Vector2(814, 3811)
+scale = Vector2(0.86, 0.86)
+texture = ExtResource("29_emtf1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 683.0
+offset_top = 4075.0
+offset_right = 1107.0
+offset_bottom = 4247.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("30_fwxek")
+theme_override_font_sizes/font_size = 148
+text = "R.I.P."
+horizontal_alignment = 1
+
 [node name="AboveGroundCoffinDetector" parent="." instance=ExtResource("19_w5b3b")]
 position = Vector2(843, 13)
 
@@ -668,3 +691,30 @@ frame_progress = 0.752577
 
 [node name="WinOrLose" type="Node" parent="."]
 script = ExtResource("26_wfv1v")
+
+[node name="TryAgainButton" type="Button" parent="."]
+visible = false
+z_index = 2
+offset_left = 692.0
+offset_top = -2187.0
+offset_right = 1110.0
+offset_bottom = -2097.0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.454902, 1, 0.619608, 1)
+theme_override_fonts/font = ExtResource("30_fwxek")
+theme_override_font_sizes/font_size = 70
+text = "Try again ?"
+script = ExtResource("36_fvykp")
+
+[node name="Coffin" parent="." instance=ExtResource("36_fwxek")]
+position = Vector2(343, 4092)
+first_name = "Boris"
+last_name = "SAMERE"
+
+[node name="RigidBody2D" parent="Coffin" index="0"]
+freeze = true
+
+[connection signal="pressed" from="TryAgainButton" to="." method="_on_try_again_button_pressed"]
+
+[editable path="Coffin"]

@@ -36,18 +36,25 @@ func _ready():
 	shaking_text.meta_underlined = false  # Optional: hides underline
 	shaking_text.set_focus_mode(Control.FOCUS_NONE)  # Prevent focus
 	shaking_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	Phase.phase_changed.connect(on_phase_changed)
+	
+func on_phase_changed():
+	if Phase.current_phase == 'cinematic': 
+		cinematic_timer.start()
+		if not AboveGroundCoffinDetector.instance.has_bodies():
+			soft_text.show()
+			soft_text_shadow.show()
+		else:
+			soft_text.hide() 
+			soft_text_shadow.hide()
+	else:
+		soft_text.hide()
+		soft_text_shadow.hide()		
 
 func _process(delta: float) -> void:
 	# Shaking
-	if Phase.current_phase == 'cinematic' && !soft_text.visible: 
-		soft_text.show()
-		soft_text_shadow.show()
-		cinematic_timer.start()
-	elif Phase.current_phase != 'cinematic' && soft_text.visible:
-		soft_text.hide()
-		soft_text_shadow.hide()		
-		
-		
+	
 	var shake = Vector2(
 		sin(Time.get_ticks_msec() / 100.0 * shake_speed),
 		cos(Time.get_ticks_msec() / 100.0 * shake_speed * 0.75)
@@ -82,6 +89,9 @@ func show_text(new_text: String, duration := 6.0):
 	
 func _on_timer_timeout():
 	if(Phase.current_phase == 'cinematic'):
-		Phase.next_phase()
-		CameraTarget.set_camera_target(CameraTarget.Target.CURSOR)
+		if AboveGroundCoffinDetector.instance.has_bodies():
+			CameraTarget.set_camera_target(CameraTarget.Target.YOU_LOSE_FOCUS)
+		else:
+			Phase.next_phase()
+			CameraTarget.set_camera_target(CameraTarget.Target.CURSOR)
 	

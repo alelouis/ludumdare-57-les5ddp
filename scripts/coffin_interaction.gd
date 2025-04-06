@@ -163,7 +163,7 @@ func _process(_delta):
 
 func _on_mouse_entered():
 	# Visual feedback
-	if Phase.current_phase == "coffin":
+	if Phase.current_phase == "coffin" or CameraTarget.current_target == CameraTarget.Target.YOU_LOSE_FOCUS:
 		if rigidbody:
 			rigidbody.modulate = Color(1.2, 1.2, 1.2)  # Slightly brighter
 		
@@ -189,7 +189,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	# Reset visual feedback
-	if Phase.current_phase == "coffin":
+	if Phase.current_phase == "coffin" or CameraTarget.current_target == CameraTarget.Target.YOU_LOSE_FOCUS:
 		if rigidbody:
 			rigidbody.modulate = Color(1, 1, 1)  # Normal color
 
