@@ -531,15 +531,15 @@ position = Vector2(961.163, -523.953)
 texture = ExtResource("10_udd1k")
 
 [node name="CoffinSpawner" parent="." instance=ExtResource("4_y518a")]
-left_bound = 810.0
-right_bound = 1620.0
+left_bound = 100.0
+right_bound = 1520.0
 top_bound = -1500.0
 bottom_bound = -1200.0
 min_angular_velocity = -10.0
 max_angular_velocity = 10.0
 
 [node name="Drill" parent="." instance=ExtResource("5_hdpy2")]
-position = Vector2(343, 37)
+position = Vector2(808, 37)
 rotation = 1.57079
 max_mouse_force = 500.0
 mouse_acceleration = 200.0

@@ -4,7 +4,7 @@ var phases = ["drill", "coffin","cinematic"]
 var current_phase = null
 var current_level = 1
 
-signal phase_changed(new_phase)
+signal phase_changed()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,5 +24,5 @@ func next_phase():
 	
 func next_level(): # Call after validation
 	current_level = current_level +1
-	current_phase = phases[2] #cinematic phase 
-	phase_changed.emit()
+	next_phase()
+	CameraTarget.set_camera_target(CameraTarget.Target.BURY_FOCUS)
