@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://diu01uk6grfsh" path="res://scenes/rules.gd" id="1_3spy8"]
 [ext_resource type="Texture2D" uid="uid://b1tog3phvibqe" path="res://assets/marketing/chart.png" id="2_66h5d"]
-[ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="3_1m7fe"]
+[ext_resource type="FontFile" uid="uid://eduy1iunya42" path="res://assets/fonts/Underdog-Regular.ttf" id="3_1m7fe"]
 
 [node name="Rules" type="Node2D"]
 position = Vector2(-810, -450)
@@ -39,6 +39,6 @@ offset_right = 1220.0
 offset_bottom = 300.0
 theme_override_colors/default_color = Color(0.518378, 0.825268, 0.508579, 1)
 theme_override_fonts/normal_font = ExtResource("3_1m7fe")
-theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/normal_font_size = 60
 text = "Tip : Merge coffins of the same family to save space !"
 horizontal_alignment = 1
