@@ -10,6 +10,7 @@ class_name DrillFuel
 @onready var coffin_generator = $"../../CoffinSpawner"
 
 func _ready():
+	Phase.phase_changed.connect(_on_phase_change)
 	update_bar()
 
 func drain(amount: float):
@@ -36,3 +37,7 @@ func update_bar():
 		Phase.next_phase()
 		text_label.show_text("Coffin' Time !!!")
 		text_label_shadow.show_text("Coffin' Time !!!")
+		
+func _on_phase_change(): 
+	if(Phase.current_phase == 'drill'):
+		max_fuel = 100

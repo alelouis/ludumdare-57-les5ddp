@@ -24,11 +24,11 @@ var current_down_force = 0.0
 var terrain_force_multiplier = 1.0
 var start_position
 
-func on_phase_changed(phase: String) -> void:
-	if phase == "coffin":
+func on_phase_changed():
+	if Phase.current_phase == "coffin":
 		animation_player.play("fade_to_drill")
-	elif phase == "drill":
-		animation_player.play("idle")
+	elif Phase.current_phase == "drill":
+		reset_drill()
 
 func _ready() -> void:
 	start_position = global_position
@@ -118,10 +118,9 @@ func _input(event: InputEvent) -> void:
 
 func reset_drill():
 	animation_player.play("idle")
-	is_dragging = false
+	is_dragging = true
 	fuel_bar.current_fuel = 100
 	fuel_bar.update_bar()
-	global_position = start_position
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0.0
 	rotation = 0.0
