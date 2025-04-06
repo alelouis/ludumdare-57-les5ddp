@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=23 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://cer126ry71jrf" path="res://scripts/follow_mouse.gd" id="13_it30p"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
+[ext_resource type="PackedScene" uid="uid://bkfammryxm1js" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -183,3 +184,6 @@ visible = false
 position = Vector2(825.6, 1559.8)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("15_jtvsm")
+
+[node name="AboveGroundCoffinDetector" parent="." instance=ExtResource("19_w5b3b")]
+position = Vector2(843, 13)
