@@ -42,7 +42,7 @@
 [ext_resource type="Script" uid="uid://cg1trmn73rdjy" path="res://scenes/test/tilemap_test_scene/try_again_button.gd" id="36_fvykp"]
 [ext_resource type="PackedScene" uid="uid://cw63fxynmbqj0" path="res://scenes/coffin.tscn" id="36_fwxek"]
 [ext_resource type="PackedScene" uid="uid://k82r4l3adc6n" path="res://scenes/cursor.tscn" id="42_dw1qj"]
-[ext_resource type="Script" uid="uid://cct2ktamvb4vn" path="res://scenes/test/tilemap_test_scene/pretre.gd" id="42_vaygr"]
+[ext_resource type="Script" path="res://scenes/test/tilemap_test_scene/pretre.gd" id="42_vaygr"]
 [ext_resource type="PackedScene" uid="uid://cdgfgs001mgbx" path="res://scenes/phase.tscn" id="43_vaygr"]
 [ext_resource type="PackedScene" uid="uid://c7at500gy6yub" path="res://scenes/camera_target.tscn" id="44_jl2ng"]
 

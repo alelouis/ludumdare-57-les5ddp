@@ -381,7 +381,7 @@ func fibonacci(n: int) -> int:
 func update_spawn_count():
 	# Use Fibonacci sequence to determine spawn count based on current level
 	# Add a base value to ensure we always have at least some coffins
-	spawn_count = fibonacci(Phase.current_level+2)
+	spawn_count = fibonacci(Phase.instance.current_level+2)
 	
 
 func _on_phase_changed(): 
