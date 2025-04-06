@@ -5,9 +5,11 @@ extends Label
 @onready var end_button := $"../Button"  # adjust path if needed
 @onready var text_label = $"../RichTextLabel"
 @onready var text_label_shadow = $"../RichTextLabelShadow"
+@onready var level_label = $"../LevelLabel"
 
 var time_left: float
-var end_triggered = true 
+var end_triggered = false 
+var current_level = 1
 
 func _ready():
 	end_button.hide()
@@ -41,7 +43,7 @@ func on_timer_finished():
 	# Called once when timer hits 0
 	end_triggered = true;
 	end_button.hide();
-	Phase.next_phase()
+	Phase.next_level()
 
 func _on_end_pressed():
 	if Phase.current_phase == "drill":
@@ -65,6 +67,7 @@ func _on_phase_changed():
 		text_label.show_text("Coffin' Time !!!")
 		text_label_shadow.show_text("Coffin' Time !!!")
 	if Phase.current_phase == 'cinematic':
+		level_label.text = "Days without incident: %s " % (Phase.current_level - 1) 
 		end_button.hide();
 		self.hide()
 		text_label.show_text("The Night is Over !!!")

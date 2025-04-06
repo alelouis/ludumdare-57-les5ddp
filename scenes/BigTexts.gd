@@ -14,7 +14,7 @@ extends RichTextLabel
 @onready var shaking_text_shadow = $"../RichTextLabelShadow"
 
 @onready var cinematic_timer = $"../CinematicTimer"
-
+@onready var level_label = $"../LevelLabel"
 
 var original_position: Vector2
 var base_scale: Vector2
@@ -32,6 +32,10 @@ func _ready():
 	base_scale = scale
 	pivot_offset = size / 2  # This centers the pivot for shaking & scaling
 	cinematic_timer.timeout.connect(_on_timer_timeout)
+	
+	shaking_text.meta_underlined = false  # Optional: hides underline
+	shaking_text.set_focus_mode(Control.FOCUS_NONE)  # Prevent focus
+	shaking_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _process(delta: float) -> void:
 	# Shaking

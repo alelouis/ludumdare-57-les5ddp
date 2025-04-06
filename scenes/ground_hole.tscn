@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://blsp2rga0xtbo"]
+
+[ext_resource type="Script" uid="uid://dpbuoy78l0qq7" path="res://scripts/ground_whole.gd" id="1_u82i3"]
+[ext_resource type="Texture2D" uid="uid://btko424ke6e1f" path="res://icon.svg" id="2_f6gbr"]
+
+[node name="GroundWhole" type="Area2D"]
+collision_layer = 3
+script = ExtResource("1_u82i3")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(0.350149, 0.398165)
+texture = ExtResource("2_f6gbr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

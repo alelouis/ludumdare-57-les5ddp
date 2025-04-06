@@ -48,3 +48,7 @@ func _on_phase_change():
 	if(Phase.current_phase == 'drill'):
 		self.show()
 		max_fuel = 100
+		update_bar()
+	if(Phase.current_phase == 'coffin'):
+		current_fuel = 0
+		update_bar()
