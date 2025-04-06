@@ -1,7 +1,6 @@
 extends RigidBody2D
 @onready var drag_sound := $DrillSound
 @onready var fuel_bar: DrillFuel = $"../CanvasLayer/FuelRect" # adjust path as needed
-@export var ground: Ground
 
 var is_dragging = false
 var fade_speed = 2.0  # how fast to fade out
@@ -36,7 +35,6 @@ func on_phase_changed():
 func _ready() -> void:
 	get_node("CPUParticles2D").emitting = false
 	start_position = global_position
-	$GroundEraser.ground = ground
 	$GroundEraser.fuel = fuel_bar
 	animation_player.play("idle")
 	Phase.phase_changed.connect(on_phase_changed)
