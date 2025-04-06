@@ -15,12 +15,6 @@ run/main_scene="uid://cbt25qb3c5v1v"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://g4r7y4earglx"
 
-[autoload]
-
-Cursor="*res://scenes/cursor.tscn"
-Phase="*res://scenes/phase.tscn"
-CameraTarget="*res://scenes/camera_target.tscn"
-
 [display]
 
 window/size/viewport_width=1620

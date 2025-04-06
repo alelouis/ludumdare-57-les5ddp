@@ -18,7 +18,7 @@ func _ready():
 	text_label_shadow.hide()
 	time_left = start_time
 	end_button.pressed.connect(_on_end_pressed)
-	Phase.phase_changed.connect(_on_phase_changed)
+	Phase.instance.phase_changed.connect(_on_phase_changed)
 	update_text()
 	self.hide()
 
@@ -28,9 +28,9 @@ func _process(delta: float) -> void:
 			time_left = max(0.0, time_left - delta)
 		else:
 			time_left += delta
-		if(Phase.current_phase == 'coffin' && !end_button.visible && !AboveGroundCoffinDetector.instance.has_bodies()):
+		if(Phase.instance.current_phase == 'coffin' && !end_button.visible && !AboveGroundCoffinDetector.instance.has_bodies()):
 			end_button.show()
-		elif(Phase.current_phase == 'coffin' && end_button.visible && AboveGroundCoffinDetector.instance.has_bodies()):
+		elif(Phase.instance.current_phase == 'coffin' && end_button.visible && AboveGroundCoffinDetector.instance.has_bodies()):
 			end_button.hide()
 			
 		update_text()
@@ -49,18 +49,18 @@ func on_timer_finished():
 	# Called once when timer hits 0
 	end_triggered = true;
 	end_button.hide();
-	Phase.next_level()
+	Phase.instance.next_level()
 
 func _on_end_pressed():
-	if Phase.current_phase == "drill":
-		Phase.next_phase()
+	if Phase.instance.current_phase == "drill":
+		Phase.instance.next_phase()
 	else:
 		time_left = 0.0
 		update_text()
 		on_timer_finished()
 	
 func _on_phase_changed():
-	if Phase.current_phase == 'drill':
+	if Phase.instance.current_phase == 'drill':
 		if !level_label.visible:
 			level_label.show()
 		end_button.text = "End drilling"
@@ -73,12 +73,12 @@ func _on_phase_changed():
 		text_label_shadow.show_text("Drillin' Time ! \n Drill to claim some space for coffins.")
 		text_label_shadow.lifetime = 5.0
 
-	if Phase.current_phase == 'coffin':
+	if Phase.instance.current_phase == 'coffin':
 		end_button.text = "End of the night"
 		text_label.show_text("Coffin' Time ! \n Bury the coffins, nothing should be left behind.")
 		text_label_shadow.show_text("Coffin' Time ! \n Bury the coffins, nothing should be left behind.")
-	if Phase.current_phase == 'cinematic':
-		level_label.text = "Days without incident: %s " % (Phase.current_level - 1) 
+	if Phase.instance.current_phase == 'cinematic':
+		level_label.text = "Days without incident: %s " % (Phase.instance.current_level - 1) 
 		end_button.hide();
 		self.hide()
 		text_label.show_text("The Night is Over !")

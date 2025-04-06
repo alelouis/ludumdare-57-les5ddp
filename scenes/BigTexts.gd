@@ -37,10 +37,10 @@ func _ready():
 	shaking_text.set_focus_mode(Control.FOCUS_NONE)  # Prevent focus
 	shaking_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-	Phase.phase_changed.connect(on_phase_changed)
+	Phase.instance.phase_changed.connect(on_phase_changed)
 	
 func on_phase_changed():
-	if Phase.current_phase == 'cinematic': 
+	if Phase.instance.current_phase == 'cinematic': 
 		cinematic_timer.start()
 		if not AboveGroundCoffinDetector.instance.has_bodies():
 			soft_text.show()
@@ -88,10 +88,10 @@ func show_text(new_text: String, duration := 6.0):
 	lifetime = duration
 	
 func _on_timer_timeout():
-	if(Phase.current_phase == 'cinematic'):
+	if(Phase.instance.current_phase == 'cinematic'):
 		if AboveGroundCoffinDetector.instance.has_bodies():
-			CameraTarget.set_camera_target(CameraTarget.Target.YOU_LOSE_FOCUS)
+			CameraTarget.instance.set_camera_target(CameraTarget.instance.Target.YOU_LOSE_FOCUS)
 		else:
-			Phase.next_phase()
-			CameraTarget.set_camera_target(CameraTarget.Target.CURSOR)
+			Phase.instance.next_phase()
+			CameraTarget.instance.set_camera_target(CameraTarget.instance.Target.CURSOR)
 	

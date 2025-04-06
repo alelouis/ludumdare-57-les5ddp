@@ -15,4 +15,4 @@ func _process(delta):
 
 # Function that gets called when the button is pressed
 func _on_button_pressed():
-	CameraTarget.set_camera_target(CameraTarget.Target.RULES_FOCUS)
+	CameraTarget.instance.set_camera_target(CameraTarget.instance.Target.RULES_FOCUS)

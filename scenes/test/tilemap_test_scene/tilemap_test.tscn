@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=52 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -41,6 +41,9 @@
 [ext_resource type="Texture2D" uid="uid://y8d7fcaoe4xq" path="res://scenes/test/tilemap_test_scene/prêtre_05.png" id="36_6grsd"]
 [ext_resource type="Script" uid="uid://cg1trmn73rdjy" path="res://scenes/test/tilemap_test_scene/try_again_button.gd" id="36_fvykp"]
 [ext_resource type="PackedScene" uid="uid://cw63fxynmbqj0" path="res://scenes/coffin.tscn" id="36_fwxek"]
+[ext_resource type="PackedScene" uid="uid://k82r4l3adc6n" path="res://scenes/cursor.tscn" id="42_dw1qj"]
+[ext_resource type="PackedScene" uid="uid://cdgfgs001mgbx" path="res://scenes/phase.tscn" id="43_vaygr"]
+[ext_resource type="PackedScene" uid="uid://c7at500gy6yub" path="res://scenes/camera_target.tscn" id="44_jl2ng"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -462,6 +465,12 @@ animations = [{
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
 
+[node name="Cursor" parent="." instance=ExtResource("42_dw1qj")]
+
+[node name="Phase" parent="." instance=ExtResource("43_vaygr")]
+
+[node name="CameraTarget" parent="." instance=ExtResource("44_jl2ng")]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_xqjvw")
 autoplay = true
@@ -693,12 +702,11 @@ frame_progress = 0.752577
 script = ExtResource("26_wfv1v")
 
 [node name="TryAgainButton" type="Button" parent="."]
-visible = false
 z_index = 2
-offset_left = 692.0
-offset_top = -2187.0
-offset_right = 1110.0
-offset_bottom = -2097.0
+offset_left = 1123.0
+offset_top = 4138.0
+offset_right = 1541.0
+offset_bottom = 4228.0
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0.454902, 1, 0.619608, 1)

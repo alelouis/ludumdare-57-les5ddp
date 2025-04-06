@@ -64,13 +64,13 @@ func find_display_component():
 
 func _on_input_event(_viewport, event, _shape_idx):
 	# Handle mouse button events
-	if event is InputEventMouseButton and Phase.current_phase == "coffin":
+	if event is InputEventMouseButton and Phase.instance.current_phase == "coffin":
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			
 			# Start dragging
 			if event.pressed:
 				dragging = true
-				Cursor.set_cursor_sprite("cursor")
+				Cursor.instance.set_cursor_sprite("cursor")
 				should_draw_line = true
 				drag_start = get_viewport().get_mouse_position()
 				drag_offset = global_position - drag_start
@@ -91,7 +91,7 @@ func _unhandled_input(event):
 			# Stop dragging when mouse is released anywhere
 			dragging = false
 			should_draw_line = false
-			Cursor.set_cursor_sprite("hand")
+			Cursor.instance.set_cursor_sprite("hand")
 
 			if display_component:
 				display_component.set_hover(false)

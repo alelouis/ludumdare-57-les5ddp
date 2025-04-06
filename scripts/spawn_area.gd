@@ -30,7 +30,7 @@ func _ready():
 	# Update collision shape based on bounds
 	update_spawn_count()
 	update_collision_shape()
-	Phase.phase_changed.connect(_on_phase_changed)
+	Phase.instance.phase_changed.connect(_on_phase_changed)
 
 # Set up collision detection for all coffins
 func _setup_collision_detection():
@@ -360,10 +360,10 @@ func find_sprite_display(coffin):
 	return null
 
 func update_spawn_count():
-	spawn_count = Phase.current_level
+	spawn_count = Phase.instance.current_level
 
 func _on_phase_changed(): 
-	if Phase.current_phase == 'drill':
+	if Phase.instance.current_phase == 'drill':
 		update_spawn_count()
 		# Spawn scenes if auto-spawn is enabled
 		if auto_spawn_on_ready and spawn_scene:

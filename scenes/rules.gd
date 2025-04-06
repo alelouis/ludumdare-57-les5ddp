@@ -15,10 +15,10 @@ func _process(delta):
 
 # Function that gets called when the button is pressed
 func _on_button_pressed():
-	CameraTarget.set_camera_target(CameraTarget.Target.BURY_FOCUS)
-	Phase.next_phase()
+	CameraTarget.instance.set_camera_target(CameraTarget.instance.Target.BURY_FOCUS)
+	Phase.instance.next_phase()
 	await get_tree().create_timer(0.8).timeout
-	CameraTarget.set_camera_target(CameraTarget.Target.CURSOR)
-	CameraTarget.enable_margins()
+	CameraTarget.instance.set_camera_target(CameraTarget.instance.Target.CURSOR)
+	CameraTarget.instance.enable_margins()
 	
 	

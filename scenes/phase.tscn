@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdgfgs001mgbx"]
 
-[ext_resource type="Script" uid="uid://cn4bfd8fecxvm" path="res://scenes/phase.gd" id="1_blum4"]
+[ext_resource type="Script" uid="uid://cn4bfd8fecxvm" path="res://scenes/Phase.instance.gd" id="1_blum4"]
 
 [node name="Phase" type="Node2D"]
 script = ExtResource("1_blum4")
