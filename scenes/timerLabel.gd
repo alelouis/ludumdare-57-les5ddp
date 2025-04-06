@@ -28,6 +28,11 @@ func _process(delta: float) -> void:
 			time_left = max(0.0, time_left - delta)
 		else:
 			time_left += delta
+		if(Phase.current_phase == 'coffin' && !end_button.visible && !AboveGroundCoffinDetector.instance.has_bodies()):
+			end_button.show()
+		elif(Phase.current_phase == 'coffin' && end_button.visible && AboveGroundCoffinDetector.instance.has_bodies()):
+			end_button.hide()
+			
 		update_text()
 	if count_down and time_left <= 0.0 and !end_triggered:
 		on_timer_finished()
