@@ -28,6 +28,7 @@ var collision_cooldown = 0.1  # Time in seconds between collision reports
 
 func _ready():
 	# Update collision shape based on bounds
+	update_spawn_count()
 	update_collision_shape()
 	Phase.phase_changed.connect(_on_phase_changed)
 
@@ -251,6 +252,7 @@ func update_collision_shape():
 
 # Spawn a single scene at a random position inside the area
 func spawn_scene_at_random_position():
+
 	if not spawn_scene:
 		push_error("No scene assigned to spawn_scene")
 		return null
@@ -359,8 +361,12 @@ func find_sprite_display(coffin):
 				
 	return null
 
+func update_spawn_count():
+	spawn_count = Phase.current_level
+
 func _on_phase_changed(): 
 	if Phase.current_phase == 'drill':
+		update_spawn_count()
 		# Spawn scenes if auto-spawn is enabled
 		if auto_spawn_on_ready and spawn_scene:
 			spawn_scenes_with_delay(spawn_count)

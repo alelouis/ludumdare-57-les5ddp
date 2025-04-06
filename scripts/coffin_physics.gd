@@ -137,8 +137,8 @@ func _physics_process(delta):
 			# Apply velocity to keep the click point under the mouse
 			var velocity = (target_pos - global_position) * drag_factor
 			# Limit the maximum velocity
-			if velocity.length() > 10000:
-				velocity = velocity.normalized() * 10000
+			if velocity.length() > 1000:
+				velocity = velocity.normalized() * 1000
 			linear_velocity = velocity
 		else:
 			# Standard dragging without rotation
