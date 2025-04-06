@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0mtgqgx1gvyu"]
+[gd_scene load_steps=11 format=3 uid="uid://d0mtgqgx1gvyu"]
 
 [ext_resource type="Script" uid="uid://bxn2o32s8juqr" path="res://scripts/drill_fuel.gd" id="1_c4rma"]
 [ext_resource type="Script" uid="uid://ca5ft18vi1caj" path="res://scenes/timerLabel.gd" id="2_ghj5q"]
 [ext_resource type="Script" uid="uid://c1mdnm1jtg15h" path="res://scenes/BigTexts.gd" id="3_ek3oe"]
 [ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="3_mg525"]
+[ext_resource type="Texture2D" uid="uid://tfrx0613wh70" path="res://assets/sprites/jauge_back.png" id="5_4a2ha"]
+[ext_resource type="Texture2D" uid="uid://w6f1d5y6w3bb" path="res://assets/sprites/jauge_front.png" id="6_g6s7q"]
 
 [sub_resource type="Curve" id="Curve_mg525"]
 _data = [Vector2(0.297089, 1), 0.0, 0.0, 0, 0, Vector2(0.86387, 0.217947), 0.0, 0.0, 0, 0]
@@ -149,3 +151,14 @@ offset_bottom = 183.0
 theme_override_fonts/font = ExtResource("3_mg525")
 theme_override_font_sizes/font_size = 62
 text = "Days without incident: 0 "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(78.25, 690.344)
+scale = Vector2(0.587, 0.688452)
+texture = ExtResource("5_4a2ha")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(77.375, 678.688)
+scale = Vector2(0.5345, 0.65438)
+texture = ExtResource("6_g6s7q")
