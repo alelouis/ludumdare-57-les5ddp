@@ -83,4 +83,5 @@ func show_text(new_text: String, duration := 6.0):
 func _on_timer_timeout():
 	if(Phase.current_phase == 'cinematic'):
 		Phase.next_phase()
+		CameraTarget.set_camera_target(CameraTarget.Target.CURSOR)
 	
