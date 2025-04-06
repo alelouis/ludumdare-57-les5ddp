@@ -4,6 +4,7 @@ var camera_target = null
 @onready var bury_focus = $"/root/TilemapTest/bury_focus"
 @onready var rules_focus = $"/root/TilemapTest/rules_focus"
 @onready var menu_focus = $"/root/TilemapTest/menu_focus"
+@onready var you_lose_focus = $"/root/TilemapTest/you_lose_focus"
 @onready var drill: Node2D = $"/root/TilemapTest/Drill"
 @onready var camera: Camera2D = get_node('Camera2D')
 
@@ -17,7 +18,8 @@ enum Target {
 	CURSOR,
 	BURY_FOCUS,
 	RULES_FOCUS,
-	MENU_FOCUS
+	MENU_FOCUS,
+	YOU_LOSE_FOCUS
 }
 
 func _ready():
@@ -77,12 +79,20 @@ func set_camera_target(target: Target):
 			disable_margins()
 			disable_top_limit()
 			camera_target = menu_focus
+		self.Target.YOU_LOSE_FOCUS:
+			disable_margins()
+			disable_top_limit()
+			camera_target = you_lose_focus
+			camera.position_smoothing_speed = 0.6
+			camera.limit_bottom = 100000000000000
 		_:
 			enable_margins()
 			disable_top_limit()
 			camera_target = Cursor
 
 func _process(delta: float) -> void:
+	if not camera_target:
+		return
 	global_position = camera_target.global_position
 	if current_target == self.Target.CURSOR:
 		if Phase.current_phase == "drill":
