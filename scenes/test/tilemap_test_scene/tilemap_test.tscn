@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c6a34gmwfc2ut" path="res://assets/backgrounds/bg_6_foresttown.png" id="7_wvq2o"]
 [ext_resource type="Texture2D" uid="uid://cfduvftw6u6wv" path="res://assets/backgrounds/bg_9_graveyard.png" id="10_udd1k"]
 [ext_resource type="Texture2D" uid="uid://dghkpo2q8o2jf" path="res://assets/backgrounds/bg_10_cliff.png" id="11_wwq82"]
-[ext_resource type="Script" uid="uid://cer126ry71jrf" path="res://scripts/follow_mouse.gd" id="13_it30p"]
+[ext_resource type="Script" path="res://scripts/follow_mouse.gd" id="13_it30p"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
 
@@ -143,7 +143,6 @@ texture = SubResource("GradientTexture2D_it30p")
 script = ExtResource("13_it30p")
 
 [node name="Camera2D" type="Camera2D" parent="PointLight2D"]
-position = Vector2(-144.345, 91.6259)
 rotation = 1.57079
 scale = Vector2(0.230216, 0.230216)
 limit_left = 0

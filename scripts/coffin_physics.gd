@@ -148,7 +148,7 @@ func _physics_process(delta):
 	
 	# Update the line position
 	if should_draw_line:
-		var world_click_pos = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * click_position
+		var world_click_pos = get_global_transform_with_canvas() * self.get_node('Hand').position
 		var mouse_pos = get_viewport().get_mouse_position()
 		
 		# Calculate and set the hand rotation to face the mouse
