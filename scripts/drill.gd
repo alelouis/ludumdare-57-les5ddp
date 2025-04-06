@@ -42,7 +42,7 @@ func _ready() -> void:
 		
 func _unhandled_input(event):
 	
-	if isDrilling and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if isDrilling and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and Phase.instance.current_phase  == "drill":
 		is_dragging = event.pressed
 		if not is_dragging:
 			# Reset when mouse is released
