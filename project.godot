@@ -23,7 +23,9 @@ Phase="*res://scenes/phase.tscn"
 [display]
 
 window/size/viewport_width=1620
-window/size/viewport_height=2160
+window/size/viewport_height=909
+window/size/window_width_override=1920
+window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 

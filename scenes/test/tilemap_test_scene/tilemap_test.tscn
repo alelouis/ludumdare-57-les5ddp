@@ -72,7 +72,7 @@ texture = ExtResource("4_t14xq")
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.6, 0.6)
-scroll_offset = Vector2(0, 374)
+scroll_offset = Vector2(0, 209)
 
 [node name="Bg4Mountain" type="Sprite2D" parent="Parallax2D4"]
 position = Vector2(810, -456)
@@ -81,7 +81,7 @@ texture = ExtResource("5_it30p")
 
 [node name="Parallax2D5" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.7, 0.7)
-scroll_offset = Vector2(0, 141)
+scroll_offset = Vector2(0, 257)
 
 [node name="Bg5Town" type="Sprite2D" parent="Parallax2D5"]
 position = Vector2(810, -485)
@@ -90,7 +90,7 @@ texture = ExtResource("6_3dehq")
 
 [node name="Parallax2D8" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.8, 0.8)
-scroll_offset = Vector2(0, 112)
+scroll_offset = Vector2(0, 189)
 
 [node name="Bg6Foresttown" type="Sprite2D" parent="Parallax2D8"]
 position = Vector2(827, -432)
@@ -110,7 +110,6 @@ scroll_offset = Vector2(0, 18)
 
 [node name="Bg9Graveyard" type="Sprite2D" parent="Parallax2D9"]
 position = Vector2(961.163, -523.953)
-scale = Vector2(1, 1)
 texture = ExtResource("10_udd1k")
 
 [node name="Bg10Cliff" type="Sprite2D" parent="."]
@@ -137,7 +136,7 @@ torque_strength = 200.0
 [node name="CanvasLayer" parent="." instance=ExtResource("2_hdpy2")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(957, 54)
+position = Vector2(783, -359)
 scale = Vector2(4.34375, 4.34375)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_it30p")
