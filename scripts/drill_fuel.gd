@@ -31,7 +31,7 @@ func drain(amount: float):
 func update_bar():
 	# Update width
 	var percent := current_fuel / max_fuel
-	size.y = 360 * percent  # Assuming full bar is 200px
+	size.y = 400 * percent  # Assuming full bar is 200px
 	fuel_particle_effect.emitting = true
 	fuel_particle_effect.position.y = size.y
 	
@@ -56,8 +56,11 @@ func _on_phase_change():
 		sprite_fuel_front.show()
 
 		coffin_generator.update_spawn_count()
-		current_fuel += min(derive_fuel_from_coffins(coffin_generator.spawn_count), max_fuel)
+		current_fuel += derive_fuel_from_coffins(coffin_generator.spawn_count)
+		current_fuel = min(current_fuel,max_fuel)
 		update_bar()
 	if(Phase.current_phase == 'coffin'):
 		self.hide()
+		sprite_fuel_back.hide()
+		sprite_fuel_front.hide()
 		fuel_particle_effect.emitting = false
