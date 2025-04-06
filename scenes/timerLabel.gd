@@ -63,7 +63,7 @@ func _on_phase_changed():
 		text_label.show_text("Coffin' Time !!!")
 		text_label_shadow.show_text("Coffin' Time !!!")
 	if Phase.current_phase == 'cinematic':
-		level_label.text = "Day without incident: %s " % (Phase.current_level - 1) 
+		level_label.text = "Days without incident: %s " % (Phase.current_level - 1) 
 		end_button.hide();
 		self.hide()
 		text_label.show_text("The Night is Over !!!")

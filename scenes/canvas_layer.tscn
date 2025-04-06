@@ -116,4 +116,4 @@ offset_right = 760.0
 offset_bottom = 183.0
 theme_override_fonts/font = ExtResource("3_mg525")
 theme_override_font_sizes/font_size = 62
-text = "Day without incident: 0 "
+text = "Days without incident: 0 "
