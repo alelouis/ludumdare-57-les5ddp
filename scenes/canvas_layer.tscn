@@ -137,7 +137,7 @@ script = ExtResource("3_ek3oe")
 shake_speed = 1.0
 
 [node name="CinematicTimer" type="Timer" parent="."]
-wait_time = 4.461
+wait_time = 8.0
 one_shot = true
 
 [node name="SoftText" type="RichTextLabel" parent="."]

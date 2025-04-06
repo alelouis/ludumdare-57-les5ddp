@@ -4,7 +4,7 @@ class_name Cursor
 
 static var instance: Cursor
 
-@onready var cursor_sprite = load("res://assets/sprites/Cursor.instance.png")
+@onready var cursor_sprite = load("res://assets/sprites/Cursor.png")
 @onready var hand_sprite = load("res://assets/sprites/main.png")
 @onready var drill_sprite = load("res://assets/sprites/cursor_drill.png")
 @onready var drill: Node2D = $"/root/TilemapTest/Drill"
@@ -27,9 +27,11 @@ func on_phase_changed():
 		"drill":
 			set_cursor_sprite("drill")
 		"coffin":
+			print("hand")
 			set_cursor_sprite("hand")
 
 func set_cursor_sprite(string):
+	print(string)
 	current_cursor = string
 	var sprite = null
 	var offset = Vector2(0, 0)

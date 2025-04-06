@@ -62,5 +62,6 @@ scale_amount_max = 10.0
 scale_amount_curve = SubResource("Curve_oghpg")
 color_ramp = SubResource("Gradient_pw2as")
 
+[connection signal="body_entered" from="RigidBody2D" to="RigidBody2D" method="_on_body_entered"]
 [connection signal="input_event" from="RigidBody2D" to="RigidBody2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="RigidBody2D" to="." method="_on_mouse_entered"]

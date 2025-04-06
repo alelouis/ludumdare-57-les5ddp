@@ -22,6 +22,11 @@ var pulse_time = 0.0
 var pulse_speed = 3.0  # Speed of the pulse effect
 var pulse_intensity = 0.4  # Intensity of the glow
 
+# Color mapping for last names
+static var last_name_colors = {}
+static var next_hue = 0.0
+static var hue_increment = 0.3  # Golden ratio approximation for good distribution
+
 func _ready():
 	# Find coffin data
 	coffin_data = find_coffin_data()
@@ -33,14 +38,49 @@ func _ready():
 	# Save the original material
 	normal_material = material
 	
-	# Create the hover shader material
-	setup_hover_shader()
+
 	
 	# Update sprite
 	update_sprite()
 	
 	# Expand the sprite region to make room for the outline
 	expand_sprite_region()
+	
+	# Apply color based on last name
+	apply_last_name_color()
+
+	# Create the hover shader material
+	setup_hover_shader()
+
+# Get a consistent color for a last name
+static func get_color_for_last_name(last_name: String) -> Color:
+	if last_name.is_empty():
+		return Color(1, 1, 1)  # Default white for empty last names
+	
+	# If we already have a color for this last name, return it
+	if last_name_colors.has(last_name):
+		return last_name_colors[last_name]
+	
+	# Create a new color with the next hue value
+	var color = Color.from_hsv(next_hue, 0.8, 1.0, 1.0)  # Increased saturation for more visible colors
+	
+	# Store the color for this last name
+	last_name_colors[last_name] = color
+	
+	# Increment the hue by the golden ratio approximation for a good distribution
+	next_hue = fmod(next_hue + hue_increment, 1.0)
+	print(next_hue)
+	
+	return color
+
+# Apply color based on last name
+func apply_last_name_color():
+	if coffin_data and coffin_data.people.size() > 0:
+		var last_name = coffin_data.people[0].last_name
+		var color = get_color_for_last_name(last_name)
+		
+		# Apply the color to the sprite
+		modulate = color
 
 func setup_hover_shader():
 	# Create a new shader material
@@ -86,13 +126,25 @@ func setup_hover_shader():
 	}
 	"""
 	
-	# Set the shader to the material
 	hover_material.shader = hover_shader
 	
 	# Set initial shader parameters
 	hover_material.set_shader_parameter("pulse_value", 0.0)
-	hover_material.set_shader_parameter("outline_color", Color(1.0, 0.8, 0.0, 1.0))  # Golden outline
-	hover_material.set_shader_parameter("outline_width", 6.0)  # Width of the outline
+	
+	# Get the current modulate color (family color) for the outline
+	if coffin_data and coffin_data.people.size() > 0:
+		var last_name = coffin_data.people[0].last_name
+		var family_color = get_color_for_last_name(last_name)
+		# Make the outline color a bit more saturated and brighter for better visibility
+		var outline_color = family_color
+		outline_color.s = min(outline_color.s + 0.2, 1.0)  # Increase saturation
+		outline_color.v = min(outline_color.v + 0.2, 1.0)  # Increase brightness
+		hover_material.set_shader_parameter("outline_color", outline_color)
+	else:
+		# Fallback to a default color if no family color is available
+		hover_material.set_shader_parameter("outline_color", Color(1.0, 0.8, 0.0, 1.0))
+	
+	hover_material.set_shader_parameter("outline_width", 12.0)  # Width of the outline
 
 func _process(delta):
 	# Update pulse animation if hovered
@@ -107,6 +159,17 @@ func _process(delta):
 
 func start():
 	is_hovered = true
+	
+	# Update outline color to match current modulate (family color)
+	if hover_material and coffin_data and coffin_data.people.size() > 0:
+		var last_name = coffin_data.people[0].last_name
+		var family_color = get_color_for_last_name(last_name)
+		# Make the outline color a bit more saturated and brighter for better visibility
+		var outline_color = family_color
+		outline_color.s = min(outline_color.s + 0.2, 1.0)  # Increase saturation
+		outline_color.v = min(outline_color.v + 0.2, 1.0)  # Increase brightness
+		hover_material.set_shader_parameter("outline_color", outline_color)
+	
 	material = hover_material
 	pulse_time = 0.0  # Reset pulse timer
 
@@ -116,6 +179,7 @@ func stop():
 
 func _on_coffin_data_updated():
 	update_sprite()
+	apply_last_name_color()  # Update color when data changes
 
 func update_sprite():
 	if coffin_data:
