@@ -56,7 +56,7 @@ func _unhandled_input(event):
 				drag_sound.play()
 
 func _physics_process(delta):
-	if is_dragging and isDrilling and fuel_bar.current_fuel != 0.0:
+	if is_dragging and isDrilling and fuel_bar.current_fuel != 0.0 and Phase.current_phase == "drill":
 		# 👆 Accelerate toward max force
 		current_mouse_force = min(current_mouse_force + mouse_acceleration * delta, max_mouse_force)
 		current_down_force = min(current_down_force + down_acceleration * delta, max_down_force)
