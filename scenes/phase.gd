@@ -24,5 +24,6 @@ func next_phase():
 	
 func next_level(): # Call after validation
 	current_level = current_level +1
-	next_phase()
+	current_phase = phases[2]
+	phase_changed.emit()
 	CameraTarget.set_camera_target(CameraTarget.Target.BURY_FOCUS)
