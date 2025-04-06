@@ -206,6 +206,7 @@ texture = ExtResource("7_8cwd3")
 [node name="DrillSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1.64069, 108.641)
 stream = ExtResource("3_cljqy")
+bus = &"Soud effects"
 
 [node name="DrillShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-48.3593, -0.359421)

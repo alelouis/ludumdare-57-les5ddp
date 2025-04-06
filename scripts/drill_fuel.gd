@@ -22,7 +22,7 @@ func _ready():
 
 
 func derive_fuel_from_coffins(n_coffins: int):
-	return n_coffins * 10
+	return n_coffins * 8
 
 func drain(amount: float):
 	current_fuel = clamp(current_fuel - amount * delta, 0.0, max_fuel)
