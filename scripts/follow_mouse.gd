@@ -1,5 +1,9 @@
 extends PointLight2D
 
+class_name CameraTarget
+
+static var instance: CameraTarget
+
 var camera_target = null
 @onready var bury_focus = $"/root/TilemapTest/bury_focus"
 @onready var rules_focus = $"/root/TilemapTest/rules_focus"
@@ -22,7 +26,11 @@ enum Target {
 	YOU_LOSE_FOCUS
 }
 
+func _enter_tree() -> void:
+	instance = self
+
 func _ready():
+	instance = self
 	camera.position_smoothing_enabled = false
 	set_camera_target(self.Target.CURSOR)
 	set_camera_limits(0, 1620, limit_top_max, limit_bottom_max)
@@ -54,7 +62,7 @@ func disable_top_limit():
 
 func set_camera_target(target: Target):
 	print("changement de camera target", target)
-	## Call this from other scripts using CameraTarget.set_camera_target(CameraTarget.Target.CURSOR)
+	## Call this from other scripts using CameraTarget.instance.set_camera_target(CameraTarget.instance.Target.CURSOR)
 	## to change what the camera follows. Valid targets are:
 	## - Target.CURSOR: Follow the mouse cursor
 	## - Target.BURY_FOCUS: Focus on the burial area
@@ -65,7 +73,7 @@ func set_camera_target(target: Target):
 		self.Target.CURSOR:
 			enable_margins()
 			enable_top_limit()
-			camera_target = Cursor
+			camera_target = Cursor.instance
 		self.Target.BURY_FOCUS:
 			disable_margins()
 			disable_top_limit()
@@ -88,14 +96,14 @@ func set_camera_target(target: Target):
 		_:
 			enable_margins()
 			disable_top_limit()
-			camera_target = Cursor
+			camera_target = Cursor.instance
 
 func _process(delta: float) -> void:
 	if not camera_target:
 		return
 	global_position = camera_target.global_position
 	if current_target == self.Target.CURSOR:
-		if Phase.current_phase == "drill":
+		if Phase.instance.current_phase == "drill":
 			var half_screen_height: int = int(get_viewport().get_visible_rect().size.y * 0.90)
 			camera.limit_top = lerp(camera.limit_top, max(limit_top, int(drill.global_position.y) - half_screen_height), 0.1)
 			camera.limit_bottom = lerp(camera.limit_bottom, min(limit_bottom_max, int(drill.global_position.y) + half_screen_height), 0.1)

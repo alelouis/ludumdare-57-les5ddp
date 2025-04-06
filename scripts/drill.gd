@@ -24,18 +24,18 @@ var terrain_force_multiplier = 1.0
 var start_position
 
 func on_phase_changed():
-	if Phase.current_phase == "coffin":
+	if Phase.instance.current_phase == "coffin":
 		animation_player.play("fade_to_drill")
 		get_node("CPUParticles2D").emitting = false
 		get_node("Smoke").emitting = false
-	elif Phase.current_phase == "drill":
+	elif Phase.instance.current_phase == "drill":
 		reset_drill()
 		animation_player.play("idle")
 
 func _ready() -> void:
 	start_position = global_position
 	$GroundEraser.fuel = fuel_bar
-	Phase.phase_changed.connect(on_phase_changed)
+	Phase.instance.phase_changed.connect(on_phase_changed)
 	get_node("CPUParticles2D").emitting = false
 	get_node("Smoke").emitting = false
 
@@ -59,7 +59,7 @@ func _unhandled_input(event):
 				drag_sound.play()
 
 func _physics_process(delta):
-	if is_dragging and isDrilling and fuel_bar.current_fuel != 0.0 and Phase.current_phase == "drill":
+	if is_dragging and isDrilling and fuel_bar.current_fuel != 0.0 and Phase.instance.current_phase == "drill":
 		# 👆 Accelerate toward max force
 		current_mouse_force = min(current_mouse_force + mouse_acceleration * delta, max_mouse_force)
 		current_down_force = min(current_down_force + down_acceleration * delta, max_down_force)
@@ -103,7 +103,7 @@ func change_terrain_force_multiplier(current_terrain):
 			terrain_force_multiplier =  1.0
 			
 func _input(event: InputEvent) -> void:
-	if Phase.current_phase != "drill":
+	if Phase.instance.current_phase != "drill":
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		is_dragging = event.pressed

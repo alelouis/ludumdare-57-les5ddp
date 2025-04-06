@@ -30,7 +30,7 @@ func _ready():
 	# Update collision shape based on bounds
 	update_spawn_count()
 	update_collision_shape()
-	Phase.phase_changed.connect(_on_phase_changed)
+	Phase.instance.phase_changed.connect(_on_phase_changed)
 
 # Set up collision detection for all coffins
 func _setup_collision_detection():
@@ -381,12 +381,11 @@ func fibonacci(n: int) -> int:
 func update_spawn_count():
 	# Use Fibonacci sequence to determine spawn count based on current level
 	# Add a base value to ensure we always have at least some coffins
-	print("Level ", Phase.current_level, " - Spawning ", spawn_count, " coffins (Fibonacci: ", fibonacci(Phase.current_level), ")")
 	spawn_count = fibonacci(Phase.current_level+2)
 	
 
 func _on_phase_changed(): 
-	if Phase.current_phase == 'drill':
+	if Phase.instance.current_phase == 'drill':
 		update_spawn_count()
 		# Spawn scenes if auto-spawn is enabled
 		if auto_spawn_on_ready and spawn_scene:

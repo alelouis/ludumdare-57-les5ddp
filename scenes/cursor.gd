@@ -1,21 +1,29 @@
 extends Node2D
 
-@onready var cursor_sprite = load("res://assets/sprites/cursor.png")
+class_name Cursor
+
+static var instance: Cursor
+
+@onready var cursor_sprite = load("res://assets/sprites/Cursor.instance.png")
 @onready var hand_sprite = load("res://assets/sprites/main.png")
 @onready var drill_sprite = load("res://assets/sprites/cursor_drill.png")
 @onready var drill: Node2D = $"/root/TilemapTest/Drill"
 
 var current_cursor: String
 
+func _enter_tree() -> void:
+	instance = self
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	instance = self
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	set_cursor_sprite("hand")
-	Phase.phase_changed.connect(on_phase_changed)
+	Phase.instance.phase_changed.connect(on_phase_changed)
 	
 func on_phase_changed():
-	match Phase.current_phase:
+	match Phase.instance.current_phase:
 		"drill":
 			set_cursor_sprite("drill")
 		"coffin":

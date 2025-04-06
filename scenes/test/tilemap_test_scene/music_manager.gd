@@ -15,7 +15,7 @@ func _ready() -> void:
 	stream = intro_a
 	next_stream = intro_b
 	play()
-	Phase.phase_changed.connect(on_phase_changed)
+	Phase.instance.phase_changed.connect(on_phase_changed)
 	self.finished.connect(on_finished)
 
 func on_finished():
@@ -24,7 +24,7 @@ func on_finished():
 	play()
 	
 func on_phase_changed():
-	match Phase.current_phase:
+	match Phase.instance.current_phase:
 		"drill":
 			if stream != drill_a and stream != drill_b:
 				var tween = get_tree().create_tween()

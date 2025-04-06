@@ -13,7 +13,7 @@ class_name DrillFuel
 @onready var sprite_fuel_front = $"../Sprite2D2"
 
 func _ready():
-	Phase.phase_changed.connect(_on_phase_change)
+	Phase.instance.phase_changed.connect(_on_phase_change)
 	self.hide()
 	sprite_fuel_back.hide()
 	sprite_fuel_front.hide()
@@ -42,13 +42,13 @@ func update_bar():
 		color = Color(1.0, 1.0, 0.0)  # Yellow
 	else:
 		color = Color(1.0, 0.0, 0.0)  # Red
-	if(current_fuel == 0.0) and Phase.current_phase == "drill":
-		Phase.next_phase()
+	if(current_fuel == 0.0) and Phase.instance.current_phase == "drill":
+		Phase.instance.next_phase()
 	fuel_particle_effect.emitting = false
 
 		
 func _on_phase_change(): 
-	if(Phase.current_phase == 'drill'):
+	if(Phase.instance.current_phase == 'drill'):
 		self.show()
 		sprite_fuel_back.show()
 		sprite_fuel_front.show()
@@ -57,7 +57,7 @@ func _on_phase_change():
 		current_fuel += derive_fuel_from_coffins(coffin_generator.spawn_count)
 		current_fuel = min(current_fuel,max_fuel)
 		update_bar()
-	if(Phase.current_phase == 'coffin'):
+	if(Phase.instance.current_phase == 'coffin'):
 		self.hide()
 		sprite_fuel_back.hide()
 		sprite_fuel_front.hide()

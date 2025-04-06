@@ -1,13 +1,21 @@
 extends Node2D
 
+class_name Phase
+
+static var instance: Phase
+
 var phases = ["drill", "coffin","cinematic"]
 var current_phase = null
 var current_level = 1
 
 signal phase_changed()
 
+func _enter_tree() -> void:
+	instance = self
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	instance = self
 	pass
 
 
@@ -26,4 +34,4 @@ func next_level(): # Call after validation
 	current_level = current_level +1
 	current_phase = phases[2]
 	phase_changed.emit()
-	CameraTarget.set_camera_target(CameraTarget.Target.BURY_FOCUS)
+	CameraTarget.instance.set_camera_target(CameraTarget.instance.Target.BURY_FOCUS)
