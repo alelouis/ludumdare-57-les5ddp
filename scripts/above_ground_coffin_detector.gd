@@ -18,6 +18,9 @@ func has_bodies():
 func get_bodies_below_ground():
 	return bodies_below_ground
 	
+func get_bodies_above_ground():
+	return bodies_above_ground
+	
 func on_phase_changed():
 	if Phase.instance.current_phase == "cinematic":
 		pass
