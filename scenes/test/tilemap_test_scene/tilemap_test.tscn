@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=57 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -48,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://c7at500gy6yub" path="res://scenes/camera_target.tscn" id="44_jl2ng"]
 [ext_resource type="AudioStream" uid="uid://u76p7rfsyl8l" path="res://assets/sounds/chock1_dry.mp3" id="47_0jh2x"]
 [ext_resource type="AudioStream" uid="uid://b2ddmfqsqp2a1" path="res://assets/sounds/chock2_dry.mp3" id="48_4wa0p"]
+[ext_resource type="AudioStream" uid="uid://u7srsb2jk118" path="res://assets/sounds/spawn.mp3" id="49_4wa0p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -841,6 +842,10 @@ bus = &"Soud effects"
 position = Vector2(313, 203)
 stream = ExtResource("48_4wa0p")
 bus = &"Soud effects"
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(772, 278)
+stream = ExtResource("49_4wa0p")
 
 [connection signal="pressed" from="TryAgainButton" to="." method="_on_try_again_button_pressed"]
 

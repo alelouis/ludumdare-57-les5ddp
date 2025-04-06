@@ -26,6 +26,8 @@ var collision_cooldown = 0.1  # Time in seconds between collision reports
 # Reference to the CollisionShape2D
 @onready var collision_shape = $CollisionShape2D
 
+@onready var spawn_audio: AudioStreamPlayer2D = $"/root/TilemapTest/Spawn"
+
 func _ready():
 	# Update collision shape based on bounds
 	update_spawn_count()
@@ -151,6 +153,8 @@ func _on_coffin_collision(coffin1, coffin2):
 			# Add to the scene
 			add_child(merged_coffin)
 			merged_coffin.get_node("CPUParticles2D").emitting = true
+			
+			spawn_audio.play()
 			
 			# Delete the original coffins
 			remove_coffin(coffin1)
