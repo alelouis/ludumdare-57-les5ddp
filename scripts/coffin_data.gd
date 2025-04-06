@@ -31,7 +31,7 @@ var people: Array[Person] = []
 var first_names: Array = []
 var last_names: Array = []
 
-@export var n_families: int = 3
+@export var n_families: int = 10
 
 # Legacy access to first person (for backward compatibility)
 @export var first_name: String = "":

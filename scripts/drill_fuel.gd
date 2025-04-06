@@ -18,16 +18,10 @@ func _ready():
 
 
 func derive_fuel_from_coffins(n_coffins: int):
-	
-	var fuel = n_coffins * 4.5
-	return fuel
+	return n_coffins * 10
 
 func drain(amount: float):
 	current_fuel = clamp(current_fuel - amount * delta, 0.0, max_fuel)
-	update_bar()
-
-func refill(amount: float):
-	current_fuel = clamp(current_fuel + amount, 0.0, max_fuel)
 	update_bar()
 
 func update_bar():
@@ -54,9 +48,9 @@ func update_bar():
 func _on_phase_change(): 
 	if(Phase.current_phase == 'drill'):
 		self.show()
+		coffin_generator.update_spawn_count()
 		max_fuel = derive_fuel_from_coffins(coffin_generator.spawn_count)
 		current_fuel = max_fuel
-		print(max_fuel)
 		update_bar()
 	if(Phase.current_phase == 'coffin'):
 		current_fuel = 0
