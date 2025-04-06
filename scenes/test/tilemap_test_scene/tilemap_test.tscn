@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=22 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
 [ext_resource type="PackedScene" uid="uid://d0mtgqgx1gvyu" path="res://scenes/canvas_layer.tscn" id="2_hdpy2"]
 [ext_resource type="Texture2D" uid="uid://d1qxxgojn4bm5" path="res://assets/backgrounds/bg_1_sky.png" id="2_nv4kt"]
+[ext_resource type="AudioStream" uid="uid://covbr3h3tcpla" path="res://assets/music/sort_song_full.ogg" id="2_udd1k"]
 [ext_resource type="Texture2D" uid="uid://bgyr4lj31g1h8" path="res://assets/backgrounds/bg_2_clouds_far.png" id="3_wwq82"]
 [ext_resource type="Texture2D" uid="uid://bkv12p6ut0dr7" path="res://assets/backgrounds/bg_3_clouds_close.png" id="4_t14xq"]
 [ext_resource type="PackedScene" uid="uid://cocx0yos7sbyp" path="res://scenes/coffin_spawner.tscn" id="4_y518a"]
@@ -14,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c6a34gmwfc2ut" path="res://assets/backgrounds/bg_6_foresttown.png" id="7_wvq2o"]
 [ext_resource type="Texture2D" uid="uid://cfduvftw6u6wv" path="res://assets/backgrounds/bg_9_graveyard.png" id="10_udd1k"]
 [ext_resource type="Texture2D" uid="uid://dghkpo2q8o2jf" path="res://assets/backgrounds/bg_10_cliff.png" id="11_wwq82"]
-[ext_resource type="Script" path="res://scripts/follow_mouse.gd" id="13_it30p"]
+[ext_resource type="Script" uid="uid://cer126ry71jrf" path="res://scripts/follow_mouse.gd" id="13_it30p"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
 
@@ -31,6 +32,10 @@ fill_to = Vector2(0.5, 0)
 
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_udd1k")
+autoplay = true
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 
