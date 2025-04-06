@@ -90,8 +90,8 @@ func create_tooltip():
 	# Create a Label for the tooltip
 	tooltip_node = Label.new()
 	tooltip_node.add_theme_font_size_override("font_size", 22)  # Increased size for better visibility
-	tooltip_node.add_theme_color_override("font_color", Color(1, 1, 0, 1))  # Yellow for better visibility
-	tooltip_node.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
+	tooltip_node.add_theme_color_override("font_color", Color(172.0/255.0, 187.0/255.0, 240.0/255.0, 1))  # Yellow for better visibility
+	tooltip_node.add_theme_color_override("font_outline_color", Color(27.0/255.0, 37.0/255.0, 63.0/255.0, 0.6))
 	tooltip_node.add_theme_constant_override("outline_size", 16)  # Thicker outline
 	tooltip_node.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	tooltip_node.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM # Bottom alignment since anchor is at bottom

@@ -1,22 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://chk8yl0l7jio2"]
+[gd_scene load_steps=4 format=3 uid="uid://chk8yl0l7jio2"]
 
 [ext_resource type="Script" uid="uid://diu01uk6grfsh" path="res://scenes/rules.gd" id="1_3spy8"]
+[ext_resource type="Texture2D" uid="uid://b1tog3phvibqe" path="res://assets/marketing/chart.png" id="2_66h5d"]
+[ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="3_1m7fe"]
 
 [node name="Rules" type="Node2D"]
 position = Vector2(-810, -450)
 script = ExtResource("1_3spy8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 535.0
-offset_top = 280.0
+offset_left = 537.0
+offset_top = 697.0
 offset_right = 1081.0
-offset_bottom = 623.0
+offset_bottom = 1245.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 z_index = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "OK got the rules"
+text = "Ok, got it"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -25,3 +27,18 @@ offset_right = 1610.0
 offset_bottom = 909.0
 mouse_filter = 2
 color = Color(1, 0.219608, 1, 1)
+
+[node name="Chart" type="Sprite2D" parent="."]
+position = Vector2(778, 409)
+texture = ExtResource("2_66h5d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 388.0
+offset_top = 86.0
+offset_right = 1220.0
+offset_bottom = 300.0
+theme_override_colors/default_color = Color(0.518378, 0.825268, 0.508579, 1)
+theme_override_fonts/normal_font = ExtResource("3_1m7fe")
+theme_override_font_sizes/normal_font_size = 80
+text = "Tip : Merge coffins of the same family to save space !"
+horizontal_alignment = 1

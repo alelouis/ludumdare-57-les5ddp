@@ -29,10 +29,10 @@ default_font_size = 96
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 105.0
+offset_left = 101.0
 offset_top = -34.0
-offset_right = 173.0
-offset_bottom = 372.0
+offset_right = 165.0
+offset_bottom = 366.0
 grow_vertical = 0
 rotation = -3.14159
 color = Color(0, 0.494697, 8.66354e-07, 1)
@@ -154,11 +154,11 @@ text = "Days without incident: 0 "
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(78.25, 690.344)
-scale = Vector2(0.587, 0.688452)
+position = Vector2(78.25, 693.344)
+scale = Vector2(0.587, 0.681923)
 texture = ExtResource("5_4a2ha")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(77.375, 678.688)
-scale = Vector2(0.5345, 0.65438)
+position = Vector2(77.375, 682.188)
+scale = Vector2(0.5345, 0.646763)
 texture = ExtResource("6_g6s7q")

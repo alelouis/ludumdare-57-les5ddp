@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1tog3phvibqe"
-path="res://.godot/imported/chart.png-f80485e84a02711cb70cfbcbbedc2471.ctex"
+uid="uid://cjg7k5g88h66v"
+path="res://.godot/imported/banière.png-39b5019a22e38691f6b81c7794038590.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/marketing/chart.png"
-dest_files=["res://.godot/imported/chart.png-f80485e84a02711cb70cfbcbbedc2471.ctex"]
+source_file="res://assets/marketing/banière.png"
+dest_files=["res://.godot/imported/banière.png-39b5019a22e38691f6b81c7794038590.ctex"]
 
 [params]
 

@@ -21,6 +21,7 @@ enum Target {
 }
 
 func _ready():
+	camera.position_smoothing_enabled = false
 	set_camera_target(self.Target.CURSOR)
 	set_camera_limits(0, 1620, limit_top_max, limit_bottom_max)
 
@@ -68,6 +69,7 @@ func set_camera_target(target: Target):
 			disable_top_limit()
 			camera_target = bury_focus
 		self.Target.RULES_FOCUS:
+			camera.position_smoothing_enabled = true
 			disable_margins()
 			disable_top_limit()
 			camera_target = rules_focus

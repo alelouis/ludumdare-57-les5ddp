@@ -27,11 +27,11 @@
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
 [ext_resource type="PackedScene" uid="uid://chk8yl0l7jio2" path="res://scenes/rules.tscn" id="18_60nct"]
 [ext_resource type="PackedScene" uid="uid://5k17ir65lojn" path="res://scenes/menu.tscn" id="18_w5b3b"]
-[ext_resource type="PackedScene" uid="uid://blsp2rga0xtbo" path="res://scenes/ground_hole.tscn" id="19_60nct"]
-[ext_resource type="PackedScene" uid="uid://bkfammryxm1js" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
+[ext_resource type="PackedScene" path="res://scenes/ground_hole.tscn" id="19_60nct"]
+[ext_resource type="PackedScene" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 [ext_resource type="Texture2D" uid="uid://hg4537hy7t6y" path="res://assets/sprites/crowd.png" id="24_sk1ni"]
 [ext_resource type="Texture2D" uid="uid://dbwju6fxp6b8r" path="res://assets/sprites/prêtre.png" id="25_wfv1v"]
-[ext_resource type="Script" uid="uid://e78atijb7m78" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
+[ext_resource type="Script" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
