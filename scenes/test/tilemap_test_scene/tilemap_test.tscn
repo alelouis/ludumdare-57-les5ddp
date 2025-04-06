@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=49 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -28,19 +28,19 @@
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
 [ext_resource type="PackedScene" uid="uid://chk8yl0l7jio2" path="res://scenes/rules.tscn" id="18_60nct"]
 [ext_resource type="PackedScene" uid="uid://5k17ir65lojn" path="res://scenes/menu.tscn" id="18_w5b3b"]
-[ext_resource type="PackedScene" uid="uid://blsp2rga0xtbo" path="res://scenes/ground_hole.tscn" id="19_60nct"]
-[ext_resource type="PackedScene" uid="uid://bkfammryxm1js" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
+[ext_resource type="PackedScene" path="res://scenes/ground_hole.tscn" id="19_60nct"]
+[ext_resource type="PackedScene" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 [ext_resource type="Texture2D" uid="uid://hg4537hy7t6y" path="res://assets/sprites/crowd.png" id="24_sk1ni"]
-[ext_resource type="Script" uid="uid://e78atijb7m78" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
+[ext_resource type="Script" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
 [ext_resource type="Texture2D" uid="uid://coujypbn8df38" path="res://assets/backgrounds/youloose.png" id="29_emtf1"]
 [ext_resource type="FontFile" uid="uid://eduy1iunya42" path="res://assets/fonts/Underdog-Regular.ttf" id="30_fwxek"]
-[ext_resource type="Script" uid="uid://cg1trmn73rdjy" path="res://scenes/test/tilemap_test_scene/try_again_button.gd" id="36_fvykp"]
-[ext_resource type="PackedScene" uid="uid://cw63fxynmbqj0" path="res://scenes/coffin.tscn" id="36_fwxek"]
 [ext_resource type="Texture2D" uid="uid://dm0jucexadma4" path="res://scenes/test/tilemap_test_scene/prêtre_01.png" id="32_fvykp"]
 [ext_resource type="Texture2D" uid="uid://bw78j7x4ke8yj" path="res://scenes/test/tilemap_test_scene/prêtre_02.png" id="33_omsir"]
 [ext_resource type="Texture2D" uid="uid://q2l6ymiclytr" path="res://scenes/test/tilemap_test_scene/prêtre_03.png" id="34_cvf02"]
 [ext_resource type="Texture2D" uid="uid://cerl16ct8wh7n" path="res://scenes/test/tilemap_test_scene/prêtre_04.png" id="35_vxx46"]
 [ext_resource type="Texture2D" uid="uid://y8d7fcaoe4xq" path="res://scenes/test/tilemap_test_scene/prêtre_05.png" id="36_6grsd"]
+[ext_resource type="Script" path="res://scenes/test/tilemap_test_scene/try_again_button.gd" id="36_fvykp"]
+[ext_resource type="PackedScene" uid="uid://cw63fxynmbqj0" path="res://scenes/coffin.tscn" id="36_fwxek"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -643,10 +643,10 @@ scale = Vector2(0.86, 0.86)
 texture = ExtResource("29_emtf1")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 683.0
-offset_top = 4075.0
-offset_right = 1107.0
-offset_bottom = 4247.0
+offset_left = 616.0
+offset_top = 4055.0
+offset_right = 1040.0
+offset_bottom = 4227.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("30_fwxek")
 theme_override_font_sizes/font_size = 148
@@ -707,14 +707,120 @@ theme_override_font_sizes/font_size = 70
 text = "Try again ?"
 script = ExtResource("36_fvykp")
 
-[node name="Coffin" parent="." instance=ExtResource("36_fwxek")]
-position = Vector2(343, 4092)
-first_name = "Boris"
-last_name = "SAMERE"
+[node name="Linda" parent="." instance=ExtResource("36_fwxek")]
+position = Vector2(413, 4176)
+rotation = -0.0785398
+first_name = "Linda"
+birth_date = "0000"
 
-[node name="RigidBody2D" parent="Coffin" index="0"]
+[node name="RigidBody2D" parent="Linda" index="0"]
+rotation = -0.0785398
 freeze = true
+
+[node name="CollisionPolygon2D" parent="Linda/RigidBody2D" index="0"]
+rotation = -0.0785398
+
+[node name="Sprite2D" parent="Linda/RigidBody2D" index="1"]
+rotation = -0.0785398
+
+[node name="Hand" parent="Linda/RigidBody2D" index="2"]
+rotation = -0.0785398
+
+[node name="CPUParticles2D" parent="Linda" index="1"]
+rotation = -0.0785398
+
+[node name="Boris" parent="." instance=ExtResource("36_fwxek")]
+position = Vector2(1309, 4156)
+rotation = 0.197222
+first_name = " Boris"
+birth_date = "0000"
+
+[node name="RigidBody2D" parent="Boris" index="0"]
+rotation = 0.197222
+freeze = true
+
+[node name="CollisionPolygon2D" parent="Boris/RigidBody2D" index="0"]
+rotation = 0.200713
+
+[node name="Sprite2D" parent="Boris/RigidBody2D" index="1"]
+rotation = 0.197222
+
+[node name="Hand" parent="Boris/RigidBody2D" index="2"]
+rotation = 0.197222
+
+[node name="CPUParticles2D" parent="Boris" index="1"]
+rotation = 0.197222
+
+[node name="Nico" parent="." instance=ExtResource("36_fwxek")]
+position = Vector2(1170, 3996)
+rotation = -0.0820305
+first_name = "Nico"
+birth_date = "0000"
+
+[node name="RigidBody2D" parent="Nico" index="0"]
+rotation = -0.0820305
+freeze = true
+
+[node name="CollisionPolygon2D" parent="Nico/RigidBody2D" index="0"]
+rotation = -0.0820305
+
+[node name="Sprite2D" parent="Nico/RigidBody2D" index="1"]
+rotation = -0.0820305
+
+[node name="Hand" parent="Nico/RigidBody2D" index="2"]
+rotation = -0.0820305
+
+[node name="CPUParticles2D" parent="Nico" index="1"]
+rotation = -0.0820305
+
+[node name="Théo" parent="." instance=ExtResource("36_fwxek")]
+position = Vector2(572, 4006)
+rotation = 0.0349066
+first_name = "Théo"
+birth_date = "0000"
+
+[node name="RigidBody2D" parent="Théo" index="0"]
+rotation = 0.0349066
+freeze = true
+
+[node name="CollisionPolygon2D" parent="Théo/RigidBody2D" index="0"]
+rotation = 0.0349066
+
+[node name="Sprite2D" parent="Théo/RigidBody2D" index="1"]
+rotation = 0.0349066
+
+[node name="Hand" parent="Théo/RigidBody2D" index="2"]
+rotation = 0.0349066
+
+[node name="CPUParticles2D" parent="Théo" index="1"]
+rotation = 0.0349066
+
+[node name="Alexis" parent="." instance=ExtResource("36_fwxek")]
+position = Vector2(1052, 4236)
+rotation = -0.122173
+first_name = "Alexis"
+birth_date = "0000"
+
+[node name="RigidBody2D" parent="Alexis" index="0"]
+rotation = -0.122173
+freeze = true
+
+[node name="CollisionPolygon2D" parent="Alexis/RigidBody2D" index="0"]
+rotation = -0.122173
+
+[node name="Sprite2D" parent="Alexis/RigidBody2D" index="1"]
+rotation = -0.122173
+
+[node name="Hand" parent="Alexis/RigidBody2D" index="2"]
+rotation = -0.122173
+
+[node name="CPUParticles2D" parent="Alexis" index="1"]
+rotation = -0.122173
 
 [connection signal="pressed" from="TryAgainButton" to="." method="_on_try_again_button_pressed"]
 
-[editable path="Coffin"]
+[editable path="Linda"]
+[editable path="Boris"]
+[editable path="Nico"]
+[editable path="Théo"]
+[editable path="Alexis"]
