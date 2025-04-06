@@ -108,3 +108,12 @@ bbcode_enabled = true
 text = "You survived the night..."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 48.0
+offset_right = 760.0
+offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("3_mg525")
+theme_override_font_sizes/font_size = 62
+text = "Day without incident: 0 "

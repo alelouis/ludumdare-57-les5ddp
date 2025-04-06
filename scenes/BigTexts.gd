@@ -14,7 +14,7 @@ extends RichTextLabel
 @onready var shaking_text_shadow = $"../RichTextLabelShadow"
 
 @onready var cinematic_timer = $"../CinematicTimer"
-
+@onready var level_label = $"../LevelLabel"
 
 var original_position: Vector2
 var base_scale: Vector2
