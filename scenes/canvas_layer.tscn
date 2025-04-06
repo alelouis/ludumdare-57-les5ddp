@@ -62,6 +62,7 @@ offset_bottom = 403.0
 theme = SubResource("Theme_kfwc7")
 bbcode_enabled = true
 text = "Drillin' Time !!! "
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_ek3oe")
