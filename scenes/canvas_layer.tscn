@@ -109,7 +109,6 @@ offset_bottom = 327.0
 theme = SubResource("Theme_kfwc7")
 theme_override_colors/default_color = Color(0.662745, 0, 0, 1)
 bbcode_enabled = true
-text = "Drillin' Time !!! "
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_ek3oe")

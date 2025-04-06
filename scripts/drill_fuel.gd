@@ -12,6 +12,7 @@ class_name DrillFuel
 
 func _ready():
 	Phase.phase_changed.connect(_on_phase_change)
+	self.hide()
 	update_bar()
 	fuel_particle_effect.emitting = false
 
@@ -52,7 +53,10 @@ func update_bar():
 		
 func _on_phase_change(): 
 	if(Phase.current_phase == 'drill'):
-		max_fuel = 100
+		self.show()
+		max_fuel = derive_fuel_from_coffins(coffin_generator.spawn_count)
+		current_fuel = max_fuel
+		print(max_fuel)
 		update_bar()
 	if(Phase.current_phase == 'coffin'):
 		current_fuel = 0

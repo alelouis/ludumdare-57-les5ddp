@@ -16,7 +16,7 @@ var display_component = null
 # Physics interpolation for smooth dragging
 var previous_pos = Vector2()
 var target_pos = Vector2()
-var drag_factor = 1.0
+var drag_factor = 10.0
 var rotation_factor = 10.0
 
 # Line drawing
@@ -137,8 +137,8 @@ func _physics_process(delta):
 			# Apply velocity to keep the click point under the mouse
 			var velocity = (target_pos - global_position) * drag_factor
 			# Limit the maximum velocity
-			if velocity.length() > 500:
-				velocity = velocity.normalized() * 500
+			if velocity.length() > 10000:
+				velocity = velocity.normalized() * 10000
 			linear_velocity = velocity
 		else:
 			# Standard dragging without rotation

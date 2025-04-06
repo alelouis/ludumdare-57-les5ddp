@@ -1,11 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=35 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
 [ext_resource type="PackedScene" uid="uid://d0mtgqgx1gvyu" path="res://scenes/canvas_layer.tscn" id="2_hdpy2"]
 [ext_resource type="Texture2D" uid="uid://d1qxxgojn4bm5" path="res://assets/backgrounds/bg_1_sky.png" id="2_nv4kt"]
 [ext_resource type="AudioStream" uid="uid://covbr3h3tcpla" path="res://assets/music/sort_song_full.ogg" id="2_udd1k"]
-[ext_resource type="Script" uid="uid://qn1k0jt2herv" path="res://scenes/test/tilemap_test_scene/backgrounds.gd" id="3_l6bv8"]
+[ext_resource type="Script" path="res://scenes/test/tilemap_test_scene/backgrounds.gd" id="3_l6bv8"]
 [ext_resource type="Texture2D" uid="uid://cuvn6mj60u0e" path="res://assets/backgrounds/day_bg_1_sky.png" id="3_w5b3b"]
 [ext_resource type="Texture2D" uid="uid://bgyr4lj31g1h8" path="res://assets/backgrounds/bg_2_clouds_far.png" id="3_wwq82"]
 [ext_resource type="Texture2D" uid="uid://bkv12p6ut0dr7" path="res://assets/backgrounds/bg_3_clouds_close.png" id="4_t14xq"]
@@ -21,10 +21,13 @@
 [ext_resource type="Texture2D" uid="uid://cfduvftw6u6wv" path="res://assets/backgrounds/bg_9_graveyard.png" id="10_udd1k"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
-[ext_resource type="PackedScene" uid="uid://blsp2rga0xtbo" path="res://scenes/ground_hole.tscn" id="19_60nct"]
-[ext_resource type="PackedScene" uid="uid://bkfammryxm1js" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
+[ext_resource type="PackedScene" uid="uid://chk8yl0l7jio2" path="res://scenes/rules.tscn" id="18_60nct"]
+[ext_resource type="PackedScene" uid="uid://5k17ir65lojn" path="res://scenes/menu.tscn" id="18_w5b3b"]
+[ext_resource type="PackedScene" path="res://scenes/ground_hole.tscn" id="19_60nct"]
+[ext_resource type="PackedScene" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 [ext_resource type="Texture2D" uid="uid://hg4537hy7t6y" path="res://assets/sprites/crowd.png" id="24_sk1ni"]
 [ext_resource type="Texture2D" uid="uid://dbwju6fxp6b8r" path="res://assets/sprites/prêtre.png" id="25_wfv1v"]
+[ext_resource type="Script" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -565,10 +568,17 @@ scale = Vector2(0.86, 0.86)
 texture = ExtResource("15_jtvsm")
 
 [node name="bury_focus" type="Node2D" parent="."]
-position = Vector2(810, -500)
+position = Vector2(810, 0)
 
 [node name="rules_focus" type="Node2D" parent="."]
 position = Vector2(810, -1500)
+
+[node name="Rules" parent="rules_focus" instance=ExtResource("18_60nct")]
+
+[node name="menu_focus" type="Node2D" parent="."]
+position = Vector2(810, -2500)
+
+[node name="Menu" parent="menu_focus" instance=ExtResource("18_w5b3b")]
 
 [node name="AboveGroundCoffinDetector" parent="." instance=ExtResource("19_w5b3b")]
 position = Vector2(843, 13)
@@ -603,3 +613,6 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(1240, -207)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("25_wfv1v")
+
+[node name="WinOrLose" type="Node" parent="."]
+script = ExtResource("26_wfv1v")

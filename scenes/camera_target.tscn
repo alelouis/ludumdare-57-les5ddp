@@ -21,7 +21,6 @@ script = ExtResource("1_05cio")
 rotation = 1.57079
 scale = Vector2(0.230216, 0.230216)
 limit_left = 0
-limit_top = -1200
 limit_right = 1620
 limit_bottom = 3300
 position_smoothing_enabled = true

@@ -23,6 +23,10 @@ var shrinking: bool = false
 var shrink_timer: float = 0.0
  	
 func _ready():
+	soft_text.hide()
+	soft_text_shadow.hide()	
+	shaking_text.hide()
+	shaking_text_shadow.hide()
 	randomize()
 	original_position = position
 	base_scale = scale

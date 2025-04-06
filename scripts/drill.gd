@@ -33,10 +33,8 @@ func on_phase_changed():
 		animation_player.play("idle")
 
 func _ready() -> void:
-	get_node("CPUParticles2D").emitting = false
 	start_position = global_position
 	$GroundEraser.fuel = fuel_bar
-	animation_player.play("idle")
 	Phase.phase_changed.connect(on_phase_changed)
 		
 func _unhandled_input(event):

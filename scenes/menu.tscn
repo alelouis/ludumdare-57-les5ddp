@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://5k17ir65lojn"]
+
+[ext_resource type="Script" uid="uid://ufbfsy3fj85l" path="res://scenes/menu.gd" id="1_yqeox"]
+
+[node name="Menu" type="Node2D"]
+position = Vector2(-810, -450)
+script = ExtResource("1_yqeox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 659.0
+offset_top = 280.0
+offset_right = 957.0
+offset_bottom = 623.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+z_index = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+offset_right = 1610.0
+offset_bottom = 909.0
+mouse_filter = 2
+color = Color(0.360784, 1, 1, 1)
