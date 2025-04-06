@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=49 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -34,13 +34,13 @@
 [ext_resource type="Script" uid="uid://e78atijb7m78" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
 [ext_resource type="Texture2D" uid="uid://coujypbn8df38" path="res://assets/backgrounds/youloose.png" id="29_emtf1"]
 [ext_resource type="FontFile" uid="uid://eduy1iunya42" path="res://assets/fonts/Underdog-Regular.ttf" id="30_fwxek"]
-[ext_resource type="Script" uid="uid://cg1trmn73rdjy" path="res://scenes/test/tilemap_test_scene/try_again_button.gd" id="36_fvykp"]
-[ext_resource type="PackedScene" uid="uid://cw63fxynmbqj0" path="res://scenes/coffin.tscn" id="36_fwxek"]
 [ext_resource type="Texture2D" uid="uid://dm0jucexadma4" path="res://scenes/test/tilemap_test_scene/prêtre_01.png" id="32_fvykp"]
 [ext_resource type="Texture2D" uid="uid://bw78j7x4ke8yj" path="res://scenes/test/tilemap_test_scene/prêtre_02.png" id="33_omsir"]
 [ext_resource type="Texture2D" uid="uid://q2l6ymiclytr" path="res://scenes/test/tilemap_test_scene/prêtre_03.png" id="34_cvf02"]
 [ext_resource type="Texture2D" uid="uid://cerl16ct8wh7n" path="res://scenes/test/tilemap_test_scene/prêtre_04.png" id="35_vxx46"]
 [ext_resource type="Texture2D" uid="uid://y8d7fcaoe4xq" path="res://scenes/test/tilemap_test_scene/prêtre_05.png" id="36_6grsd"]
+[ext_resource type="Script" uid="uid://cg1trmn73rdjy" path="res://scenes/test/tilemap_test_scene/try_again_button.gd" id="36_fvykp"]
+[ext_resource type="PackedScene" uid="uid://cw63fxynmbqj0" path="res://scenes/coffin.tscn" id="36_fwxek"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -622,7 +622,7 @@ scale = Vector2(0.86, 0.86)
 texture = ExtResource("15_jtvsm")
 
 [node name="bury_focus" type="Node2D" parent="."]
-position = Vector2(810, 0)
+position = Vector2(810, -345)
 
 [node name="rules_focus" type="Node2D" parent="."]
 position = Vector2(810, -1500)
