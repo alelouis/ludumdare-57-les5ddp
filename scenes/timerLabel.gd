@@ -6,6 +6,7 @@ extends Label
 @onready var text_label = $"../RichTextLabel"
 @onready var text_label_shadow = $"../RichTextLabelShadow"
 @onready var level_label = $"../LevelLabel"
+@onready var remaining_coffing = $"../RemainingCoffinLabel"
 
 var time_left: float
 var end_triggered = false 
@@ -16,6 +17,7 @@ func _ready():
 	end_button.hide()
 	text_label.hide()
 	text_label_shadow.hide()
+	remaining_coffing.hide()
 	time_left = start_time
 	end_button.pressed.connect(_on_end_pressed)
 	Phase.instance.phase_changed.connect(_on_phase_changed)
@@ -36,6 +38,13 @@ func _process(delta: float) -> void:
 		update_text()
 	if count_down and time_left <= 0.0 and !end_triggered:
 		on_timer_finished()
+		
+	if(Phase.instance.current_phase == 'coffin' || Phase.instance.current_phase == 'drill' && AboveGroundCoffinDetector.instance.has_bodies()):
+		if(remaining_coffing.text != "Remaining coffins: %s"  % (AboveGroundCoffinDetector.instance.get_bodies_above_ground()) ):
+			remaining_coffing.text = "Remaining coffins: %s"  % (AboveGroundCoffinDetector.instance.get_bodies_above_ground())
+			remaining_coffing.show();
+	else: 
+		remaining_coffing.hide() 
 
 func update_text():
 	text = format_time(time_left)
