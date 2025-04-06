@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Cursor="*res://scenes/cursor.tscn"
 Phase="*res://scenes/phase.tscn"
+CameraTarget="*res://scenes/camera_target.tscn"
 
 [display]
 

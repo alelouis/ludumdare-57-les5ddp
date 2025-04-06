@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7at500gy6yub"]
+
+[ext_resource type="Script" uid="uid://cer126ry71jrf" path="res://scripts/follow_mouse.gd" id="1_05cio"]
+
+[sub_resource type="Gradient" id="Gradient_t14xq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_it30p"]
+gradient = SubResource("Gradient_t14xq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="CameraTarget" type="PointLight2D"]
+scale = Vector2(4.34375, 4.34375)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_it30p")
+script = ExtResource("1_05cio")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 1.57079
+scale = Vector2(0.230216, 0.230216)
+limit_left = 0
+limit_top = -1200
+limit_right = 1620
+limit_bottom = 3300
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+drag_vertical_enabled = true
+drag_left_margin = 1.0
+drag_top_margin = 0.7
+drag_right_margin = 1.0
+drag_bottom_margin = 0.7
+editor_draw_limits = true
+editor_draw_drag_margin = true
