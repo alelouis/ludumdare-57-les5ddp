@@ -2,7 +2,7 @@ extends ColorRect
 
 class_name DrillFuel
 
-@export var max_fuel := 10.0
+@export var max_fuel := 100.0
 @export var delta := 0.1
 @export var current_fuel := max_fuel
 @onready var text_label = $"../RichTextLabel"
@@ -10,6 +10,7 @@ class_name DrillFuel
 @onready var coffin_generator = $"../../CoffinSpawner"
 
 func _ready():
+	Phase.phase_changed.connect(_on_phase_change)
 	update_bar()
 
 func derive_fuel_from_coffins(n_coffins: int):
@@ -41,3 +42,7 @@ func update_bar():
 		Phase.next_phase()
 		text_label.show_text("Coffin' Time !!!")
 		text_label_shadow.show_text("Coffin' Time !!!")
+		
+func _on_phase_change(): 
+	if(Phase.current_phase == 'drill'):
+		max_fuel = 100

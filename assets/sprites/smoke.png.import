@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuvn6mj60u0e"
-path="res://.godot/imported/day_bg_1_sky.png-6a0ed89060edc3dc1a88e4088047e5eb.ctex"
+uid="uid://bw52xocnw3ncq"
+path="res://.godot/imported/smoke.png-1325074aa216cc484491788645c8e8c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/day_bg_1_sky.png"
-dest_files=["res://.godot/imported/day_bg_1_sky.png-6a0ed89060edc3dc1a88e4088047e5eb.ctex"]
+source_file="res://assets/sprites/smoke.png"
+dest_files=["res://.godot/imported/smoke.png-1325074aa216cc484491788645c8e8c6.ctex"]
 
 [params]
 

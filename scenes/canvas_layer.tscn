@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bxn2o32s8juqr" path="res://scripts/drill_fuel.gd" id="1_c4rma"]
 [ext_resource type="Script" uid="uid://ca5ft18vi1caj" path="res://scenes/timerLabel.gd" id="2_ghj5q"]
-[ext_resource type="Script" path="res://scenes/BigTexts.gd" id="3_ek3oe"]
+[ext_resource type="Script" uid="uid://c1mdnm1jtg15h" path="res://scenes/BigTexts.gd" id="3_ek3oe"]
 [ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="3_mg525"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ghj5q"]
@@ -52,7 +52,7 @@ offset_bottom = 138.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_mg525")
 theme_override_font_sizes/font_size = 64
-text = "End the night"
+text = "End drilling"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 18.0
@@ -79,3 +79,31 @@ text = "Drillin' Time !!! "
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_ek3oe")
+
+[node name="CinematicTimer" type="Timer" parent="."]
+wait_time = 4.461
+one_shot = true
+
+[node name="SoftText" type="RichTextLabel" parent="."]
+offset_left = 23.0
+offset_top = 214.0
+offset_right = 1623.0
+offset_bottom = 542.0
+theme = SubResource("Theme_kfwc7")
+bbcode_enabled = true
+text = "You survived the night..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoftTextShadow" type="RichTextLabel" parent="."]
+z_index = -1
+offset_left = 10.0
+offset_top = 278.0
+offset_right = 1622.0
+offset_bottom = 466.0
+theme = SubResource("Theme_kfwc7")
+theme_override_colors/default_color = Color(0.662745, 0, 0, 1)
+bbcode_enabled = true
+text = "You survived the night..."
+horizontal_alignment = 1
+vertical_alignment = 1

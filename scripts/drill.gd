@@ -23,13 +23,17 @@ var current_down_force = 0.0
 var terrain_force_multiplier = 1.0
 var start_position
 
-func on_phase_changed(phase: String) -> void:
-	if phase == "coffin":
+func on_phase_changed():
+	if Phase.current_phase == "coffin":
 		animation_player.play("fade_to_drill")
-	elif phase == "drill":
+		get_node("CPUParticles2D").emitting = false
+		get_node("Smoke").emitting = false
+	elif Phase.current_phase == "drill":
+		reset_drill()
 		animation_player.play("idle")
 
 func _ready() -> void:
+	get_node("CPUParticles2D").emitting = false
 	start_position = global_position
 	$GroundEraser.fuel = fuel_bar
 	animation_player.play("idle")
@@ -104,8 +108,10 @@ func _input(event: InputEvent) -> void:
 		is_dragging = event.pressed
 		if is_dragging:
 			animation_player.play("drillin")
+			get_node("CPUParticles2D").emitting = true
 		else:
 			animation_player.play("idle")
+			get_node("CPUParticles2D").emitting = false
 	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
 		reset_drill()
 	if event is InputEventKey and event.pressed and event.keycode == KEY_D:
@@ -116,10 +122,9 @@ func _input(event: InputEvent) -> void:
 
 func reset_drill():
 	animation_player.play("idle")
-	is_dragging = false
+	is_dragging = true
 	fuel_bar.current_fuel = 100
 	fuel_bar.update_bar()
-	global_position = start_position
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0.0
 	rotation = 0.0

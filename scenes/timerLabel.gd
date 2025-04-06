@@ -8,9 +8,11 @@ extends Label
 
 var time_left: float
 var end_triggered = false 
+
 func _ready():
 	time_left = start_time
 	end_button.pressed.connect(_on_end_pressed)
+	Phase.phase_changed.connect(_on_phase_changed)
 	update_text()
 
 func _process(delta: float) -> void:
@@ -34,11 +36,32 @@ func format_time(seconds: float) -> String:
 func on_timer_finished():
 	# Called once when timer hits 0
 	end_triggered = true;
-	text = ""
-	text_label.show_text("The Night is Over !!!")
-	text_label_shadow.show_text("The Night is Over !!!")
+	end_button.hide();
 	Phase.next_phase()
 
 func _on_end_pressed():
-	time_left = 0.0
-	on_timer_finished()
+	if Phase.current_phase == "drill":
+		Phase.next_phase()
+	else:
+		time_left = 0.0
+		update_text()
+		on_timer_finished()
+	
+func _on_phase_changed():
+	if Phase.current_phase == 'drill':
+		end_button.text = "End drilling"
+		self.show()
+		time_left = 60.0
+		end_triggered = false
+		end_button.show();
+		text_label.show_text("Drillin' Time !!!")
+		text_label_shadow.show_text("Drillin' Time !!!")
+	if Phase.current_phase == 'coffin':
+		end_button.text = "End of the night"
+		text_label.show_text("Coffin' Time !!!")
+		text_label_shadow.show_text("Coffin' Time !!!")
+	if Phase.current_phase == 'cinematic':
+		end_button.hide();
+		self.hide()
+		text_label.show_text("The Night is Over !!!")
+		text_label_shadow.show_text("The Night is Over !!!")

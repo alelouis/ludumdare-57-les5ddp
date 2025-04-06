@@ -7,6 +7,15 @@ extends RichTextLabel
 @export var lifetime: float = 5.0  # seconds before disappearing
 @export var shrink_duration: float = 1.0  # how long it takes to shrink away
 
+@onready var soft_text = $"../SoftText"
+@onready var soft_text_shadow = $"../SoftTextShadow"
+
+@onready var shaking_text = $"."
+@onready var shaking_text_shadow = $"../RichTextLabelShadow"
+
+@onready var cinematic_timer = $"../CinematicTimer"
+
+
 var original_position: Vector2
 var base_scale: Vector2
 var time_alive: float = 0.0
@@ -18,9 +27,19 @@ func _ready():
 	original_position = position
 	base_scale = scale
 	pivot_offset = size / 2  # This centers the pivot for shaking & scaling
+	cinematic_timer.timeout.connect(_on_timer_timeout)
 
 func _process(delta: float) -> void:
 	# Shaking
+	if Phase.current_phase == 'cinematic' && !soft_text.visible: 
+		soft_text.show()
+		soft_text_shadow.show()
+		cinematic_timer.start()
+	elif Phase.current_phase != 'cinematic' && soft_text.visible:
+		soft_text.hide()
+		soft_text_shadow.hide()		
+		
+		
 	var shake = Vector2(
 		sin(Time.get_ticks_msec() / 100.0 * shake_speed),
 		cos(Time.get_ticks_msec() / 100.0 * shake_speed * 0.75)
@@ -52,4 +71,8 @@ func show_text(new_text: String, duration := 6.0):
 	scale = base_scale
 	show()
 	lifetime = duration
+	
+func _on_timer_timeout():
+	if(Phase.current_phase == 'cinematic'):
+		Phase.next_phase()
 	
