@@ -359,8 +359,31 @@ func find_sprite_display(coffin):
 				
 	return null
 
+# Calculate Fibonacci number for a given position in the sequence
+func fibonacci(n: int) -> int:
+	if n <= 0:
+		return 0
+	elif n == 1:
+		return 1
+	
+	# Use iteration to compute Fibonacci number
+	var a = 0
+	var b = 1
+	var result = 0
+	
+	for i in range(2, n + 1):
+		result = a + b
+		a = b
+		b = result
+	
+	return result
+
 func update_spawn_count():
-	spawn_count = Phase.current_level
+	# Use Fibonacci sequence to determine spawn count based on current level
+	# Add a base value to ensure we always have at least some coffins
+	print("Level ", Phase.current_level, " - Spawning ", spawn_count, " coffins (Fibonacci: ", fibonacci(Phase.current_level), ")")
+	spawn_count = fibonacci(Phase.current_level+2)
+	
 
 func _on_phase_changed(): 
 	if Phase.current_phase == 'drill':
