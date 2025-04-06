@@ -47,7 +47,9 @@ func update_bar():
 func _on_phase_change(): 
 	if(Phase.current_phase == 'drill'):
 		self.show()
-		max_fuel = 100
+		max_fuel = derive_fuel_from_coffins(coffin_generator.spawn_count)
+		current_fuel = max_fuel
+		print(max_fuel)
 		update_bar()
 	if(Phase.current_phase == 'coffin'):
 		current_fuel = 0
