@@ -475,6 +475,7 @@ script = ExtResource("1_ujfj4")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_xqjvw")
 autoplay = true
+bus = &"Music"
 script = ExtResource("3_bb02w")
 intro_a = ExtResource("4_7p0pn")
 intro_b = ExtResource("5_y0pfv")
