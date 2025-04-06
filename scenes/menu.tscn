@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://5k17ir65lojn"]
 
 [ext_resource type="Script" uid="uid://ufbfsy3fj85l" path="res://scenes/menu.gd" id="1_yqeox"]
-[ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="2_con2f"]
+[ext_resource type="FontFile" uid="uid://eduy1iunya42" path="res://assets/fonts/Underdog-Regular.ttf" id="2_con2f"]
 [ext_resource type="Texture2D" uid="uid://bfemvb4m40cdo" path="res://assets/marketing/titlelogo.png" id="2_vjb58"]
 
 [node name="Menu" type="Node2D"]

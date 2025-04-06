@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://d0mtgqgx1gvyu"]
 
 [ext_resource type="Script" uid="uid://bxn2o32s8juqr" path="res://scripts/drill_fuel.gd" id="1_c4rma"]
+[ext_resource type="FontFile" uid="uid://eduy1iunya42" path="res://assets/fonts/Underdog-Regular.ttf" id="2_4a2ha"]
 [ext_resource type="Script" uid="uid://ca5ft18vi1caj" path="res://scenes/timerLabel.gd" id="2_ghj5q"]
 [ext_resource type="Script" uid="uid://c1mdnm1jtg15h" path="res://scenes/BigTexts.gd" id="3_ek3oe"]
-[ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="3_mg525"]
 [ext_resource type="Texture2D" uid="uid://tfrx0613wh70" path="res://assets/sprites/jauge_back.png" id="5_4a2ha"]
 [ext_resource type="Texture2D" uid="uid://w6f1d5y6w3bb" path="res://assets/sprites/jauge_front.png" id="6_g6s7q"]
 
@@ -16,12 +16,12 @@ offsets = PackedFloat32Array(0, 0.323894, 0.39292)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 0.868996, 2.28621e-06, 1.63645e-06, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ghj5q"]
-font = ExtResource("3_mg525")
-font_size = 48
+font = ExtResource("2_4a2ha")
+font_size = 70
 
 [sub_resource type="Theme" id="Theme_kfwc7"]
-default_font = ExtResource("3_mg525")
-default_font_size = 96
+default_font = ExtResource("2_4a2ha")
+default_font_size = 60
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -67,10 +67,10 @@ hue_variation_max = 1.0
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -164.0
-offset_top = 157.0
-offset_right = -41.0
-offset_bottom = 224.0
+offset_left = -260.1
+offset_top = 36.32
+offset_right = -90.88
+offset_bottom = 122.24
 grow_horizontal = 0
 text = "01:00"
 label_settings = SubResource("LabelSettings_ghj5q")
@@ -80,40 +80,43 @@ script = ExtResource("2_ghj5q")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -408.0
-offset_top = 34.0
-offset_right = -22.0
-offset_bottom = 138.0
+offset_left = -305.0
+offset_top = 115.91
+offset_right = -43.0
+offset_bottom = 192.91
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource("3_mg525")
-theme_override_font_sizes/font_size = 64
+theme_override_fonts/font = ExtResource("2_4a2ha")
+theme_override_font_sizes/font_size = 40
 text = "End drilling"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 18.0
-offset_top = 75.0
+offset_top = 22.0
 offset_right = 1618.0
-offset_bottom = 403.0
+offset_bottom = 422.0
 theme = SubResource("Theme_kfwc7")
 bbcode_enabled = true
-text = "Drillin' Time !!! "
+text = "Drillin' Time !
+"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_ek3oe")
+shake_speed = 1.0
 
 [node name="RichTextLabelShadow" type="RichTextLabel" parent="."]
 z_index = -1
 offset_left = 5.0
-offset_top = 139.0
+offset_top = 22.0
 offset_right = 1617.0
-offset_bottom = 327.0
+offset_bottom = 422.0
 theme = SubResource("Theme_kfwc7")
 theme_override_colors/default_color = Color(0.662745, 0, 0, 1)
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_ek3oe")
+shake_speed = 1.0
 
 [node name="CinematicTimer" type="Timer" parent="."]
 wait_time = 4.461
@@ -121,9 +124,9 @@ one_shot = true
 
 [node name="SoftText" type="RichTextLabel" parent="."]
 offset_left = 23.0
-offset_top = 214.0
+offset_top = 505.0
 offset_right = 1623.0
-offset_bottom = 542.0
+offset_bottom = 833.0
 theme = SubResource("Theme_kfwc7")
 bbcode_enabled = true
 text = "The dead are resting..."
@@ -133,9 +136,9 @@ vertical_alignment = 1
 [node name="SoftTextShadow" type="RichTextLabel" parent="."]
 z_index = -1
 offset_left = 10.0
-offset_top = 278.0
+offset_top = 569.0
 offset_right = 1622.0
-offset_bottom = 466.0
+offset_bottom = 757.0
 theme = SubResource("Theme_kfwc7")
 theme_override_colors/default_color = Color(0.662745, 0, 0, 1)
 bbcode_enabled = true
@@ -144,12 +147,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LevelLabel" type="Label" parent="."]
-offset_left = 6.0
-offset_top = 48.0
-offset_right = 760.0
-offset_bottom = 183.0
-theme_override_fonts/font = ExtResource("3_mg525")
-theme_override_font_sizes/font_size = 62
+offset_left = 650.0
+offset_top = 852.0
+offset_right = 992.0
+offset_bottom = 920.0
+theme_override_fonts/font = ExtResource("2_4a2ha")
+theme_override_font_sizes/font_size = 30
 text = "Days without incident: 0 "
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

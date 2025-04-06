@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://diu01uk6grfsh" path="res://scenes/rules.gd" id="1_3spy8"]
 [ext_resource type="Texture2D" uid="uid://b1tog3phvibqe" path="res://assets/marketing/chart.png" id="2_66h5d"]
-[ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="3_1m7fe"]
+[ext_resource type="FontFile" uid="uid://eduy1iunya42" path="res://assets/fonts/Underdog-Regular.ttf" id="3_1m7fe"]
 
 [node name="Rules" type="Node2D"]
 position = Vector2(-810, -450)
@@ -10,13 +10,16 @@ script = ExtResource("1_3spy8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 537.0
-offset_top = 697.0
+offset_top = 779.0
 offset_right = 1081.0
 offset_bottom = 1245.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 z_index = 2
 layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(0.517647, 0.823529, 0.509804, 1)
+theme_override_fonts/font = ExtResource("3_1m7fe")
 theme_override_font_sizes/font_size = 50
 text = "Ok, got it"
 
@@ -29,16 +32,31 @@ mouse_filter = 2
 color = Color(1, 0.219608, 1, 1)
 
 [node name="Chart" type="Sprite2D" parent="."]
-position = Vector2(778, 409)
+position = Vector2(786, 645.5)
+scale = Vector2(0.45463, 0.45463)
 texture = ExtResource("2_66h5d")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 388.0
-offset_top = 86.0
-offset_right = 1220.0
-offset_bottom = 300.0
+offset_left = 411.0
+offset_top = 534.5
+offset_right = 1243.0
+offset_bottom = 748.5
 theme_override_colors/default_color = Color(0.518378, 0.825268, 0.508579, 1)
 theme_override_fonts/normal_font = ExtResource("3_1m7fe")
-theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/normal_font_size = 30
 text = "Tip : Merge coffins of the same family to save space !"
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 70.0
+offset_top = 132.0
+offset_right = 1543.0
+offset_bottom = 545.0
+theme_override_colors/default_color = Color(0.518378, 0.825268, 0.508579, 1)
+theme_override_fonts/normal_font = ExtResource("3_1m7fe")
+theme_override_font_sizes/normal_font_size = 50
+text = "Each day, new coffins will fall. 
+You shall drill into the depths in order to bury everything.
+
+Beware: if any coffin remains above surface when the sun rises you'll lose everything."
 horizontal_alignment = 1

@@ -63,20 +63,20 @@ func _on_phase_changed():
 		time_left = 60.0
 		end_triggered = false
 		end_button.show();
-		text_label.show_text("Drillin' Time !!!")
+		text_label.show_text("Drillin' Time ! \n Drill to claim some space for coffins.")
 		text_label.lifetime = 5.0
-		text_label_shadow.show_text("Drillin' Time !!!")
+		text_label_shadow.show_text("Drillin' Time ! \n Drill to claim some space for coffins.")
 		text_label_shadow.lifetime = 5.0
 
 	if Phase.current_phase == 'coffin':
 		end_button.text = "End of the night"
-		text_label.show_text("Coffin' Time !!!")
-		text_label_shadow.show_text("Coffin' Time !!!")
+		text_label.show_text("Coffin' Time ! \n Bury the coffins, nothing should be left behind.")
+		text_label_shadow.show_text("Coffin' Time ! \n Bury the coffins, nothing should be left behind.")
 	if Phase.current_phase == 'cinematic':
 		level_label.text = "Days without incident: %s " % (Phase.current_level - 1) 
 		end_button.hide();
 		self.hide()
-		text_label.show_text("The Night is Over !!!")
+		text_label.show_text("The Night is Over !")
 		text_label.lifetime = 1.0
-		text_label_shadow.show_text("The Night is Over !!!")
+		text_label_shadow.show_text("The Night is Over !")
 		text_label_shadow.lifetime = 1.0
