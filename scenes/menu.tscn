@@ -1,21 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://5k17ir65lojn"]
+[gd_scene load_steps=4 format=3 uid="uid://5k17ir65lojn"]
 
 [ext_resource type="Script" uid="uid://ufbfsy3fj85l" path="res://scenes/menu.gd" id="1_yqeox"]
+[ext_resource type="FontFile" uid="uid://cajwm5qsnt4ah" path="res://assets/fonts/Chomsky.otf" id="2_con2f"]
+[ext_resource type="Texture2D" uid="uid://bfemvb4m40cdo" path="res://assets/marketing/titlelogo.png" id="2_vjb58"]
 
 [node name="Menu" type="Node2D"]
 position = Vector2(-810, -450)
 script = ExtResource("1_yqeox")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 659.0
-offset_top = 280.0
-offset_right = 957.0
-offset_bottom = 623.0
+offset_left = 708.0
+offset_top = 628.0
+offset_right = 908.0
+offset_bottom = 992.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 z_index = 2
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.454902, 1, 0.619608, 1)
+theme_override_fonts/font = ExtResource("2_con2f")
+theme_override_font_sizes/font_size = 70
 text = "Play"
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -25,3 +31,7 @@ offset_right = 1610.0
 offset_bottom = 909.0
 mouse_filter = 2
 color = Color(0.360784, 1, 1, 1)
+
+[node name="Titlelogo" type="Sprite2D" parent="."]
+position = Vector2(809, 405)
+texture = ExtResource("2_vjb58")
