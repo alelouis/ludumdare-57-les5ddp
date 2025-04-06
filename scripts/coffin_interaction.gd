@@ -87,8 +87,18 @@ func create_tooltip():
 	if not existing_canvas_layer:
 		existing_canvas_layer = get_tree().root
 		
+	# Load custom font
+	var font = load("res://assets/fonts/Underdog-Regular.ttf")
+	
 	# Create a Label for the tooltip
 	tooltip_node = Label.new()
+	
+	# Set custom font
+	if font:
+		var font_settings = FontVariation.new()
+		font_settings.set_base_font(font)
+		tooltip_node.add_theme_font_override("font", font_settings)
+	
 	tooltip_node.add_theme_font_size_override("font_size", 22)  # Increased size for better visibility
 	tooltip_node.add_theme_color_override("font_color", Color(172.0/255.0, 187.0/255.0, 240.0/255.0, 1))  # Yellow for better visibility
 	tooltip_node.add_theme_color_override("font_outline_color", Color(27.0/255.0, 37.0/255.0, 63.0/255.0, 0.6))
