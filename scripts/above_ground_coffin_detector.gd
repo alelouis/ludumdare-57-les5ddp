@@ -4,6 +4,8 @@ class_name AboveGroundCoffinDetector
 
 static var instance: AboveGroundCoffinDetector
 var bodies_above_ground = 0
+var bodies_below_ground = 0
+
 
 func _ready() -> void:
 	assert(not instance, "Deux instances de AboveGroundCoffinDetector")
@@ -12,6 +14,9 @@ func _ready() -> void:
 	
 func has_bodies():
 	return bodies_above_ground > 0
+	
+func get_bodies_below_ground():
+	return bodies_below_ground
 	
 func on_phase_changed():
 	if Phase.instance.current_phase == "cinematic":
@@ -23,4 +28,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	bodies_above_ground -= 1
+	bodies_below_ground += 1
 	print(bodies_above_ground)

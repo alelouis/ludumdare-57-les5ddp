@@ -3,7 +3,7 @@ extends RigidBody2D
 @onready var fuel_bar: DrillFuel = $"../CanvasLayer/FuelRect" # adjust path as needed
 
 var is_dragging = false
-var fade_speed = 2.0  # how fast to fade out
+var fade_speed = 9.0  # how fast to fade out
 var target_volume = 0.0
 # Acceleration parameters
 @export var max_mouse_force = 100.0
@@ -42,7 +42,7 @@ func _ready() -> void:
 		
 func _unhandled_input(event):
 	
-	if isDrilling and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if isDrilling and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and Phase.instance.current_phase  == "drill":
 		is_dragging = event.pressed
 		if not is_dragging:
 			# Reset when mouse is released
@@ -83,11 +83,11 @@ func _physics_process(delta):
 		apply_torque(angle_diff * torque_strength)
 		
 		 # Smoothly fade volume
-	if drag_sound.playing:
-		drag_sound.volume_db = lerp(drag_sound.volume_db, target_volume, fade_speed * delta)
+	elif drag_sound.playing:
+		drag_sound.volume_db -= fade_speed * delta
 
 		# Stop playback when volume is close to silence
-		if target_volume <= -70 and drag_sound.volume_db <= -70:
+		if drag_sound.volume_db <= -30:
 			drag_sound.stop()
 
 	

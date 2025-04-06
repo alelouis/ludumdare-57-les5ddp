@@ -151,13 +151,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LevelLabel" type="Label" parent="."]
-offset_left = 650.0
-offset_top = 852.0
-offset_right = 992.0
-offset_bottom = 920.0
+offset_left = 651.0
+offset_top = 838.0
+offset_right = 993.0
+offset_bottom = 906.0
 theme_override_fonts/font = ExtResource("2_4a2ha")
 theme_override_font_sizes/font_size = 30
 text = "Days without incident: 0 "
+horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
