@@ -23,8 +23,6 @@ func next_phase():
 	phase_changed.emit()
 	
 func next_level(): # Call after validation
-	print("next level")
 	current_level = current_level +1
 	current_phase = phases[2] #cinematic phase 
-	print("current phase: ", current_phase)
 	phase_changed.emit()

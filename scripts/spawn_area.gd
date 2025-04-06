@@ -213,8 +213,6 @@ func create_merged_coffin(position, first_name1, first_name2, last_name):
 		coffin_data.birth_date = birth_year
 		coffin_data.death_date = death_year
 		
-		print("Created merged coffin: " + coffin_data.get_full_name())
-	
 	# Add to the scene
 	add_child(instance)
 	
