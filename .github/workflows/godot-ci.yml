@@ -88,14 +88,14 @@ jobs:
         with:
           name: web
           path: build/web
-      - name: Deploy to Itch.io
-        uses: manleydev/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: windows
-          ITCH_GAME: test-ld57
-          ITCH_USER: nicolanore
-          PACKAGE: build/web
+      # - name: Deploy to Itch.io
+      #   uses: manleydev/butler-publish-itchio-action@master
+      #   env:
+      #     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+      #     CHANNEL: windows
+      #     ITCH_GAME: coffintime
+      #     ITCH_USER: nicolanore
+      #     PACKAGE: build/web
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
