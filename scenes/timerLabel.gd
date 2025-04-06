@@ -75,13 +75,17 @@ func _on_phase_changed():
 
 	if Phase.instance.current_phase == 'coffin':
 		end_button.text = "End of the night"
-		text_label.show_text("Coffin' Time ! \n Bury the coffins, nothing should be left behind.")
-		text_label_shadow.show_text("Coffin' Time ! \n Bury the coffins, nothing should be left behind.")
+		text_label.show_text("Coffin' Time ! \n Bury the coffins, none should be left behind.")
+		text_label_shadow.show_text("Coffin' Time ! \n Bury the coffins, none should be left behind.")
 	if Phase.instance.current_phase == 'cinematic':
 		level_label.text = "Days without incident: %s " % (Phase.instance.current_level - 1) 
+		if(AboveGroundCoffinDetector.instance.has_bodies()):
+			level_label.text += "- Bodies burried: %s " % AboveGroundCoffinDetector.instance.get_bodies_below_ground()
 		end_button.hide();
 		self.hide()
 		text_label.show_text("The Night is Over !")
 		text_label.lifetime = 1.0
 		text_label_shadow.show_text("The Night is Over !")
 		text_label_shadow.lifetime = 1.0
+		
+	
