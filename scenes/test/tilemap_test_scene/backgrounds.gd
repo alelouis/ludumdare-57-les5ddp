@@ -2,6 +2,8 @@ extends Node
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var initialized = false
+
 func _ready() -> void:
 	# animation_player.play("to_day")
 	Phase.phase_changed.connect(on_phase_changed)
@@ -12,4 +14,7 @@ func on_phase_changed():
 		"cinematic":
 			animation_player.play("to_day")
 		"drill":
-			animation_player.play("to_night")
+			if initialized:
+				animation_player.play("to_night")
+			else:
+				initialized = true
