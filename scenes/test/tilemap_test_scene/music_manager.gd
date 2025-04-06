@@ -9,6 +9,8 @@ extends AudioStreamPlayer
 @export var cinematic_a: AudioStream
 @export var cinematic_b: AudioStream
 
+@export var lose_music: AudioStream
+
 var next_stream: AudioStream
 
 func _ready() -> void:
@@ -21,23 +23,32 @@ func _ready() -> void:
 func on_finished():
 	if next_stream and next_stream != stream:
 		stream = next_stream
-	play()
+	if stream != lose_music:
+		play()
 	
 func on_phase_changed():
 	match Phase.instance.current_phase:
 		"drill":
 			if stream != drill_a and stream != drill_b:
 				var tween = get_tree().create_tween()
-				tween.tween_property(self, "volume_db", -60, 2)
+				tween.tween_property(self, "volume_db", -60, 1)
 				await tween.finished
 				volume_db = 0
 				stream = drill_a
 				next_stream = drill_b
 				play()
 		"cinematic":
-			if stream != cinematic_a and stream != cinematic_b:
+			if stream != lose_music and AboveGroundCoffinDetector.instance.has_bodies():
 				var tween = get_tree().create_tween()
-				tween.tween_property(self, "volume_db", -60, 2)
+				tween.tween_property(self, "volume_db", -60, 1)
+				await tween.finished
+				volume_db = 0
+				stream = lose_music
+				next_stream = null
+				play()
+			if stream != cinematic_a and stream != cinematic_b and not AboveGroundCoffinDetector.instance.has_bodies():
+				var tween = get_tree().create_tween()
+				tween.tween_property(self, "volume_db", -60, 1)
 				await tween.finished
 				volume_db = 0
 				stream = cinematic_a

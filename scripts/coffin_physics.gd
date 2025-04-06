@@ -1,7 +1,11 @@
 extends RigidBody2D
 
-
+class_name CoffinPhysics
 @onready var hand = $Hand
+
+@onready var audio_wood: AudioStreamPlayer2D = $"/root/TilemapTest/AudioWood"
+@onready var audio_other: AudioStreamPlayer2D = $"/root/TilemapTest/AudioOther"
+
 
 var dragging = false
 var rotate_while_dragging = true
@@ -71,6 +75,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 			if event.pressed:
 				dragging = true
 				Cursor.instance.set_cursor_sprite("cursor")
+				print("set cursor sprite")
 				should_draw_line = true
 				drag_start = get_viewport().get_mouse_position()
 				drag_offset = global_position - drag_start
@@ -161,3 +166,17 @@ func _physics_process(delta):
 		line_node.clear_points()
 		line_node.add_point(world_click_pos)
 		line_node.add_point(mouse_pos)
+
+
+func _on_body_entered(body: Node) -> void:
+	if body is CoffinPhysics:
+		var speed = linear_velocity.length()
+		print(speed)
+		audio_wood.volume_db = lerp(-120, 0, clamp(speed, 0, 300) / 300.0)
+		audio_wood.volume_db = randf_range(-18.0, -6.0)
+		audio_wood.pitch_scale = randf_range(0.5, 4.0)
+		audio_wood.play()
+	else:
+		audio_other.volume_db = randf_range(-18.0, -6.0)
+		audio_other.pitch_scale = randf_range(0.4, 1.0)
+		audio_other.play()

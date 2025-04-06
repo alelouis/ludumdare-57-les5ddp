@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=56 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://c6a34gmwfc2ut" path="res://assets/backgrounds/bg_6_foresttown.png" id="7_wvq2o"]
 [ext_resource type="Texture2D" uid="uid://cwx2h4h521kqy" path="res://assets/backgrounds/day_bg_4_mountain.png" id="9_sk1ni"]
 [ext_resource type="Texture2D" uid="uid://cfduvftw6u6wv" path="res://assets/backgrounds/bg_9_graveyard.png" id="10_udd1k"]
+[ext_resource type="AudioStream" uid="uid://7wj61v1r5k67" path="res://assets/music/loose_song_over.ogg" id="11_jl2ng"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
 [ext_resource type="PackedScene" uid="uid://chk8yl0l7jio2" path="res://scenes/rules.tscn" id="18_60nct"]
@@ -45,6 +46,8 @@
 [ext_resource type="Script" path="res://scenes/test/tilemap_test_scene/pretre.gd" id="42_vaygr"]
 [ext_resource type="PackedScene" uid="uid://cdgfgs001mgbx" path="res://scenes/phase.tscn" id="43_vaygr"]
 [ext_resource type="PackedScene" uid="uid://c7at500gy6yub" path="res://scenes/camera_target.tscn" id="44_jl2ng"]
+[ext_resource type="AudioStream" uid="uid://u76p7rfsyl8l" path="res://assets/sounds/chock1_dry.mp3" id="47_0jh2x"]
+[ext_resource type="AudioStream" uid="uid://b2ddmfqsqp2a1" path="res://assets/sounds/chock2_dry.mp3" id="48_4wa0p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -482,6 +485,7 @@ intro_b = ExtResource("5_y0pfv")
 drill_a = ExtResource("2_xqjvw")
 drill_b = ExtResource("6_y0pfv")
 cinematic_a = ExtResource("7_4ssx2")
+lose_music = ExtResource("11_jl2ng")
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 
@@ -827,6 +831,16 @@ rotation = -0.122173
 
 [node name="CPUParticles2D" parent="Alexis" index="1"]
 rotation = -0.122173
+
+[node name="AudioWood" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(313, 203)
+stream = ExtResource("47_0jh2x")
+bus = &"Soud effects"
+
+[node name="AudioOther" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(313, 203)
+stream = ExtResource("48_4wa0p")
+bus = &"Soud effects"
 
 [connection signal="pressed" from="TryAgainButton" to="." method="_on_try_again_button_pressed"]
 
