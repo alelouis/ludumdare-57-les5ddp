@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dghkpo2q8o2jf" path="res://assets/backgrounds/bg_10_cliff.png" id="11_wwq82"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
+[ext_resource type="PackedScene" uid="uid://bkfammryxm1js" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -155,3 +156,6 @@ position = Vector2(810, -500)
 
 [node name="rules_focus" type="Node2D" parent="."]
 position = Vector2(810, -1500)
+
+[node name="AboveGroundCoffinDetector" parent="." instance=ExtResource("19_w5b3b")]
+position = Vector2(843, 13)
