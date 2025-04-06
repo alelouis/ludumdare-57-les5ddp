@@ -1,9 +1,17 @@
 extends Area2D
 
-@export var fuel: DrillFuel
-@export var first_destroyable_row = 10
-
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+func _ready() -> void:
+	var timer: Timer = Timer.new()
+	timer.timeout.connect(on_timer)
+	timer.wait_time = 0.5
+	timer.one_shot = true
+	add_child(timer)
+	timer.start()
+
+func on_timer():
+	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,6 +30,7 @@ func remove_tile(tilemap_layer: TileMapLayer, cell: Vector2i):
 	tilemap_layer.erase_cell(cell)
 
 func erase_tiles_in_area(tilemap_layer: TileMapLayer):
+	
 	# Get the global bounding box (AABB) of the collision shape
 	var local_aabb: Rect2 = collision_shape_2d.shape.get_rect()
 	var cshape_global_transform: Transform2D = collision_shape_2d.global_transform
@@ -64,8 +73,6 @@ func erase_tiles_in_area(tilemap_layer: TileMapLayer):
 	# 6. Iterate through every cell within the calculated map range
 	for y in range(min_cell_y, max_cell_y + 1):
 		for x in range(min_cell_x, max_cell_x + 1):
-			if y < first_destroyable_row:
-				continue
 				
 			var current_cell = Vector2i(x, y)
 
@@ -83,6 +90,4 @@ func erase_tiles_in_area(tilemap_layer: TileMapLayer):
 			var point_is_inside_area = not results.is_empty() and results[0]["collider"] == self
 
 			if point_is_inside_area:
-				if fuel.current_fuel > 0:
-					remove_tile(tilemap_layer, current_cell)
-					fuel.drain(1)
+				remove_tile(tilemap_layer, current_cell)
