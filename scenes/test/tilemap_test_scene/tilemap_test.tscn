@@ -155,8 +155,14 @@ limit_top = -1200
 limit_right = 1620
 limit_bottom = 3300
 position_smoothing_enabled = true
-position_smoothing_speed = 1.0
+position_smoothing_speed = 4.0
+drag_vertical_enabled = true
+drag_left_margin = 1.0
+drag_top_margin = 0.7
+drag_right_margin = 1.0
+drag_bottom_margin = 0.7
 editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="Parallax2D6" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1.2, 1.2)
