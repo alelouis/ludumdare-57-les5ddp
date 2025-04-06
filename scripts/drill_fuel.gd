@@ -11,6 +11,7 @@ class_name DrillFuel
 
 func _ready():
 	Phase.phase_changed.connect(_on_phase_change)
+	self.hide()
 	update_bar()
 
 func derive_fuel_from_coffins(n_coffins: int):
@@ -45,4 +46,5 @@ func update_bar():
 		
 func _on_phase_change(): 
 	if(Phase.current_phase == 'drill'):
+		self.show()
 		max_fuel = 100

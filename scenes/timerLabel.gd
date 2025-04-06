@@ -7,13 +7,17 @@ extends Label
 @onready var text_label_shadow = $"../RichTextLabelShadow"
 
 var time_left: float
-var end_triggered = false 
+var end_triggered = true 
 
 func _ready():
+	end_button.hide()
+	text_label.hide()
+	text_label_shadow.hide()
 	time_left = start_time
 	end_button.pressed.connect(_on_end_pressed)
 	Phase.phase_changed.connect(_on_phase_changed)
 	update_text()
+	self.hide()
 
 func _process(delta: float) -> void:
 	if !end_triggered:

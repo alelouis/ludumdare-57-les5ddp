@@ -30,12 +30,7 @@ func _ready():
 	# Update collision shape based on bounds
 	update_collision_shape()
 	Phase.phase_changed.connect(_on_phase_changed)
-	# Spawn scenes if auto-spawn is enabled
-	if auto_spawn_on_ready and spawn_scene:
-		spawn_scenes_with_delay(spawn_count)
-		
-	# Start tracking collisions after a short delay to let objects settle
-	get_tree().create_timer(1.0).timeout.connect(func(): _setup_collision_detection())
+
 # Set up collision detection for all coffins
 func _setup_collision_detection():
 	# Find all RigidBody2D nodes (coffins) in children
