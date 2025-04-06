@@ -36,6 +36,9 @@ func _ready() -> void:
 	start_position = global_position
 	$GroundEraser.fuel = fuel_bar
 	Phase.phase_changed.connect(on_phase_changed)
+	get_node("CPUParticles2D").emitting = false
+	get_node("Smoke").emitting = false
+
 		
 func _unhandled_input(event):
 	
@@ -107,6 +110,7 @@ func _input(event: InputEvent) -> void:
 		if is_dragging:
 			animation_player.play("drillin")
 			get_node("CPUParticles2D").emitting = true
+			get_node("Smoke").emitting = true
 		else:
 			animation_player.play("idle")
 			get_node("CPUParticles2D").emitting = false
