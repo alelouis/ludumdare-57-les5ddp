@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=20 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dghkpo2q8o2jf" path="res://assets/backgrounds/bg_10_cliff.png" id="11_wwq82"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
-[ext_resource type="PackedScene" uid="uid://bkfammryxm1js" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
+[ext_resource type="PackedScene" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
