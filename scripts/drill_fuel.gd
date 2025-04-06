@@ -55,4 +55,4 @@ func _on_phase_change():
 	if(Phase.current_phase == 'coffin'):
 		current_fuel = 0
 		update_bar()
-		fuel_particle_effect.emitting = true
+		fuel_particle_effect.emitting = false

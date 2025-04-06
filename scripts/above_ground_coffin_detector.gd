@@ -13,8 +13,8 @@ func _ready() -> void:
 func has_bodies():
 	return bodies_above_ground > 0
 	
-func on_phase_changed(phase: String):
-	if phase == "cinematic":
+func on_phase_changed():
+	if Phase.current_phase == "cinematic":
 		pass
 
 func _on_body_entered(body: Node2D) -> void:

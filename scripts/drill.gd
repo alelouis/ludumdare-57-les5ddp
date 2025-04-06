@@ -119,13 +119,9 @@ func _input(event: InputEvent) -> void:
 			is_dragging = false
 
 func reset_drill():
-	animation_player.play("idle")
 	is_dragging = false
 	isDrilling = true
 	fuel_bar.current_fuel = 100
 	fuel_bar.update_bar()
-	linear_velocity = Vector2.ZERO
-	angular_velocity = 0.0
-	rotation = 0.0
 	sleeping = false  # wake it up just in case
 	print("Drill reset to starting position.")
