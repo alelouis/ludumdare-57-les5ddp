@@ -8,30 +8,29 @@ class_name DrillFuel
 @onready var text_label = $"../RichTextLabel"
 @onready var text_label_shadow = $"../RichTextLabelShadow"
 @onready var coffin_generator = $"../../CoffinSpawner"
+@onready var fuel_particle_effect = $CPUParticles2D
 
 func _ready():
 	Phase.phase_changed.connect(_on_phase_change)
 	self.hide()
 	update_bar()
+	fuel_particle_effect.emitting = false
+
 
 func derive_fuel_from_coffins(n_coffins: int):
-	
-	var fuel = n_coffins * 4.5
-	return fuel
+	return n_coffins * 10
 
 func drain(amount: float):
 	current_fuel = clamp(current_fuel - amount * delta, 0.0, max_fuel)
-	update_bar()
-
-func refill(amount: float):
-	current_fuel = clamp(current_fuel + amount, 0.0, max_fuel)
 	update_bar()
 
 func update_bar():
 	# Update width
 	var percent := current_fuel / max_fuel
 	size.y = 400 * percent  # Assuming full bar is 200px
-
+	fuel_particle_effect.emitting = true
+	fuel_particle_effect.position.y = size.y
+	
 	# Update color
 	if percent > 0.6:
 		color = Color(0.0, 1.0, 0.0)  # Green
@@ -43,12 +42,17 @@ func update_bar():
 		Phase.next_phase()
 		text_label.show_text("Coffin' Time !!!")
 		text_label_shadow.show_text("Coffin' Time !!!")
+	fuel_particle_effect.emitting = false
+
 		
 func _on_phase_change(): 
 	if(Phase.current_phase == 'drill'):
 		self.show()
-		max_fuel = 100
+		coffin_generator.update_spawn_count()
+		max_fuel = derive_fuel_from_coffins(coffin_generator.spawn_count)
+		current_fuel = max_fuel
 		update_bar()
 	if(Phase.current_phase == 'coffin'):
 		current_fuel = 0
 		update_bar()
+		fuel_particle_effect.emitting = false
