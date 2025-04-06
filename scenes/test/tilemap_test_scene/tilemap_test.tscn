@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=45 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://bosy6vdwhjx3w" path="res://assets/music/lobby_song_loop_B.ogg" id="5_y0pfv"]
 [ext_resource type="Texture2D" uid="uid://bp82i4shxl7co" path="res://assets/backgrounds/bg_5_town.png" id="6_3dehq"]
 [ext_resource type="AudioStream" uid="uid://bvfkbnerwqa3r" path="res://assets/music/drill_song_loop_B.ogg" id="6_y0pfv"]
+[ext_resource type="AudioStream" uid="uid://dsgwoad6d6o1h" path="res://assets/music/funeral_song_loop.ogg" id="7_4ssx2"]
 [ext_resource type="Texture2D" uid="uid://d0cm7j5xtbi4g" path="res://assets/backgrounds/day_bg_3_clouds_close.png" id="7_l6bv8"]
 [ext_resource type="Texture2D" uid="uid://dkm03c6rf3xra" path="res://assets/backgrounds/bg_7_backdirt.png" id="7_t14xq"]
 [ext_resource type="Texture2D" uid="uid://c6a34gmwfc2ut" path="res://assets/backgrounds/bg_6_foresttown.png" id="7_wvq2o"]
@@ -27,11 +28,15 @@
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
 [ext_resource type="PackedScene" uid="uid://chk8yl0l7jio2" path="res://scenes/rules.tscn" id="18_60nct"]
 [ext_resource type="PackedScene" uid="uid://5k17ir65lojn" path="res://scenes/menu.tscn" id="18_w5b3b"]
-[ext_resource type="PackedScene" path="res://scenes/ground_hole.tscn" id="19_60nct"]
-[ext_resource type="PackedScene" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
+[ext_resource type="PackedScene" uid="uid://blsp2rga0xtbo" path="res://scenes/ground_hole.tscn" id="19_60nct"]
+[ext_resource type="PackedScene" uid="uid://bkfammryxm1js" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 [ext_resource type="Texture2D" uid="uid://hg4537hy7t6y" path="res://assets/sprites/crowd.png" id="24_sk1ni"]
-[ext_resource type="Texture2D" uid="uid://dbwju6fxp6b8r" path="res://assets/sprites/prêtre.png" id="25_wfv1v"]
-[ext_resource type="Script" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
+[ext_resource type="Script" uid="uid://e78atijb7m78" path="res://scenes/test/tilemap_test_scene/win_or_lose.gd" id="26_wfv1v"]
+[ext_resource type="Texture2D" uid="uid://dm0jucexadma4" path="res://scenes/test/tilemap_test_scene/prêtre_01.png" id="32_fvykp"]
+[ext_resource type="Texture2D" uid="uid://bw78j7x4ke8yj" path="res://scenes/test/tilemap_test_scene/prêtre_02.png" id="33_omsir"]
+[ext_resource type="Texture2D" uid="uid://q2l6ymiclytr" path="res://scenes/test/tilemap_test_scene/prêtre_03.png" id="34_cvf02"]
+[ext_resource type="Texture2D" uid="uid://cerl16ct8wh7n" path="res://scenes/test/tilemap_test_scene/prêtre_04.png" id="35_vxx46"]
+[ext_resource type="Texture2D" uid="uid://y8d7fcaoe4xq" path="res://scenes/test/tilemap_test_scene/prêtre_05.png" id="36_6grsd"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
 
@@ -415,6 +420,41 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxxwr"]
 radius = 110.368
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_howof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_fvykp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_omsir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_cvf02")
+}, {
+"duration": 3.0,
+"texture": ExtResource("35_vxx46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_6grsd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_omsir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_6grsd")
+}, {
+"duration": 0.3,
+"texture": ExtResource("33_omsir")
+}, {
+"duration": 0.5,
+"texture": ExtResource("33_omsir")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
 
@@ -426,6 +466,7 @@ intro_a = ExtResource("4_7p0pn")
 intro_b = ExtResource("5_y0pfv")
 drill_a = ExtResource("2_xqjvw")
 drill_b = ExtResource("6_y0pfv")
+cinematic_a = ExtResource("7_4ssx2")
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 
@@ -617,11 +658,13 @@ position = Vector2(-268, -195)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("24_sk1ni")
 
-[node name="Prêtre" type="Sprite2D" parent="."]
+[node name="Prêtre" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(1240, -207)
 scale = Vector2(0.86, 0.86)
-texture = ExtResource("25_wfv1v")
+sprite_frames = SubResource("SpriteFrames_howof")
+animation = &"idle"
+frame_progress = 0.752577
 
 [node name="WinOrLose" type="Node" parent="."]
 script = ExtResource("26_wfv1v")
