@@ -118,7 +118,7 @@ func _on_coffin_collision(coffin1, coffin2):
 				
 				# Set up collision detection
 				rigidbody.contact_monitor = true
-				rigidbody.max_contacts_reported = 10
+				rigidbody.max_contacts_reported = 1000
 				rigidbody.body_entered.connect(func(body): _on_coffin_collision(rigidbody, body))
 				tracked_coffins.append(rigidbody)
 			

@@ -25,7 +25,7 @@ var pulse_intensity = 0.4  # Intensity of the glow
 # Color mapping for last names
 static var last_name_colors = {}
 static var next_hue = 0.0
-static var hue_increment = 0.4  # Golden ratio approximation for good distribution
+static var hue_increment = 0.3  # Golden ratio approximation for good distribution
 
 func _ready():
 	# Find coffin data
