@@ -2,7 +2,7 @@ extends ColorRect
 
 class_name DrillFuel
 
-@export var max_fuel := 100.0
+@export var max_fuel := 10.0
 @export var delta := 0.1
 @export var current_fuel := max_fuel
 @onready var text_label = $"../RichTextLabel"
@@ -11,6 +11,11 @@ class_name DrillFuel
 
 func _ready():
 	update_bar()
+
+func derive_fuel_from_coffins(n_coffins: int):
+	
+	var fuel = n_coffins * 4.5
+	return fuel
 
 func drain(amount: float):
 	current_fuel = clamp(current_fuel - amount * delta, 0.0, max_fuel)
