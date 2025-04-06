@@ -124,7 +124,7 @@ offset_right = 1623.0
 offset_bottom = 542.0
 theme = SubResource("Theme_kfwc7")
 bbcode_enabled = true
-text = "You survived the night..."
+text = "The dead are resting..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -137,7 +137,7 @@ offset_bottom = 466.0
 theme = SubResource("Theme_kfwc7")
 theme_override_colors/default_color = Color(0.662745, 0, 0, 1)
 bbcode_enabled = true
-text = "You survived the night..."
+text = "The dead are resting..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
