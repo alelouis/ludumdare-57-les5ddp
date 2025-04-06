@@ -15,7 +15,7 @@ var target_volume = 0.0
 @export var torque_strength = 80.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@export var isDrilling = false
+@export var isDrilling = true
 
 var current_mouse_force = 0.0
 var current_down_force = 0.0
@@ -122,7 +122,8 @@ func _input(event: InputEvent) -> void:
 
 func reset_drill():
 	animation_player.play("idle")
-	is_dragging = true
+	is_dragging = false
+	isDrilling = true
 	fuel_bar.current_fuel = 100
 	fuel_bar.update_bar()
 	linear_velocity = Vector2.ZERO
