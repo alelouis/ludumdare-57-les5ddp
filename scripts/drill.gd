@@ -121,7 +121,5 @@ func _input(event: InputEvent) -> void:
 func reset_drill():
 	is_dragging = false
 	isDrilling = true
-	fuel_bar.current_fuel = 100
-	fuel_bar.update_bar()
 	sleeping = false  # wake it up just in case
 	print("Drill reset to starting position.")

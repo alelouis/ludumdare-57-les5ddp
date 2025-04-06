@@ -12,6 +12,7 @@ var end_triggered = false
 var current_level = 1
 
 func _ready():
+	level_label.hide()
 	end_button.hide()
 	text_label.hide()
 	text_label_shadow.hide()
@@ -55,13 +56,18 @@ func _on_end_pressed():
 	
 func _on_phase_changed():
 	if Phase.current_phase == 'drill':
+		if !level_label.visible:
+			level_label.show()
 		end_button.text = "End drilling"
 		self.show()
 		time_left = 60.0
 		end_triggered = false
 		end_button.show();
 		text_label.show_text("Drillin' Time !!!")
+		text_label.lifetime = 5.0
 		text_label_shadow.show_text("Drillin' Time !!!")
+		text_label_shadow.lifetime = 5.0
+
 	if Phase.current_phase == 'coffin':
 		end_button.text = "End of the night"
 		text_label.show_text("Coffin' Time !!!")
@@ -71,4 +77,6 @@ func _on_phase_changed():
 		end_button.hide();
 		self.hide()
 		text_label.show_text("The Night is Over !!!")
+		text_label.lifetime = 1.0
 		text_label_shadow.show_text("The Night is Over !!!")
+		text_label_shadow.lifetime = 1.0
