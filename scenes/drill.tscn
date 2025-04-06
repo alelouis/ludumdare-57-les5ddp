@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cmr7o47df4rmg"]
+[gd_scene load_steps=22 format=3 uid="uid://cmr7o47df4rmg"]
 
 [ext_resource type="Script" uid="uid://dhjl4qqw5io3s" path="res://scripts/drill.gd" id="1_60uro"]
 [ext_resource type="Texture2D" uid="uid://cksloxqhx7spt" path="res://assets/sprites/drill_idle.png" id="2_nx8ti"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cd5h2253js8rx" path="res://assets/sprites/drill_fr3.png" id="5_hql8b"]
 [ext_resource type="Texture2D" uid="uid://bj7rqj8xsvuk5" path="res://assets/sprites/drill_fr4.png" id="6_fo41f"]
 [ext_resource type="Texture2D" uid="uid://cvdo3g58aykq" path="res://assets/sprites/drill_solo.png" id="7_8cwd3"]
+[ext_resource type="Texture2D" uid="uid://bw52xocnw3ncq" path="res://assets/sprites/smoke.png" id="10_hql8b"]
 
 [sub_resource type="Animation" id="Animation_cljqy"]
 length = 0.001
@@ -159,6 +160,22 @@ height = 41.7442
 [sub_resource type="CircleShape2D" id="CircleShape2D_nx8ti"]
 radius = 37.0135
 
+[sub_resource type="Curve" id="Curve_fo41f"]
+_data = [Vector2(0, 0.16581), 0.0, 0.0, 0, 0, Vector2(0.877569, 0.726282), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_euh7r"]
+offsets = PackedFloat32Array(0, 0.175221, 0.711504)
+colors = PackedColorArray(1, 1, 1, 1, 0.565763, 0.565763, 0.565763, 0.684956, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_8cwd3"]
+_data = [Vector2(0.297089, 1), 0.0, 0.0, 0, 0, Vector2(0.86387, 0.217947), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hql8b"]
+offsets = PackedFloat32Array(0, 0.323894, 0.39292)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 0.868996, 2.28621e-06, 1.63645e-06, 1)
+
 [node name="Drill" type="RigidBody2D"]
 collision_layer = 4
 gravity_scale = 0.0
@@ -173,6 +190,7 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(-36.3593, 0.640579)
 rotation = -1.5708
 scale = Vector2(0.45, 0.45)
@@ -200,3 +218,38 @@ position = Vector2(-27, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundEraser"]
 position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_nx8ti")
+
+[node name="Smoke" type="CPUParticles2D" parent="."]
+position = Vector2(-50, 0)
+amount = 40
+texture = ExtResource("10_hql8b")
+lifetime = 1.88
+direction = Vector2(-1, 0)
+spread = 25.96
+gravity = Vector2(0, -200)
+initial_velocity_min = 185.9
+initial_velocity_max = 192.31
+angular_velocity_min = -140.59
+angular_velocity_max = 151.08
+damping_max = 1.0
+scale_amount_curve = SubResource("Curve_fo41f")
+color_ramp = SubResource("Gradient_euh7r")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 3
+position = Vector2(50, 1)
+amount = 50
+randomness = 0.98
+lifetime_randomness = 0.42
+direction = Vector2(-1, 0)
+spread = 81.04
+gravity = Vector2(0, 0)
+initial_velocity_max = 200.0
+angular_velocity_min = -96.92
+angular_velocity_max = 387.69
+scale_amount_min = 0.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_8cwd3")
+color_ramp = SubResource("Gradient_hql8b")
+hue_variation_min = 0.91
+hue_variation_max = 1.0

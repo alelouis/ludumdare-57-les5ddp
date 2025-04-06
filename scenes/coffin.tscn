@@ -24,7 +24,7 @@ script = ExtResource("1_o11qi")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 collision_layer = 8
-collision_mask = 9
+collision_mask = 25
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_oghpg")
 can_sleep = false

@@ -49,7 +49,7 @@ func _on_end_pressed():
 	
 func _on_phase_changed():
 	if Phase.current_phase == 'drill':
-		end_button.text = "Drill finished"
+		end_button.text = "End drilling"
 		self.show()
 		time_left = 60.0
 		end_triggered = false

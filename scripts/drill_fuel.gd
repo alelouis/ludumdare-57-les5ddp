@@ -13,6 +13,11 @@ func _ready():
 	Phase.phase_changed.connect(_on_phase_change)
 	update_bar()
 
+func derive_fuel_from_coffins(n_coffins: int):
+	
+	var fuel = n_coffins * 4.5
+	return fuel
+
 func drain(amount: float):
 	current_fuel = clamp(current_fuel - amount * delta, 0.0, max_fuel)
 	update_bar()

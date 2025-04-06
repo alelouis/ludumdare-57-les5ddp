@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkfammryxm1js"]
+
+[ext_resource type="Script" uid="uid://bcixri85goo8v" path="res://scripts/above_ground_coffin_detector.gd" id="1_cshfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udd1k"]
+size = Vector2(1800, 800)
+
+[node name="AboveGroundCoffinDetector" type="Area2D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_cshfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -400)
+shape = SubResource("RectangleShape2D_udd1k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

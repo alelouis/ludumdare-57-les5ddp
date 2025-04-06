@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cbt25qb3c5v1v"]
+[gd_scene load_steps=20 format=3 uid="uid://cbt25qb3c5v1v"]
 
 [ext_resource type="PackedScene" uid="uid://c8gew3awm64sj" path="res://scenes/ground.tscn" id="1_ruml6"]
 [ext_resource type="Script" uid="uid://bdcjsymwv8rfl" path="res://scenes/test/tilemap_test_scene/tilemap_test.gd" id="1_ujfj4"]
@@ -15,20 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://c6a34gmwfc2ut" path="res://assets/backgrounds/bg_6_foresttown.png" id="7_wvq2o"]
 [ext_resource type="Texture2D" uid="uid://cfduvftw6u6wv" path="res://assets/backgrounds/bg_9_graveyard.png" id="10_udd1k"]
 [ext_resource type="Texture2D" uid="uid://dghkpo2q8o2jf" path="res://assets/backgrounds/bg_10_cliff.png" id="11_wwq82"]
-[ext_resource type="Script" uid="uid://cer126ry71jrf" path="res://scripts/follow_mouse.gd" id="13_it30p"]
 [ext_resource type="Texture2D" uid="uid://dvsai8spxnqro" path="res://assets/backgrounds/bg_11_foreground.png" id="14_1lc8i"]
 [ext_resource type="Texture2D" uid="uid://dj52e7penkpuo" path="res://assets/backgrounds/bg_12_foreground2.png" id="15_jtvsm"]
+[ext_resource type="PackedScene" path="res://scenes/above_ground_coffin_detector.tscn" id="19_w5b3b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_it30p"]
-
-[sub_resource type="Gradient" id="Gradient_t14xq"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_it30p"]
-gradient = SubResource("Gradient_t14xq")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [node name="TilemapTest" type="Node2D"]
 script = ExtResource("1_ujfj4")
@@ -140,24 +131,6 @@ torque_strength = 200.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_hdpy2")]
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(783, -359)
-scale = Vector2(4.34375, 4.34375)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_it30p")
-script = ExtResource("13_it30p")
-
-[node name="Camera2D" type="Camera2D" parent="PointLight2D"]
-rotation = 1.57079
-scale = Vector2(0.230216, 0.230216)
-limit_left = 0
-limit_top = -1200
-limit_right = 1620
-limit_bottom = 3300
-position_smoothing_enabled = true
-position_smoothing_speed = 1.0
-editor_draw_limits = true
-
 [node name="Parallax2D6" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1.2, 1.2)
 scroll_offset = Vector2(0, 141)
@@ -177,3 +150,12 @@ visible = false
 position = Vector2(825.6, 1559.8)
 scale = Vector2(0.86, 0.86)
 texture = ExtResource("15_jtvsm")
+
+[node name="bury_focus" type="Node2D" parent="."]
+position = Vector2(810, -500)
+
+[node name="rules_focus" type="Node2D" parent="."]
+position = Vector2(810, -1500)
+
+[node name="AboveGroundCoffinDetector" parent="." instance=ExtResource("19_w5b3b")]
+position = Vector2(843, 13)
