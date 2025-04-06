@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var ground: Ground
-@export var fuel: ColorRect
+@export var fuel: DrillFuel
 @export var first_destroyable_row = 10
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -84,5 +84,6 @@ func erase_tiles_in_area(tilemap_layer: TileMapLayer):
 			var point_is_inside_area = not results.is_empty() and results[0]["collider"] == self
 
 			if point_is_inside_area:
-				remove_tile(tilemap_layer, current_cell)
-				fuel.drain(1)
+				if fuel.current_fuel > 0:
+					remove_tile(tilemap_layer, current_cell)
+					fuel.drain(1)
