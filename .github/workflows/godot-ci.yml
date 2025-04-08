@@ -1,8 +1,5 @@
-name: "godot-ci export"
-on:
-  push:
-    branches:
-      - main
+name: "Build and deploy to itch"
+on: workflow_dispatch
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
 env:
@@ -110,9 +107,9 @@ jobs:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: win
           PACKAGE: build/web
-      - name: Install rsync 📚
-        run: |
-          apt-get update && apt-get install -y rsync
+      # - name: Install rsync 📚
+      #   run: |
+      #     apt-get update && apt-get install -y rsync
 
   export-mac:
     name: Mac Export
@@ -133,7 +130,7 @@ jobs:
           mkdir -v -p build/mac
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+          godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.dmg"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
